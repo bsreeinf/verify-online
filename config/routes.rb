@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   root 'landing_page#index'
 
-  get 'login' =>  'session#new'
+  get    'login'   => 'sessions#new'
+  get    'signup'  => 'users#new'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.

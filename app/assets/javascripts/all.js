@@ -47,6 +47,7 @@
         initPageSliders();
         initWorkFilter();
         init_map();
+     
         init_wow();
         init_masonry();
     });
@@ -1021,7 +1022,7 @@ function init_map(){
             $(this).find(".mt-close").toggle();
         });
         
-        
+        console.log("i am in map function");
         if (gmMapDiv.length) {
         
             var gmCenterAddress = gmMapDiv.attr("data-address");
