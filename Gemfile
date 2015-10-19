@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
 gem 'faker', '~> 1.5.0'
@@ -51,6 +51,8 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 # Twitter's Bootstrap, converted to Sass and ready to drop into Rails or Compass
 gem 'bootstrap-sass', '~> 3.3.5.1'
+
+gem 'font-awesome-sass', '~> 4.4.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
