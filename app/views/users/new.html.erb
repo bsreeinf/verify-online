@@ -1,5 +1,70 @@
-<h1>New User</h1>
+<% provide(:title, 'Sign up') %>
+<section class="page-section signup-section">
 
-<%= render 'form' %>
 
-<%= link_to 'Back', users_path %>
+	<div class="col-md-6 col-md-offset-3">
+	<h1>Sign up</h1>
+		<%= form_for(@user, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
+			<% if @user.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+		      <ul>
+		      <% @user.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		<!-- <form class="form contact-form" id="contact_form"> -->
+		    <div class="clearfix">   
+
+		    		<!-- Name -->
+		            <div class="form-group">
+		                <%= f.text_field :name , :class => "input-md round form-control",:placeholder =>"Name", :pattern=>".{5,100}" %>
+		            </div> 
+
+		            <!-- Email -->
+		            <div class="form-group">
+		                <%= f.text_field :email , :class => "input-md round form-control",:placeholder =>"Email", :pattern=>".{5,100}" %>
+		            </div> 
+
+		            <!-- Phone -->
+		            <div class="form-group">
+		                <%= f.text_field :phone , :class => "input-md round form-control",:placeholder =>"Phone", :pattern=>".{5,100}" %>
+		            </div>
+
+		             <!-- Password -->
+		            <div class="form-group">                       
+		                
+		                <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", :pattern=>".{5,100}"%>
+		            </div>
+
+		            <!-- Password Confirmation -->
+		            <div class="form-group">                       
+		                
+		                <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", :pattern=>".{5,100}"%>
+		            </div>
+		            
+		    </div>
+		    
+		    <div class="clearfix">
+
+		            <!-- Send Button -->
+		            <div class="align-right pt-10 form-group">
+		                <!-- <button class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button> -->
+		                <%= f.submit "Sign Up", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+		            </div>         
+		          
+		        
+		    </div>            
+		    
+		    
+		    <div id="result"></div>
+		<!-- </form> -->
+		<% end %>
+
+	</div>
+</section>
+
+	
