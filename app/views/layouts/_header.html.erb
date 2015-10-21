@@ -1,28 +1,33 @@
-    <!-- Navigation panel -->
-    <nav class="main-nav dark  stick-fixed">
-        <div class="full-wrapper relative clearfix">
-            <!-- Logo ( * your text or image into link tag *) -->
-            <div class="nav-logo-wrap local-scroll">
-                <%= link_to image_tag("logo-white.png", alt: "Verify online logo"), root_path, :class=> "logo" %>
-            </div>
-            <div class="mobile-nav">
-                <i class="fa fa-bars"></i>
-            </div>
-            <!-- Main Menu -->
-            <div class="inner-nav desktop-nav">
-                <ul class="clearlist scroll-nav local-scroll">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <% if logged_in? %>
-                    
-                    <li><%= link_to "Log out", logout_path, method: :delete %></li> 
-                    <% else %>
-                      <li><%= link_to "Log in", login_path %></li>
-                    <% end %>
-                    
-                </ul>
-            </div>
+<!-- Navigation panel -->
+<nav class="main-nav dark  stick-fixed small-height">
+
+    <div class="full-wrapper relative clearfix">
+        <!-- Logo ( * your text or image into link tag *) -->
+        <div class="nav-logo-wrap local-scroll">
+            <a href="/" class="logo">
+                <%= image_tag("logo-white.png", alt: "Verify online logo") %>
+            </a> 
         </div>
-    </nav>
-    <!-- End Navigation panel -->
+      
+        <div class="mobile-nav small-height">     
+        
+            <i class="fa fa-bars"></i>
+        </div>
+        <!-- Main Menu -->
+        <div class="inner-nav desktop-nav">
+            <ul class="clearlist scroll-nav local-scroll">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <% if logged_in? %>
+                
+                <li><%= link_to "Log out", logout_path, method: :delete %></li> 
+                <% else %>
+                  <li><%= link_to "Log in", login_path %></li>
+                <% end %>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navigation panel --> 
