@@ -1,7 +1,7 @@
 (function($){
     "use strict"; // Start of use strict
     
-    
+   
     /* ---------------------------------------------
      Scripts initialization
      --------------------------------------------- */
@@ -10,10 +10,10 @@
         
         // Page loader
         
-        $("body").imagesLoaded(function(){
+       $("body").imagesLoaded(function(){
             $(".page-loader div").fadeOut();
-        $(".page-loader").delay(200).fadeOut("slow");
-        });
+            $(".page-loader").delay(200).fadeOut("slow").remove();
+        });       
         
         
     
@@ -33,7 +33,8 @@
     });
     
     $(document).ready(function(){
-        
+          
+
         $(window).trigger("resize");            
         init_classic_menu();
         init_fullscreen_menu();
