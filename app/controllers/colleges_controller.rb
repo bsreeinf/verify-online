@@ -4,8 +4,11 @@ class CollegesController < ApplicationController
   # GET /colleges
   # GET /colleges.json
   def index
-    @colleges = College.where(:name => params[:name])
+   
+
   end
+
+
 
   # GET /colleges/1
   # GET /colleges/1.json
