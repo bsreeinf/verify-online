@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :colleges
   root 'landing_page#index'
 
   get    'login'   => 'sessions#new'
