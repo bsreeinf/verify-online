@@ -3,10 +3,8 @@
 
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
-        <div class="nav-logo-wrap local-scroll">
-            <a href="/" class="logo">
-                <%= image_tag("logo-white.png", alt: "Verify online logo") %>
-            </a> 
+        <div class="nav-logo-wrap local-scroll"> 
+                <%= link_to image_tag("logo-white.png", alt: "Verify online logo"), root_url, turbolinks: false, class: "logo" %>
         </div>
       
         <div class="mobile-nav small-height">     
@@ -23,9 +21,12 @@
                 
                 <li><%= link_to "Log out", logout_path, method: :delete %></li> 
                 <% else %>
-                  <li><%= link_to "Log in", login_path %></li>
+                  <li>
+                    <%= link_to(login_path) do %>
+                        <span class="btn btn-mod btn-circle btn-border-w">Log in</span>
+                    <%end%>
+                  </li>
                 <% end %>
-                
             </ul>
         </div>
     </div>
