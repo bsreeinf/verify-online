@@ -1,5 +1,5 @@
 <!-- Navigation panel -->
-<nav class="main-nav dark  stick-fixed small-height">
+<nav class="main-nav dark transparent stick-fixed">
 
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
@@ -7,7 +7,7 @@
                 <%= link_to image_tag("logo-white.png", alt: "Verify online logo"), root_url, turbolinks: false, class: "logo" %>
         </div>
       
-        <div class="mobile-nav small-height">     
+        <div class="mobile-nav">     
         
             <i class="fa fa-bars"></i>
         </div>
@@ -16,23 +16,23 @@
             <ul class="clearlist scroll-nav local-scroll">
 
 
-            <% if params[:controller] =='landing_page' && params[:action] == 'index' %>           
-                <li class="active"><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact Us</a></li>         
-            <% end %>
-
-
-               
+                <% if params[:controller] =='landing_page' && params[:action] == 'index' %>           
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact Us</a></li>         
+                <% end %>
+       
                 <% if logged_in? %>
-                
-                <li><%= link_to "Log out", logout_path, method: :delete %></li> 
+                    
+                    <li><%= link_to "Logout", logout_path, method: :delete %></li> 
                 <% else %>
-                  <li>
-                    <%= link_to(login_path) do %>
-                        <span class="btn btn-mod btn-circle btn-border-w">Log in</span>
-                    <%end%>
-                  </li>
+                    <% if params[:controller] != 'login' %>           
+                        <li>
+                            <%= link_to(login_path) do %>
+                                <span class="btn btn-mod btn-circle btn-border-w">Login</span>
+                            <%end%>
+                        </li>      
+                    <% end %>
                 <% end %>
             </ul>
         </div>
