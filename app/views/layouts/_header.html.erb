@@ -14,9 +14,16 @@
         <!-- Main Menu -->
         <div class="inner-nav desktop-nav">
             <ul class="clearlist scroll-nav local-scroll">
+
+
+            <% if params[:controller] =='landing_page' && params[:action] == 'index' %>           
                 <li class="active"><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>         
+            <% end %>
+
+
+               
                 <% if logged_in? %>
                 
                 <li><%= link_to "Log out", logout_path, method: :delete %></li> 

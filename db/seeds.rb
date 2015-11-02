@@ -11,3 +11,8 @@
 	address = Faker::Address.street_address
 	College.create!(name: name, address: address)
 end
+
+30.times do |n|
+	hallticket_no = Faker::Lorem.characters(10)	
+	Student.create!(hallticket_no: hallticket_no)
+end

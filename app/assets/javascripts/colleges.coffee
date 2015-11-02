@@ -16,12 +16,15 @@ $(document).ready ->
         cache: false
         success: (response) ->
           $('#search-result').empty()
+          i = 0
           $.each response, (i, obj) ->
             $('#search-result').append('<div id=search-result-' + i + '  class="display_box">' + obj['name'] + '</div>').show()
+            i++
             $('#search-result-' + i).on 'click', ->
               console.log i + ' ' + obj['name']
               return
             return
+            if i==0 then $('#search-result').empty().hide() else 0
           return
     else
       $('#search-result').empty().hide()

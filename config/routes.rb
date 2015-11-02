@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :students
-  resources :colleges
+
   root 'landing_page#index'
 
   get    'login'   => 'sessions#new'
@@ -8,6 +7,11 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
+
+  get    'apply'    => 'student_verification#index'
+  get    'status'   => 'student_verification#status'
+  get    'history'  => 'student_verification#history'
 
 
 
