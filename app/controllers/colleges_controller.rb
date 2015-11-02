@@ -4,8 +4,12 @@ class CollegesController < ApplicationController
   # GET /colleges
   # GET /colleges.json
   def index
+<<<<<<< HEAD
    
 
+=======
+    @colleges = College.where("name LIKE ?", "%#{params[:name]}%").limit(7)
+>>>>>>> 89cd6bd680ea3c91b35b947e9a855ec16b4d7c70
   end
 
 

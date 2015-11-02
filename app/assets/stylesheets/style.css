@@ -2295,6 +2295,37 @@ a.logo:hover{
     color: #fff;
 }
 
+/* added new */
+
+#search-result
+{
+  width:250px;
+  display:none;
+  /*float:left;*/
+  border-left:solid 1px #dedede;
+  border-right:solid 1px #dedede;
+  border-bottom:solid 1px #dedede;
+  overflow:hidden;
+}
+.display_box
+{
+padding:4px; 
+border-top:solid 1px #dedede; 
+font-size:12px; 
+background: white;
+    border-top: 1px solid gray;
+    /* height: 30px; */
+    padding: 10px;
+    color: black;
+}
+.display_box:hover
+{
+background:#3b5998;
+color:#FFFFFF;
+cursor: pointer;
+}
+/*  */
+
 
 /* Social links */
 
@@ -3823,48 +3854,48 @@ a.logo:hover{
    Newsletter
    ============================== */
 
-.newsletter-label{
+.search-label{
     margin-bottom: 15px;
     font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.3em;
 }
-.form input.newsletter-field{
+.form input.search-field{
     max-width: 293px;
 }
-.form input.newsletter-field:hover{
+.form input.search-field:hover{
     
 }
-.form input.newsletter-field:focus{
+.form input.search-field:focus{
     
 }
 
-.form input.newsletter-field::-webkit-input-placeholder{
+.form input.search-field::-webkit-input-placeholder{
     color: #777;
 }
-.form input.newsletter-field:focus::-webkit-input-placeholder{
+.form input.search-field:focus::-webkit-input-placeholder{
     color: #111;
 }
 
-.form input.newsletter-field:-moz-placeholder{
+.form input.search-field:-moz-placeholder{
     color: #777;
 }
-.form input.newsletter-field:focus:-moz-placeholder{
+.form input.search-field:focus:-moz-placeholder{
     color: #111;
 }
 
-.form input.newsletter-field::-moz-placeholder{
+.form input.search-field::-moz-placeholder{
     color: #777;
 }
-.form input.newsletter-field:focus::-moz-placeholder{
+.form input.search-field:focus::-moz-placeholder{
     color: #111;
 }
 
-.form input.newsletter-field:-ms-input-placeholder{
+.form input.search-field:-ms-input-placeholder{
     color: #777;
 }
-.form input.newsletter-field:focus:-ms-input-placeholder{
+.form input.search-field:focus:-ms-input-placeholder{
     color: #111;
 }
 
