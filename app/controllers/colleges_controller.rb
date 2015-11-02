@@ -4,7 +4,7 @@ class CollegesController < ApplicationController
   # GET /colleges
   # GET /colleges.json
   def index
-    @colleges = College.where(:name => params[:name])
+    @colleges = College.where("name LIKE ?", "%#{params[:name]}%").limit(7)
   end
 
   # GET /colleges/1
