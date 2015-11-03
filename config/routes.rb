@@ -1,17 +1,27 @@
 Rails.application.routes.draw do
 
+  get 'college_verification/index'
+
+  get 'college_verification/completed'
+
+  get 'college_verification/payment'
+
   root 'landing_page#index'
 
-  get    'login'   => 'sessions#new'
-  get    'signup'  => 'users#new'
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  get    'login'                        => 'sessions#new'
+  get    'signup'                       => 'users#new'
+  get    'login'                        => 'sessions#new'
+  post   'login'                        => 'sessions#create'
+  delete 'logout'                       => 'sessions#destroy'
 
 
-  get    'apply'    => 'student_verification#index'
-  get    'status'   => 'student_verification#status'
-  get    'history'  => 'student_verification#history'
+  get    'apply'                        => 'student_verification#index'
+  get    'status'                       => 'student_verification#status'
+  get    'history'                      => 'student_verification#history'
+
+  get    'view_verifications'           => 'college_verification#index'
+  get    'completed_verifications'      => 'college_verification#completed'
+  get    'payment_details'              => 'college_verification#payment'
 
 
 
