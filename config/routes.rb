@@ -23,12 +23,13 @@ Rails.application.routes.draw do
   get    'completed_verifications'      => 'college_verification#completed'
   get    'payment_details'              => 'college_verification#payment'
 
-
+  
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :users
+  resources :colleges
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
