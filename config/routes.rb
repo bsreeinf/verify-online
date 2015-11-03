@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   get    'status'                       => 'student_verification#status'
   get    'history'                      => 'student_verification#history'
 
+
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
   get    'payment_details'              => 'college_verification#payment'
+
 
   
 
