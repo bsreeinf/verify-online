@@ -22,13 +22,19 @@
 end
 
 30.times do |n|
-	admin_user_id = 1
+	
 	name = Faker::Company.name
 	address = Faker::Address.street_address
-	College.create!(admin_user_id: admin_user_id, name: name, address: address)
+	College.create!(name: name, address: address)
 end
 
 30.times do |n|
 	hallticket_no = Faker::Lorem.characters(10)	
 	Student.create!(hallticket_no: hallticket_no)
 end
+
+#Agustin O'Kon DDS
+#buddy@thiel.co
+
+
+#Romaguera LLC

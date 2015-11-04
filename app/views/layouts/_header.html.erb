@@ -4,7 +4,7 @@
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
         <div class="nav-logo-wrap local-scroll"> 
-                <%= link_to image_tag("logo-white.png", alt: "Verify online logo"), root_url, turbolinks: false, class: "logo" %>
+                <%= link_to image_tag("logo-white.png", alt: "Verify online logo"), root_url, method: :get, class: "logo" %>
         </div>
       
         <div class="mobile-nav">     
@@ -15,14 +15,26 @@
         <div class="inner-nav desktop-nav">
             <ul class="clearlist scroll-nav local-scroll">
 
-
                 <% if params[:controller] =='landing_page' && params[:action] == 'index' %>
-                    <li><%= link_to "Home", root_url, method: :get %></li>
+                    <li><a href="#home" class="active">Home</a></li>
+                <% else %> 
+                    <li><%= link_to "Home", root_url,method: :get %></li>
                 <% end %>
 
+                
+
                 <% if logged_in? %>
-                    <li><%= link_to "Dashboard", apply_path, method: :get %></li>
-                    <li><%= link_to "College", view_verifications_path, method: :get %></li>
+                    <% if params[:controller] =='student_verification'  %>
+                        <li><%= link_to "Dashboard", apply_path, :class => "active" %></li>
+                    <%else%>
+                        <li><%= link_to "Dashboard", apply_path%></li>
+                    <%end%>                   
+
+
+                    <% if is_college_admin? && params[:controller] =='student_verification' %>
+                        <li><%= link_to "College", view_verifications_path %></li>                    
+                    <%end%>
+
                 <% end %>
 
                 <% if params[:controller] =='landing_page' && params[:action] == 'index' %>
@@ -31,7 +43,22 @@
                 <% end %>
        
                 <% if logged_in? %>
-                    <li><%= link_to "Logout", logout_path, method: :delete %></li> 
+                        
+                    <li>
+                        <a href="#" class="mn-has-sub">Account <i class="fa fa-angle-down"></i></a>                            
+                        <!-- Sub -->
+                        <ul class="mn-sub to-left">
+                            
+                           <li><%= link_to "Profile", current_user %></li>
+                           <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
+                           <li role="separator" class="divider"></li>
+                           <li><%= link_to "Logout", logout_path, method: :delete %></li>   
+                            
+                        </ul>
+                        <!-- End Sub -->                                
+                    </li>
+
+                    <!-- <li><%= link_to "Logout", logout_path, method: :delete %></li>  -->
                 <% else %>
                     <% if params[:controller] != 'sessions' %>           
                         <li>

@@ -36,6 +36,12 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # Returns if the curernt user is a college admin
+  def is_college_admin?
+    current_user.college.present?
+  end
+
+
   # Forgets a persistent session.
   def forget(user)
     user.forget

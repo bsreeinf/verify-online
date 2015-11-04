@@ -1,6 +1,6 @@
 <div class="page" id="top">            
     <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 " data-background=<%= asset_url("full-width-images/section-bg-4.jpg")%> style='background-image:url(<%= asset_url("full-width-images/section-bg-4.jpg")%>)' id="home">
+    <section class="home-section bg-dark-alfa-50 " data-background=<%= asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
        <div class="container">            
             <!-- Hero Content -->
             <div class="home-content">
@@ -25,18 +25,105 @@
 
 
     <!-- Section -->
-    <section class="small-section" id="multi-page">
-        <div class="container relative">            
-            <!--<h2 class="section-title font-alt mb-60 mb-sm-30">
-                Multi Page Demo
-            </h2> -->            
-            <div class="row multi-columns-row align-center">
-                
-             
-                
-                
-            </div>            
-        </div>
-    </section>
+    <section class="page-section">
+                <div class="container relative">
+                    
+<!--                     <h2 class="section-title font-alt mb-70 mb-sm-40">
+                        Different Types
+                    </h2> -->
+                    
+                    <!-- Row -->
+                    <div class="row">
+                        
+                        <!-- Col -->
+                        
+                        <div class="col-sm-4 mb-40">
+                            
+                            <!-- Form -->
+                            <form method="post" action="#" id="form" role="form" class="form">
+                                
+                                <div class="mb-20 mb-md-10">
+                                    <select class="input-md form-control">
+                                        <option>One</option>
+                                        <option>Two</option>
+                                        <option>Three</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-20 mb-md-10">
+                                    <!-- Name -->
+                                    <input type="text" name="name" id="name" class="input-md form-control" placeholder="Name" maxlength="100">
+                                </div>
+
+                                 <div class="mb-20 mb-md-10">
+                                    <!-- Hallticket Number -->
+                                    <input type="text" name="hallticket_no" id="hallticket_no" class="input-md form-control" placeholder="Hallticket Number" maxlength="100">
+                                </div>
+                                
+                                <div class="mb-20 mb-md-10">
+                                    <label for="exampleInputFile">
+                                        Document
+                                    </label>
+                                    <input type="file" id="#">
+                                    <p class="help-block">
+                                        Upload Document to be verified
+                                    </p>
+                                </div>
+
+                                <div class="align-right pt-10 form-group">                            
+                                  <%= submit_tag "Add", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                                </div>
+                                
+                                                            
+                            </form>
+                            <!-- End Form -->
+                            
+                        </div>
+                        
+                        <!-- End Col -->
+                        
+                        <!-- Col -->
+                        
+                        <div class="col-sm-8 mb-40 table-responsive scrollable-table">
+                            <table class="table table-striped ">
+                              <thead>
+                                <tr>
+                                  <th>College</th>
+                                  <th>Name</th>
+                                  <th>Hallticket Number</th>
+                                  <th>Document</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>xyz</td>
+                                  <td>Mark</td>
+                                  <td>Otto</td>
+                                  <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                  <td>xyz</td>
+                                  <td>Jacob</td>
+                                  <td>Thornton</td>
+                                  <td>@fat</td>
+                                </tr>
+                          
+                              </tbody>
+                            </table>
+                            <div class="align-right pt-10 form-group">                            
+                              <%= submit_tag "Procced to pay", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <!-- End Col -->
+                        
+                    
+                    </div>
+                    <!-- End Row -->
+                    
+                </div>
+            </section>
     <!-- End Section -->
 </div>

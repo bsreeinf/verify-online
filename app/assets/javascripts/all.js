@@ -34,23 +34,24 @@
     
     $(document).ready(function(){
           
-
+    $(document).on('page:change', function(event) {    
         $(window).trigger("resize");            
-        init_classic_menu();
-        init_fullscreen_menu();
-        init_side_panel();
-        init_lightbox();
-        init_parallax();
-        init_shortcodes();
-        init_tooltips();
-        init_counters();
-        init_team();
-        initPageSliders();
-        initWorkFilter();
-        init_map();
-     
-        init_wow();
-        init_masonry();
+            init_classic_menu();
+            init_fullscreen_menu();
+            init_side_panel();
+            init_lightbox();
+            init_parallax();
+            init_shortcodes();
+            init_tooltips();
+            init_counters();
+            init_team();
+            initPageSliders();
+            initWorkFilter();
+            init_map();
+         
+            init_wow();
+            init_masonry();
+        });
     });
     
     $(window).resize(function(){

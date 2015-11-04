@@ -1,3 +1,37 @@
-// Place all the styles related to the StudentVerification controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+table {
+    width: 100%;
+}
+thead {
+    display: block;
+    th {
+        height: 30px;
+        width: 25%;
+        float: left;
+    }
+}
+tbody {
+    display: block;
+    height: 210px;
+    overflow-y: auto;
+    td {
+        width: 25%;
+        float: left;
+    }
+}
+tr {
+    display: block;
+    &:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+}
+td {
+    display: block;
+}
+th {
+    display: block;
+}
