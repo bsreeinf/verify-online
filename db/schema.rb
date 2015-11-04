@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20151029150536) do
 
   create_table "colleges", force: :cascade do |t|
+    t.integer  "admin_user_id"
     t.string   "name"
     t.string   "address"
     t.datetime "created_at", null: false

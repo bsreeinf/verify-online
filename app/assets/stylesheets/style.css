@@ -599,7 +599,7 @@ a.btn-mod{
 	box-sizing: border-box;
 	padding: 4px 13px;
   	color: #fff;
-  	background: rgba(34,34,34, .9);
+  	background: rgba(24, 95, 77, .9);
 	border: 2px solid transparent;
 	font-size: 11px;
 	font-weight: 400;
@@ -1418,7 +1418,7 @@ a.btn-mod:focus{
  */
 
 .top-bar.dark{
-    background-color: #333;
+    background-color: rgb(24, 95, 77);
     border-bottom: none;
 }
 .top-bar.dark .top-links li,
@@ -1530,6 +1530,8 @@ a.logo:hover{
     position: relative;
 }
 .inner-nav ul li a{
+  height: 75px;
+    line-height: 75px;
 	color: #777;
     letter-spacing: 2px;
 	display: inline-block;
@@ -1868,7 +1870,7 @@ a.logo:hover{
  */
 
 .main-nav.dark{
-	background-color: rgba(10,10,10, .95);
+	background-color: rgba(24, 105, 77, .95);
     
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -3943,7 +3945,7 @@ cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
-    background: #111;
+    background: rgb(24, 95, 77);
     
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
