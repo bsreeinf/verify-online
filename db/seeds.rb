@@ -7,9 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 30.times do |n|
+	admin_user_id = 1
 	name = Faker::Company.name
 	address = Faker::Address.street_address
-	College.create!(name: name, address: address)
+	College.create!(admin_user_id: admin_user_id, name: name, address: address)
 end
 
 30.times do |n|

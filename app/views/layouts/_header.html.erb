@@ -16,17 +16,24 @@
             <ul class="clearlist scroll-nav local-scroll">
 
 
-                <% if params[:controller] =='landing_page' && params[:action] == 'index' %>           
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                <% if params[:controller] =='landing_page' && params[:action] == 'index' %>
+                    <li><%= link_to "Home", root_url, method: :get %></li>
+                <% end %>
+
+                <% if logged_in? %>
+                    <li><%= link_to "Dashboard", apply_path, method: :get %></li>
+                    <li><%= link_to "College", view_verifications_path, method: :get %></li>
+                <% end %>
+
+                <% if params[:controller] =='landing_page' && params[:action] == 'index' %>
+                    <!-- <li><a href="#about">About</a></li> -->
                     <li><a href="#contact">Contact Us</a></li>         
                 <% end %>
        
                 <% if logged_in? %>
-                    
                     <li><%= link_to "Logout", logout_path, method: :delete %></li> 
                 <% else %>
-                    <% if params[:controller] != 'login' %>           
+                    <% if params[:controller] != 'sessions' %>           
                         <li>
                             <%= link_to(login_path) do %>
                                 <span class="btn btn-mod btn-circle btn-border-w">Login</span>
