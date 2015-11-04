@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'college_verification/index'
 
-  get 'college_verification/completed'
-
-  get 'college_verification/payment'
 
   root 'landing_page#index'
 
