@@ -17,3 +17,4 @@ end
 	hallticket_no = Faker::Lorem.characters(10)	
 	Student.create!(hallticket_no: hallticket_no)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
