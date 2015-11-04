@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'college_verification/index'
-
-  get 'college_verification/completed'
-
-  get 'college_verification/payment'
-
+  
   root 'landing_page#index'
 
   get    'login'                        => 'sessions#new'

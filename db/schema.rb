@@ -47,12 +47,14 @@ ActiveRecord::Schema.define(version: 20151104105348) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "colleges", force: :cascade do |t|
-    t.integer  "admin_user_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "address"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "colleges", ["user_id"], name: "index_colleges_on_user_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "hallticket_no"

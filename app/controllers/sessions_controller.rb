@@ -6,11 +6,15 @@ class SessionsController < ApplicationController
   	
   	user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
-      if user.activated?
+      if user.activated?  
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         # redirect_back_or user
-        redirect_back_or apply_path
+        if is_college_admin?  
+          redirect_to view_verifications_path
+        else
+          redirect_to apply_path 
+        end
       else
         message  = "Account not activated. "
         message += "Check your email for the activation link."

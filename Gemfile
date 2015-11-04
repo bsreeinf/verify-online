@@ -18,7 +18,7 @@ gem 'devise'
 gem 'cancan'
 gem 'draper'
 gem 'pundit'
-
+gem 'kaminari'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -51,11 +51,11 @@ gem 'mini_magick', '~> 4.3.6'
 gem 'fog', '~> 1.34.0'
 
 # will_paginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra and Merb web apps.
-gem 'will_paginate', '~> 3.0.7'
+# gem 'will_paginate', '~> 3.0.7'
 # gem 'will_paginate', "3.0.pre2"
 
 # Hooks into will_paginate to format the html to match Twitter Bootstrap styling. Extension code was originally written by Isaac Bowen (https://gist.github.com/1182136).
-gem 'bootstrap-will_paginate', '~> 0.0.10'
+# gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 # Twitter's Bootstrap, converted to Sass and ready to drop into Rails or Compass
 gem 'bootstrap-sass', '~> 3.3.5.1'
