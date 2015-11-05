@@ -20,6 +20,10 @@ gem 'draper'
 gem 'pundit'
 gem 'kaminari'
 
+# for all PDF stuff
+gem 'wicked_pdf'
+# gem 'activeadmin_async_export'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

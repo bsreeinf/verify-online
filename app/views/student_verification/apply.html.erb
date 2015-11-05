@@ -43,11 +43,7 @@
                   <form method="post" action="#" id="form" role="form" class="form">
                       
                       <div class="mb-20 mb-md-10">
-                          <select class="input-md form-control">
-                              <option>One</option>
-                              <option>Two</option>
-                              <option>Three</option>
-                          </select>
+                        <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name"), include_blank: "Select College", class: "input-md form-control", required: true %>
                       </div>
 
                       <div class="mb-20 mb-md-10">
@@ -66,7 +62,7 @@
                           </label>
                           <input type="file" id="#">
                           <p class="help-block">
-                              Upload Document to be verified
+                              Upload document to be verified
                           </p>
                       </div>
 
