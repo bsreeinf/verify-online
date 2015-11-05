@@ -2,6 +2,7 @@ class StudentVerificationController < ApplicationController
 	before_action :logged_in_user, only: [:index, :status, :history ]
 	
 	def index
+		@colleges = College.all
 		render "apply"
 	end
 
