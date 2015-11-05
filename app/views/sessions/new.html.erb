@@ -1,7 +1,7 @@
 <% provide(:title, 'Log in') %>
 
 <section class="page-section login-section">
-
+    
     <div class="container relative">
         
         <h2 class="section-title font-alt mb-70 mb-sm-40">
@@ -9,6 +9,9 @@
         </h2>
         <div class="row" style ="padding:0px 10px;">
             <div class="col-md-5 col-md-offset-3">
+            <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%= message %></div>
+            <% end %>
             <!--     <h2 class="mt-0 font-alt">Student</h2> -->
                 <%= form_for(:session, url: login_path, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
                     <!-- <form class="form contact-form" id="contact_form"> -->

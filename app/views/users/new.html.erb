@@ -3,6 +3,9 @@
 
 	<h1 class="section-title font-alt mb-70 mb-sm-40">Signup</h1>
 	<div class="col-md-4 col-md-offset-4">
+		<% flash.each do |message_type, message| %>
+	        <div class="alert alert-<%= message_type %>"><%= message %></div>
+	    <% end %>
 		<%= form_for(@user, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
 			<% if @user.errors.any? %>
 		    <div id="error_explanation">
@@ -20,29 +23,29 @@
 
 		    		<!-- Name -->
 		            <div class="form-group">
-		                <%= f.text_field :name , :class => "input-md round form-control",:placeholder =>"Name", :pattern=>".{5,100}" %>
+		                <%= f.text_field :name , :class => "input-md round form-control",:placeholder =>"Name", :required => true %>
 		            </div> 
 
 		            <!-- Email -->
 		            <div class="form-group">
-		                <%= f.text_field :email , :class => "input-md round form-control",:placeholder =>"Email", :pattern=>".{5,100}" %>
+		                <%= f.text_field :email , :class => "input-md round form-control",:placeholder =>"Email", :type => "email", :required => true %>
 		            </div> 
 
 		            <!-- Phone -->
 		            <div class="form-group">
-		                <%= f.text_field :phone , :class => "input-md round form-control",:placeholder =>"Phone", :pattern=>".{5,100}" %>
+		                <%= f.text_field :phone , :class => "input-md round form-control",:placeholder =>"Phone", :type => "tel", :pattern=>".{5,100}",:required => true %>
 		            </div>
 
 		             <!-- Password -->
 		            <div class="form-group">                       
 		                
-		                <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", :pattern=>".{5,100}"%>
+		                <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", :pattern=>".{5,100}",:required => true%>
 		            </div>
 
 		            <!-- Password Confirmation -->
 		            <div class="form-group">                       
 		                
-		                <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", :pattern=>".{5,100}"%>
+		                <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", :pattern=>".{5,100}",:required => true%>
 		            </div>
 		            
 		    </div>

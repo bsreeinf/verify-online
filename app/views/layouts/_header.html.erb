@@ -45,7 +45,7 @@
                 <% if logged_in? %>
                         
                     <li>
-                        <a href="#" class="mn-has-sub">Account <i class="fa fa-angle-down"></i></a>                            
+                        <a href="#" class="mn-has-sub"><div class="icon-profile-male" style="margin-right:5px;"></div><%= current_user.name %> <i class="fa fa-angle-down"></i></a>                            
                         <!-- Sub -->
                         <ul class="mn-sub to-left">
                             
@@ -73,3 +73,4 @@
     </div>
 </nav>
 <!-- End Navigation panel --> 
+
