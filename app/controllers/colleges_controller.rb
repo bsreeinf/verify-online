@@ -5,7 +5,7 @@ class CollegesController < ApplicationController
   # GET /colleges.json
   def index
 
-    @colleges = College.where("name LIKE ?", "%#{params[:name]}%").limit(7)
+    @colleges = College.where("name LIKE ?", "#{params[:name]}%").limit(7)
 
   end
 
@@ -14,6 +14,7 @@ class CollegesController < ApplicationController
   # GET /colleges/1
   # GET /colleges/1.json
   def show
+
   end
 
   # GET /colleges/new
@@ -73,6 +74,6 @@ class CollegesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def college_params
-      params.require(:college).permit(:admin_user_id, :name, :address)
+      params.require(:college).permit(:user_id, :name, :address, :verification_amount)
     end
 end

@@ -1,3 +1,5 @@
+<%= content_tag "div", id: "college_id", data: {url: @college_id } do %><% end %>
+
 <div class="page" id="top">            
     <!-- Home Section -->
     <section class="home-section bg-dark-alfa-50 " data-background=<%= asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
@@ -41,17 +43,22 @@
                   <form method="post" action="#" id="form" role="form" class="form">
                       
                       <div class="mb-20 mb-md-10">
-                        <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name"), include_blank: "Select College", class: "input-md form-control", required: true %>
+                        <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name", @selected_college_index), include_blank: "Select College", class: "input-md form-control", required: true %>
+                        <p id="verification-amount" name="verification-amount" class="help-block"style="padding-left: 2px;">
+                              Verification fees INR <span id="verification_amount_lable">0</span>&nbsp<i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear;
+                              -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear;
+                              animation: spinner 3s infinite linear;" id="verification_amount_loader" class="fa fa-gear dark"></i>
+                          </p>
                       </div>
 
                       <div class="mb-20 mb-md-10">
                           <!-- Name -->
-                          <input type="text" name="name" id="name" class="input-md form-control" placeholder="Name" maxlength="100">
+                          <input type="text" name="name" id="name" value="<%= current_user.name %>" class="input-md form-control" placeholder="Name" maxlength="100">
                       </div>
 
-                       <div class="mb-20 mb-md-10">
+                      <div class="mb-20 mb-md-10">
                           <!-- Hallticket Number -->
-                          <input type="text" name="hallticket_no" id="hallticket_no" class="input-md form-control" placeholder="Hallticket Number" maxlength="100">
+                          <input type="text" name="hallticket_no" id="hallticket_no" value="" class="input-md form-control" placeholder="Hallticket Number" maxlength="100">
                       </div>
                       
                       <div class="mb-20 mb-md-10">

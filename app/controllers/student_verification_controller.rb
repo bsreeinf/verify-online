@@ -3,6 +3,9 @@ class StudentVerificationController < ApplicationController
 	
 	def index
 		@colleges = College.all
+		if(params.has_key?(:college_id))
+        	@college_id = params[:college_id]
+        end
 		render "apply"
 	end
 
