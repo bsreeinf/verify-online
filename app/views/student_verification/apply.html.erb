@@ -40,7 +40,7 @@
               <div class="col-sm-4 mb-40">
                   
                   <!-- Form -->
-                  <form method="post" action="#" id="form" role="form" class="form">
+                  <form id="form" role="form" class="form" onsubmit="event.preventDefault();">
                       
                       <div class="mb-20 mb-md-10">
                         <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name", @selected_college_index), include_blank: "Select College", class: "input-md form-control", required: true %>
@@ -63,16 +63,16 @@
                       
                       <div class="mb-20 mb-md-10">
                           <label for="exampleInputFile">
-                              Document
+                              Upload document to verify
                           </label>
-                          <input type="file" id="#">
+                          <input type="file" id="verify_document">
                           <p class="help-block">
-                              Upload document to be verified
+                              NOTE: File size should be less that 512KB
                           </p>
                       </div>
 
                       <div class="align-right pt-10 form-group">                            
-                        <%= submit_tag "Add", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                        <%= submit_tag "Add", :class => "submit_btn btn btn-mod btn-medium btn-round",:id =>"add_verification"%>
                       </div>
                       
                                                   
@@ -96,8 +96,8 @@
                         <th>Fees</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
+                    <tbody id="verifications_tbody">
+                      <!-- <tr>
                         <td>xyz</td>
                         <td>Mark</td>
                         <td>Otto</td>
@@ -110,14 +110,14 @@
                         <td>Thornton</td>
                         <td>@fat</td>
                         <td>Rs 500</td>
-                      </tr>
+                      </tr> -->
                 
                     </tbody>
                   </table>
                   <div class="clearfix">
                                     
                     <div class="cf-left-col " style="text-align: right;">
-                      <div class="ci-text" style="font-size: 25px;">Amount payable Rs 2,625</div>                       
+                      <div class="ci-text" style="font-size: 25px;">Amount payable Rs <span id="verification_amount_total_lable">0</span></div>                       
                       <div class="form-tip"><i class="fa fa-info-circle"></i> 5% service charge applied</div>
                     </div>
                     
