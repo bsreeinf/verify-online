@@ -1,37 +1,39 @@
 
-
-table {
-    width: 100%;
-}
-thead {
-    display: block;
-    th {
-        height: 30px;
-        width: 20%;
-        float: left;
+.scrollable-table{
+    table {
+        width: 100%;
     }
-}
-tbody {
-    display: block;
-    height: 210px;
-    overflow-y: auto;
-    td {
-        width: 20%;
-        float: left;
-    }
-}
-tr {
-    display: block;
-    &:after {
-        content: ' ';
+    thead {
         display: block;
-        visibility: hidden;
-        clear: both;
+        th {
+            height: 30px;
+            width: 20%;
+            float: left;
+        }
+    }
+    tbody {
+        display: block;
+        height: 210px;
+        overflow-y: auto;
+        td {
+            width: 20%;
+            float: left;
+        }
+    }
+    tr {
+        display: block;
+        &:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+    }
+    td {
+        display: block;
+    }
+    th {
+        display: block;
     }
 }
-td {
-    display: block;
-}
-th {
-    display: block;
-}
+    

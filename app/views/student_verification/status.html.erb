@@ -30,11 +30,32 @@
             <!--<h2 class="section-title font-alt mb-60 mb-sm-30">
                 Multi Page Demo
             </h2> -->            
-            <div class="row multi-columns-row align-center">
-                
-             
-                
-                
+            <div class="row  align-center">
+                <div class="mb-40 table-responsive ">
+                    <table class="table table-striped ">
+                        <thead>
+                          <tr>
+                            <th>Verification Request Id</th>
+                            <th>Transaction Code</th>
+                            <th>Amount</th>
+                            <th>Mode of Payment</th>
+                            <th>Payment Status</th>
+                            <th>Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <% @payments.each do |payment| %>
+                          <tr>
+                            <td>payment.verification_request_id</td>
+                            <td>payment.transaction_code</td>
+                            <td>payment.amount</td>
+                            <td>payment.mode_of_payment</td>
+                            <td>payment.created_at</td>
+                          </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div> 
             </div>            
         </div>
     </section>
