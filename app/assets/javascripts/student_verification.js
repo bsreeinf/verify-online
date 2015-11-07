@@ -74,7 +74,12 @@ $(document).on('page:change', function(event) {
       '<td>' + current_verification_stub['hallticket_no'] + '</td>' + 
       '<td><a href="' + current_verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
       '<td>Rs ' + current_verification_stub['verification_amount'] + '</td>' + 
+      '</tr><tr>'+
+      '<input name="college_id" value="' + current_verification_stub['college_id'] + '" type="hidden"/>'+
+      '<input name="student_name" value="' + current_verification_stub['name'] + '" type="hidden"/>'+
+      '<input name="hallticket_no" value="' + current_verification_stub['hallticket_no'] + '" type="hidden"/>'+
       '</tr>');
+    $('#verify_document').appendTo("#verifications_tbody");
   });
   
   $.fn.fileValidate = function(file, MAX_FILE_SIZE){
