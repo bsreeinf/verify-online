@@ -10,14 +10,14 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def status
-		@Verifications = Verification.all.page params[:page]
-		render "status"
+		@verifications = VerificationRequest.all.page params[:page]
+		
 	end
 
 	def history
 
 		@payments = Payment.all.page params[:page]
-		render "history"
+		
 	end
 
 end

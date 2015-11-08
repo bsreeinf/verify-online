@@ -6,6 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+User.create!(
+	name:  'sreenath',
+	email: "sreenath@gmail.com",
+	phone: 8553047951,
+	password:              "password",
+	password_confirmation: "password",
+	activated:    true,
+	activated_at: Time.zone.now
+	)
+
+
+User.create!(
+	name:  'allen',
+	email: "allen@gmail.com",
+	phone: 8553047951,
+	password:              "password",
+	password_confirmation: "password",
+	activated:    true,
+	activated_at: Time.zone.now
+	)
+
+
+
 15.times do |n|
 	name = FFaker::Name.name
 	email = FFaker::Internet.safe_email
@@ -21,13 +45,7 @@
 	             activated_at: Time.zone.now)
 end
 
-User.create!(name:  'allen',
-	             email: "allen@gmail.com",
-	             phone: 8553047951,
-	             password:              "password",
-	             password_confirmation: "password",
-	             activated:    true,
-	             activated_at: Time.zone.now)
+
 
 30.times do |n|
 	

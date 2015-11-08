@@ -35,22 +35,31 @@
                     <table class="table table-striped ">
                         <thead>
                           <tr>
-                            <th>Verification Request Id</th>
-                            <th>Transaction Code</th>
+                            <th>Name</th>
+                            <th>Hallticket Number</th>
+                            <th>Document Link</th>
                             <th>Amount</th>
-                            <th>Mode of Payment</th>
-                            <th>Payment Status</th>
-                            <th>Date</th>
+                            <th>Service Tax</th>
+                            <th>Course</th>
+                            <th>Type of Studies</th>
+                            <th>Course Duration</th>
+                            <th>Remarks</th>
+                            <th>Class Awarded</th>
                           </tr>
                         </thead>
                         <tbody>
-                        <% @payments.each do |payment| %>
+                        <% @verifications.each do |verification| %>
                           <tr>
-                            <td>payment.verification_request_id</td>
-                            <td>payment.transaction_code</td>
-                            <td>payment.amount</td>
-                            <td>payment.mode_of_payment</td>
-                            <td>payment.created_at</td>
+                            <td>verification.name</td>
+                            <td>verification.hallticket_no</td>
+                            <td>verification.document_link</td>
+                            <td>verification.amount</td>
+                            <td>verification.service_tax</td>
+                            <td>verification.course</td>
+                            <td>verification.type_of_studies</td>
+                            <td>verification.course_duration</td>
+                            <td>verification.remarks</td>
+                            <td>verification.class_awarded</td>
                           </tr>
                         <% end %>
                         </tbody>
