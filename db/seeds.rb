@@ -11,6 +11,11 @@ User.create!(
 	name:  'sreenath',
 	email: "sreenath@gmail.com",
 	phone: 8553047951,
+	address:   FFaker::Address.street_address,
+	city: 	FFaker::Address.city ,
+	pincode: 	560006,
+	state: 	"Karnataka",
+	country: 	"India",
 	password:              "password",
 	password_confirmation: "password",
 	activated:    true,
@@ -22,6 +27,11 @@ User.create!(
 	name:  'allen',
 	email: "allen@gmail.com",
 	phone: 8553047951,
+	address:   FFaker::Address.street_address,
+	city: 	FFaker::Address.city ,
+	pincode: 	560006,
+	state: 	"Karnataka",
+	country: 	"India",
 	password:              "password",
 	password_confirmation: "password",
 	activated:    true,
@@ -34,11 +44,19 @@ User.create!(
 	name = FFaker::Name.name
 	email = FFaker::Internet.safe_email
 	phone = FFaker::PhoneNumber.short_phone_number
+	address = FFaker::Address.street_address
+	city = FFaker::Address.city 
+	state = "Karnataka"
 	password = "password"
 	
 	User.create!(name:  name,
 	             email: email,
 	             phone: phone,
+	             address: address,
+				 city: city,
+				 pincode: 	560006,
+				 state: 	"karnataka",
+				 country: 	"India",
 	             password:              password,
 	             password_confirmation: password,
 	             activated:    true,
