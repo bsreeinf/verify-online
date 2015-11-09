@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get    'status'                       => 'student_verification#status'
   get    'history'                      => 'student_verification#history'
   post   'payment'                      => 'student_verification#send_to_ccavenue'
+  get    'payment'                      => 'student_verification#send_to_ccavenue'
+  post   'update_db'                    => 'student_verification#update_db'
 
 
   get    'view_verifications'           => 'college_verification#index'

@@ -29,6 +29,27 @@ class StudentVerificationController < ApplicationController
 		
 	end
 
+	def update_db
+		puts "hello world"
+		
+		# puts JSON.parse(params)
+	    params[:ids].each do |n|
+	    	puts n
+	    end
+
+	   	k= params[:ids].count
+	    
+	    k.times do |n|
+
+	    	puts n
+	    	 
+
+	    	# @vrequest = VerificationRequest.new(params[:verification_requests][n])
+	     #  	@vrequest.save
+	    end
+	    
+	    
+	end
 
 	def send_to_ccavenue		
 
@@ -72,7 +93,36 @@ class StudentVerificationController < ApplicationController
 	 #      @encRequest=encrypt_string(@ccaRequest)
 
 
-	      # modify the database
+
+
+	 # add this in html.erb
+		# <form id="payment_redirect" method="post" name="redirect" action="http://www.ccavenue.com/shopzone/cc_details.jsp">
+
+		# <input type=hidden name=encRequest value=<%=@encRequest%>>
+
+		# <input type=hidden name=Merchant_Id value=<%=CCAVENUE_MERCHANT_ID%>>
+
+		# </form>
+
+
+		# <script type="text/javascript">
+
+		# $(function() {
+
+		#   $(’#redirect’).submit();
+
+		# });
+
+		# </script> 
+
+
+	    # modify the database
+
+	    
+
+
+
+	    
 		
 	end
 
@@ -159,6 +209,7 @@ class StudentVerificationController < ApplicationController
 
 
 	private
+		
 		
 
 		def set_s3_direct_post

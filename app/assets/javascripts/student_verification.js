@@ -2,11 +2,11 @@
 
 $(document).on('page:change', function(event) {
   var MAX_FILE_SIZE = 512; //kB
-   table_data = [];
+  var table_data = [];
   var verification_amount = 0;
   var verification_amount_total = 0;
   
-  var dataToSend = [];
+  var dataToSend = {};
   dataToSend["ids"] = [];
   dataToSend["verification_requests"] = []; 
 
@@ -34,7 +34,7 @@ $(document).on('page:change', function(event) {
   });
 
   $("#college > option").each(function(i) {
-    $("#college").val($("#rails-data").data("college_id"));
+    $("#college").val($("#rails-data").data("college-id"));
   });
   $("#college").trigger('change');
 
@@ -107,12 +107,12 @@ $(document).on('page:change', function(event) {
       console.log("AJAX call with");
       console.log(dataToSend);
       $.ajax({
-        url: "/student_verification/send_to_ccavenue/",
-        method: 'POST',
-        data: dataToSend,
+        url: "/update_db",
+        type: 'POST',
+        data: JSON.parse(JSON.stringify(dataToSend)),
         context: document.body
         }).done(function(){
-          // Redirect
+          // window.location.replace('/payment')
         }).always(function() {
           // Hide loader
         }
