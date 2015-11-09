@@ -107,8 +107,6 @@ GEM
     erubis (2.7.0)
     excon (0.45.4)
     execjs (2.6.0)
-    faker (1.5.0)
-      i18n (~> 0.5)
     ffaker (2.1.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -351,7 +349,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  aws-sdk (~> 2)
+  aws-sdk
   bcrypt
   bootstrap-sass (~> 3.3.5.1)
   byebug
@@ -360,9 +358,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   draper
-  faker (~> 1.5.0)
   ffaker
   fog (~> 1.34.0)
+  fog-aws
   font-awesome-sass (~> 4.4.0)
   jbuilder (~> 2.0)
   jquery-rails

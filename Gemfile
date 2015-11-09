@@ -43,7 +43,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 
 # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
-gem 'faker', '~> 1.5.0'
+# gem 'faker', '~> 1.5.0'
 
 gem 'ffaker'
 
@@ -68,7 +68,9 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 
 gem 'font-awesome-sass', '~> 4.4.0'
 
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk'
+gem 'fog-aws'
+# gem 's3_direct_upload'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
