@@ -2,6 +2,7 @@ class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
 
 	before_action :logged_in_user, only: [:index, :status, :history ]
+	before_action :set_s3_direct_post, only: [:index]
 	
 	
 
@@ -10,6 +11,7 @@ class StudentVerificationController < ApplicationController
 		if(params.has_key?(:college_id))
         	@college_id = params[:college_id]
         end
+        @college = College.first
 		render "apply"
 	end
 
@@ -26,6 +28,7 @@ class StudentVerificationController < ApplicationController
 		@payments = Payment.all.page params[:page]
 		
 	end
+
 
 	def send_to_ccavenue		
 
@@ -154,5 +157,12 @@ class StudentVerificationController < ApplicationController
 
 
 
+
+	private
+		
+
+		def set_s3_direct_post
+			@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+		end
 
 end

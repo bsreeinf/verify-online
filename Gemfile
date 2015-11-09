@@ -43,22 +43,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 
 # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
-gem 'faker', '~> 1.5.0'
+# gem 'faker', '~> 1.5.0'
 
 gem 'ffaker'
 
-# Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
-gem 'carrierwave', '~> 0.10.0'
 
 # Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
 gem 'mini_magick', '~> 4.3.6'
 
-# The Ruby cloud services library. Supports all major cloud providers including AWS, Rackspace, Linode, Blue Box, StormOnDemand, and many others. Full support for most AWS services including EC2, S3, CloudWatch, SimpleDB, ELB, and RDS.
-gem 'fog', '~> 1.34.0'
 
 # will_paginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra and Merb web apps.
 # gem 'will_paginate', '~> 3.0.7'
-# gem 'will_paginate', "3.0.pre2"
+
 
 # Hooks into will_paginate to format the html to match Twitter Bootstrap styling. Extension code was originally written by Isaac Bowen (https://gist.github.com/1182136).
 # gem 'bootstrap-will_paginate', '~> 0.0.10'
@@ -67,6 +63,10 @@ gem 'fog', '~> 1.34.0'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
 gem 'font-awesome-sass', '~> 4.4.0'
+
+gem 'aws-sdk'
+
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
