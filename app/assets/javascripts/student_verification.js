@@ -1,10 +1,11 @@
-
-
 $(document).on('page:change', function(event) {
   var MAX_FILE_SIZE = 512; //kB
   var table_data = new Array();
   var verification_amount = 0;
   var verification_amount_total = 0;
+  var lookup;
+  var verifications_ids_to_send = {};
+  verifications_ids_to_send.ids = [];
   
   var dataToSend = {};
   dataToSend["ids"] = [];
@@ -116,7 +117,8 @@ $(document).on('page:change', function(event) {
       console.log('File validation failed.');
       return;
     }
-    
+
+    verification_stub['id'] = table_data.length;
     verification_stub['college_id'] = $('#college')[0].value;
     verification_stub['college_name'] = $("#college option")[$("#college")[0].selectedIndex].text
     verification_stub['verification_amount'] = verification_amount;
@@ -158,26 +160,54 @@ $(document).on('page:change', function(event) {
   });
 
   $("#btnProceedToPay").on('click', function(){
+    
+    // Disable $("#btnProceedToPay")
+    $(this).prop('disabled', true);
+
+    lookup = {};
+    for (var i = 0, len = table_data.length; i < len; i++) {
+        lookup[table_data[i].id] = table_data[i];
+    }
+    console.log("Lookup generated");
+    console.log(lookup);
+
+    // Initiate file upload to AWS S3
     $().fileUploadToS3();
   });
 
-  $.fn.checkFileUploadStatus = function(numFilesUploaded){
-    if(table_data.length == numFilesUploaded){
+  $.fn.checkAndUpload = function(numFilesUploaded, temp_id){
+    // Construct row data to be sent
+    var data_to_send = {};
+    var verification_request = {};
+    verification_request["student_id"] = $("#rails-data").data("student-id");
+    verification_request["college_id"] = lookup[temp_id].college_id;
+    verification_request["name"] = lookup[temp_id]["name"];
+    verification_request["hallticket_no"] = lookup[temp_id].hallticket_no;
+    verification_request["document_link"] = lookup[temp_id].document_link;
+    data_to_send.verification_request = verification_request;
 
+    console.log("Data row prepared to be sent: ");
+    console.log(data_to_send);
+
+    $.ajax({
+      url: "/add_verification",
+      type: 'POST',
+      data: JSON.parse(JSON.stringify(data_to_send)),
+      context: document.body
+      }).done(function(data){
+        // window.location.replace('/payment')
+        verifications_ids_to_send.ids.push(data["id"]);
+      }).always(function() {
+        // Hide loader
+      }
+    );
+
+    if(table_data.length == numFilesUploaded){
       console.log("All data collected until now. Use this to create form and execute a submit --> ");
       console.log(table_data);
 
-      // $.ajax({
-      //   url: "/update_db",
-      //   type: 'POST',
-      //   data: JSON.parse(JSON.stringify(dataToSend)),
-      //   context: document.body
-      //   }).done(function(){
-      //     // window.location.replace('/payment')
-      //   }).always(function() {
-      //     // Hide loader
-      //   }
-      // );
+      console.log("Verification IDs to be sent --> ");
+      console.log(verifications_ids_to_send);
     }
   }
 
@@ -211,31 +241,25 @@ $(document).on('page:change', function(event) {
           // extract key and generate URL from response
           var key   = $(data.jqXHR.responseXML).find("Key").text();
           var url   = 'https://' + $("#rails-data").data('host') + '/' + key;
-          var temp_college_id = key.split('/')[key.split('/').length-1].split("_")[0] + "";
+          var url_parts = key.split('/');
+          var temp_id = url_parts[url_parts.length - 1].split("_")[0] + "";
 
           console.log(data);
 
           // save new file URL from S3 in the stub
-          for(var j = 0; j < table_data.length; j++){
-            table_data[j]['document_link'] = url;
-          }
+          lookup[temp_id].document_link = url;
 
-          // Check if all files have been uploaded and proceed accordingly
-          $().checkFileUploadStatus(++numFilesUploaded);
-
-          // Upload row to db
-          
-          
-          console.log(url)
+          // Upload row to db Check if all files have been uploaded and proceed accordingly
+          $().checkAndUpload(++numFilesUploaded, temp_id);
         },
         fail: function(e, data) {
           console.log("failed");
         }
       });
 
-      // Add files to be uploaded. This auto-uploads them .Given in initialization
+      // Add files to be uploaded. This auto-uploads them. Given in initialization
       $("body").fileupload('add',{
-        files: [new File([table_data[i]['file_obj']], table_data[i]['college_id'] + "_" + table_data[i]['file_name'])]}
+        files: [new File([table_data[i]['file_obj']], table_data[i].id + "_" + table_data[i]['file_name'])]}
       );
 
 
