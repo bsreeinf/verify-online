@@ -107,10 +107,10 @@ $(document).on('page:change', function(event) {
       console.log("AJAX call with");
       console.log(dataToSend);
       $.ajax({
-        url: "/update_db",
+        url: "/apply",
         type: 'POST',
-        data: JSON.parse(JSON.stringify(dataToSend)),
-        context: document.body
+        data: JSON.parse(JSON.stringify(dataToSend))
+        // context: document.body
         }).done(function(){
           // window.location.replace('/payment')
         }).always(function() {

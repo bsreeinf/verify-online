@@ -1,18 +1,29 @@
 class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
 
-	before_action :logged_in_user, only: [:index, :status, :history ]
-	before_action :set_s3_direct_post, only: [:index]
+	before_action :logged_in_user, only: [:apply, :status, :history ]
+	before_action :set_s3_direct_post, only: [:apply]
 	
 	
 
-	def index
-		@colleges = College.all
-		if(params.has_key?(:college_id))
-        	@college_id = params[:college_id]
-        end
-        @college = College.first
-		render "apply"
+	def apply
+		
+	        
+
+	        if request.post?
+	        	puts "post request"
+				redirect_to payment_path
+			else
+				@colleges = College.all
+				if(params.has_key?(:college_id))
+		        	@college_id = params[:college_id]
+		        end
+		        @college = College.first 
+		        render 'apply'
+			end
+		
+		
+		
 	end
 
 	def status
@@ -30,28 +41,43 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def update_db
-		puts "hello world"
+
+
+
+
+
+		# respond_to do |format|
+		# 		format.html { redirect_to payment_path	}
+	 #      		format.json { }
+	 #      		format.js {render js: "window.location = '#{payment_path}';"}
+
+		# 	end
+
 		
-		# puts JSON.parse(params)
-	    params[:ids].each do |n|
-	    	puts n
-	    end
+		# puts "hello world"
 
-	   	k= params[:ids].count
+		# # puts JSON.parse(params)
+	 #    params[:ids].each do |n|
+	 #    	puts n
+	 #    end
+
+	 #   	k= params[:ids].count
 	    
-	    k.times do |n|
+	 #    k.times do |n|
 
-	    	puts n
+	 #    	puts n
 	    	 
 
-	    	# @vrequest = VerificationRequest.new(params[:verification_requests][n])
-	     #  	@vrequest.save
-	    end
+	 #    	# @vrequest = VerificationRequest.new(params[:verification_requests][n])
+	 #     #  	@vrequest.save
+	 #    end
 	    
 	    
 	end
 
 	def send_to_ccavenue		
+		
+		
 
 		# orderID = # to be generated to_s
 
