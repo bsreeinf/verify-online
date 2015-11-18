@@ -3,8 +3,6 @@ class StudentVerificationController < ApplicationController
 
 	before_action :logged_in_user, only: [:index, :status, :history ]
 	before_action :set_s3_direct_post, only: [:index]
-	
-	
 
 	def index
 		@colleges = College.all
@@ -13,6 +11,27 @@ class StudentVerificationController < ApplicationController
         end
         @college = College.first
 		render "apply"
+	end
+
+	def add_verification
+		@verification_request = VerificationRequest.new(verification_params)
+		@verification_request.amount = College.where(:id => @verification_request.college_id).pluck(:verification_amount)[0]
+		@verification_request.verification_status_id = 0
+		@verification_request.service_tax = (@verification_request.amount * 0.05).round(2)
+
+	    respond_to do |format|
+	      if @verification_request.save
+	        format.html { redirect_to @verification_request, notice: 'Student was successfully created.' }
+	        format.json { render :show, status: :created, location: @verification_request }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @verification_request.errors, status: :unprocessable_entity }
+	      end
+	    end
+	end
+
+	def update_multiple
+
 	end
 
 	def status
@@ -209,8 +228,10 @@ class StudentVerificationController < ApplicationController
 
 
 	private
-		
-		
+
+		def verification_params
+	      params.require(:verification_request).permit(:student_id, :college_id, :name, :hallticket_no, :document_link)
+	    end
 
 		def set_s3_direct_post
 			@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')

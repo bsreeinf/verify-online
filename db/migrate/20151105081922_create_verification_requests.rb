@@ -7,8 +7,8 @@ class CreateVerificationRequests < ActiveRecord::Migration
       t.string :name
       t.string :hallticket_no
       t.string :document_link
-      t.integer :amount
-      t.integer :service_tax
+      t.float :amount
+      t.float :service_tax
 
       
 

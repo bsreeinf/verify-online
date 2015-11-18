@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.references :verification_request
       t.references :payment_status
       t.string :transaction_code
-      t.integer :amount
+      t.float :amount
       t.string :mode_of_payment	
 
       t.timestamps null: false

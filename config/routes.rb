@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   root 'landing_page#index'
 
+  get    'search_page'                  => 'landing_page#search_page'
+
   get    'login'                        => 'sessions#new'
   get    'signup'                       => 'users#new'
   get    'login'                        => 'sessions#new'
@@ -19,13 +21,14 @@ Rails.application.routes.draw do
   post   'payment'                      => 'student_verification#send_to_ccavenue'
   get    'payment'                      => 'student_verification#send_to_ccavenue'
   post   'update_db'                    => 'student_verification#update_db'
+  post   'add_verification'             => 'student_verification#add_verification'
 
 
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
   get    'payment_details'              => 'college_verification#payment'
 
-
+  # resources :student_verification, :collection => { :update_multiple => :post}
 
   
 

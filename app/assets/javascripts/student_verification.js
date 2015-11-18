@@ -223,6 +223,9 @@ $(document).on('page:change', function(event) {
           // Check if all files have been uploaded and proceed accordingly
           $().checkFileUploadStatus(++numFilesUploaded);
 
+          // Upload row to db
+          
+          
           console.log(url)
         },
         fail: function(e, data) {
