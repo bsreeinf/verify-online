@@ -4,7 +4,7 @@ class CreateColleges < ActiveRecord::Migration
       t.references :user
       t.string :name
       t.string :address
-      t.integer :verification_amount
+      t.float :verification_amount
       t.string :logo
       
       t.timestamps null: false

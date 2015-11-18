@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20151105083339) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "address"
-    t.integer  "verification_amount"
+    t.float    "verification_amount"
     t.string   "logo"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20151105083339) do
     t.integer  "verification_request_id"
     t.integer  "payment_status_id"
     t.string   "transaction_code"
-    t.integer  "amount"
+    t.float    "amount"
     t.string   "mode_of_payment"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 20151105083339) do
     t.string   "name"
     t.string   "hallticket_no"
     t.string   "document_link"
-    t.integer  "amount"
-    t.integer  "service_tax"
+    t.float    "amount"
+    t.float    "service_tax"
     t.string   "course"
     t.string   "type_of_studies"
     t.string   "course_duration"
