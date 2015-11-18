@@ -7,10 +7,10 @@
                 <div class="home-text" style="    padding: 100px 0px 45px 0px;">
                     
                     <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       Verification
+                       <%= current_user.college.name%>
                     </h1>                    
                     <div class="local-scroll hidden-xs">
-                       <%= link_to "View Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
+                       <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
                         <span>&nbsp;</span>
                         <%= link_to "Completed Verification", completed_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
                         <span>&nbsp;</span>
@@ -30,9 +30,60 @@
             <!--<h2 class="section-title font-alt mb-60 mb-sm-30">
                 Multi Page Demo
             </h2> -->            
-            <div class="row multi-columns-row align-center">
+            <div class="row multi-columns-row ">
                 
-             
+                <% if @college_verifications.blank? %>    
+                        <div class="jumbotron align-center">
+                            <p>You have no new verification request.</p>
+                        </div>
+                    
+                    
+                    <%else%>
+                        <!--
+                        <%= form_tag status_path, :method => 'get' do %>
+                            <%= hidden_field_tag :direction, params[:direction]  %>
+                            <%= hidden_field_tag :sort, params[:sort] %>
+                            <p>
+                                <%= text_field_tag :search, params[:search] %>
+                                <%=  submit_tag "Search", :name => nil %>
+                            </p>
+                        <%end%>
+
+                        -->
+                        <table class="table table-striped ">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Hallticket No</th>
+                                <th>Document Link</th>
+                                <th>Type of Studies</th>
+                                <th>Course</th>
+                                <th>Course Duration</th>
+                                <th>Remarks</th>  
+                                <th>Class Awarded</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <% @college_verifications.each do |college_verification| %>
+                              <tr>
+                                <td><%=college_verification.name%></td>
+                                <td><%=college_verification.hallticket_no%></td>
+                                <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
+                                <td><%=college_verification.course%></td>
+                                <td><%=college_verification.type_of_studies%></td>
+                                <td><%=college_verification.course_duration%></td>
+                                <td><%=college_verification.remarks%></td>
+                                <td><%=college_verification.class_awarded%></td>
+                                <td><%=college_verification.verification_status_id%></td>
+
+                              </tr>
+                            <% end %>
+                            </tbody>
+                        </table>
+                        <%= will_paginate @college_verifications %>
+
+                    <%end%>
                 
                 
             </div>            

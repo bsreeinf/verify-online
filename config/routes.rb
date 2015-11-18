@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   delete 'logout'                       => 'sessions#destroy'
 
 
-  get    'apply'                        => 'student_verification#index'
+  get    'apply'                        => 'student_verification#apply'
+  post   'apply'                        => 'student_verification#apply'
   get    'status'                       => 'student_verification#status'
   get    'history'                      => 'student_verification#history'
   post   'payment'                      => 'student_verification#send_to_ccavenue'
