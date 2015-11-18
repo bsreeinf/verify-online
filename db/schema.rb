@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105083339) do
+ActiveRecord::Schema.define(version: 20151118110114) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 20151105083339) do
   create_table "verification_requests", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "college_id"
-    t.integer  "verification_status_id"
     t.string   "name"
     t.string   "hallticket_no"
     t.string   "document_link"
@@ -126,8 +125,9 @@ ActiveRecord::Schema.define(version: 20151105083339) do
     t.string   "course_duration"
     t.string   "remarks"
     t.string   "class_awarded"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "verification_status_id", default: 1
   end
 
   create_table "verification_statuses", force: :cascade do |t|

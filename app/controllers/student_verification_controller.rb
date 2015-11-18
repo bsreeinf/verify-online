@@ -1,5 +1,6 @@
 class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
+	helper_method :sort_column, :sort_direction
 
 
 	before_action :logged_in_user, only: [:apply, :status, :history ]
@@ -52,14 +53,14 @@ class StudentVerificationController < ApplicationController
 	def status
 		# store variables in session or flash between two actions
 		# flash[:var] = ["hello", "goodbye"]
-		@verifications = VerificationRequest.all.page params[:page]
+		@verifications = VerificationRequest.all.where("student_id = ?",current_user.id).search(params[:search]).order(sort_column + " COLLATE NOCASE " + sort_direction).paginate(page: params[:page],:per_page => 10)
 		
 	end
 
 	def history
 		# @hello = flash[:var].first
 		# puts @hello
-		@payments = Payment.all.page params[:page]
+		@payments = Payment.all.paginate(page: params[:page],:per_page => 10)
 		
 	end
 
@@ -265,6 +266,16 @@ class StudentVerificationController < ApplicationController
 
 		def set_s3_direct_post
 			@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+		end
+
+
+  
+		def sort_column
+			VerificationRequest.column_names.include?(params[:sort]) ? params[:sort] : "name"
+		end
+
+		def sort_direction
+			%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 		end
 
 end
