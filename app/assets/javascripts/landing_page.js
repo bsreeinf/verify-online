@@ -4,10 +4,6 @@ $(document).on('page:change', function() {
     $('.search-field').trigger('keyup');
   });
 
-  $('.search-field-main').bind('focus', function() {
-    $('.search-field-main').trigger('keyup');
-  });
-
   $('.search-field').bind('keyup', function() {
     var dataString, searchbox;
     searchbox = $('.search-field').val();
@@ -52,4 +48,37 @@ $(document).on('page:change', function() {
       $('#search-result').empty().hide();
     }
   });
+
+  // Search page code
+
+  $('.search-field-main').bind('keyup', function() {
+    var dataString, searchbox;
+    searchbox = $('.search-field-main').val();
+    dataString = $("#colleges").data("url");
+    console.log('keypress main');
+    
+    if (searchbox !== '') {
+      var arr = jQuery.grep(dataString, function( n, i ) {
+        return n['name'].toLowerCase().indexOf(searchbox.toLowerCase()) >=0 ;
+      });
+
+      $.each($('.college-box'),function(i, ele){
+        var boxCollegeId = $(ele).data("college-id");
+        var hasMatch = false;
+        $.each(arr, function(k, obj){
+          if(obj.id == boxCollegeId)
+            hasMatch = true;
+        });
+        if(hasMatch)
+          $(ele).show();
+        else
+          $(ele).hide();
+      });
+        
+    } else {
+      $('.college-box').show();
+    }
+    return false;
+  });
+
 });
