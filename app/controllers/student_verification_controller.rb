@@ -35,15 +35,17 @@ class StudentVerificationController < ApplicationController
 		@verification_request.verification_status_id = 0
 		@verification_request.service_tax = (@verification_request.amount * 0.05).round(2)
 
-	    respond_to do |format|
+	    # respond_to do |format|
 	      if @verification_request.save
-	        format.html { redirect_to @verification_request, notice: 'Student was successfully created.' }
-	        format.json { render :show, status: :created, location: @verification_request }
+	        # format.html { redirect_to @verification_request, notice: 'Student was successfully created.' }
+	        render json: @verification_request.to_json
+	        # format.json { render :show, status: :created, location: @verification_request }
 	      else
-	        format.html { render :new }
-	        format.json { render json: @verification_request.errors, status: :unprocessable_entity }
+	        # format.html { render :new }
+	        # format.json { render json: @verification_request.errors, status: :unprocessable_entity }
+	        render json: @verification_request.errors
 	      end
-	    end
+	    # end
 	end
 
 	def update_multiple

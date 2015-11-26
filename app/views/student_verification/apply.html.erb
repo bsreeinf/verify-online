@@ -1,4 +1,4 @@
-<%= content_tag "div", id: "rails-data", data: {college_id: @college_id, form: (@s3_direct_post.fields), url: @s3_direct_post.url, host: URI.parse(@s3_direct_post.url).host } do %><% end %>
+<%= content_tag "div", id: "rails-data", data: {student_id: current_user.id, college_id: @college_id, form: (@s3_direct_post.fields), url: @s3_direct_post.url, host: URI.parse(@s3_direct_post.url).host } do %><% end %>
 
 <div class="page" id="top">            
     <!-- Home Section -->

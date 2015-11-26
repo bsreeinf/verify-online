@@ -35,17 +35,17 @@
 		            <div class="form-group">
 		                <%= f.text_field :phone , :class => "input-md round form-control",:placeholder =>"Phone", :type => "tel", :pattern=>".{5,100}",:required => true %>
 		            </div>
-
-		             <!-- Password -->
+		            
+		            <!-- Password -->
 		            <div class="form-group">                       
 		                
-		                <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", :pattern=>".{5,100}",:required => true%>
+		                <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", :pattern=>".{5,100}",:required => true, :type => "password"%>
 		            </div>
 
 		            <!-- Password Confirmation -->
 		            <div class="form-group">                       
 		                
-		                <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", :pattern=>".{5,100}",:required => true%>
+		                <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", :pattern=>".{5,100}",:required => true, :type => "password"%>
 		            </div>
 		            
 		    </div>

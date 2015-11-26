@@ -7,6 +7,9 @@
 #ignore heroku config keys
 /.env
 
+#ignore .DS_Store
+.DS_Store
+
 # Ignore bundler config.
 /.bundle
 
