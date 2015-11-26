@@ -1,6 +1,7 @@
 class VerificationRequest < ActiveRecord::Base
 
-	has_one :verification_status
+	belongs_to :verification_status
+	belongs_to :payment
 
 	def self.search(search)
 	  if search

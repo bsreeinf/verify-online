@@ -31,7 +31,7 @@
                     <%end%>                   
 
 
-                    <% if is_college_admin? && params[:controller] =='student_verification' %>
+                    <% if is_college_admin?  %>
                         <li><%= link_to "College", view_verifications_path %></li>                    
                     <%end%>
 

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
   get    'payment_details'              => 'college_verification#payment'
+  put    'update'                       => 'college_verification#update'
 
   # resources :student_verification, :collection => { :update_multiple => :post}
 

@@ -41,7 +41,7 @@ User.create!(
 	activated:    true,
 	activated_at: Time.zone.now
 	)
-
+VerificationStatus.create!(	description: "New"	)
 VerificationStatus.create!(	description: "Pending"	)
 VerificationStatus.create!(	description: "Matched"	)
 VerificationStatus.create!(	description: "Unmatched")

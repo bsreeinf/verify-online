@@ -7,7 +7,7 @@
                 <div class="home-text" style="    padding: 100px 0px 45px 0px;">
                     
                     <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       Verification
+                       <%= current_user.college.name%>
                     </h1>                    
                     <div class="local-scroll hidden-xs">
                        <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
@@ -31,10 +31,52 @@
                 Multi Page Demo
             </h2> -->            
             <div class="row multi-columns-row align-center">
+               <!-- <% if @verifications.blank? %>    
+                    <div class="jumbotron align-center">
+                        <p>You have no documents submitted yet. Please <%= link_to "apply", apply_path%> for document verification  </p>
+                    </div>
+           
                 
-             
-                
-                
+                <%else%>
+                 
+                    <table class="table table-striped ">
+                        <thead>
+                          <tr>
+                            <th><%= sortable "name", "Name" %></th>
+                            <th><%= sortable "hallticket_no", "Hallticket Number" %></th>
+                            <th>Document Link</th>
+                            <th><%= sortable "amount", "Amount" %></th>
+                            <th>Service Tax</th>
+                            <th><%= sortable "course", "Course" %></th>
+                            <th><%= sortable "type_of_studies", "Type of Studies" %></th>
+                            <th><%= sortable "course_duration", "Course Duration" %></th>
+                            <th><%= sortable "remarks", "Remarks" %></th>
+                            <th><%= sortable "class_awarded", "Class Awarded" %></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <% @verifications.each do |verification| %>
+                          <tr>
+                            <td><%=verification.name%></td>
+                            <td><%=verification.hallticket_no%></td>
+                            <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
+                            <td><%=verification.amount%></td>
+                            <td><%=verification.service_tax%></td>
+                            <td><%=verification.course%></td>
+                            <td><%=verification.type_of_studies%></td>
+                            <td><%=verification.course_duration%></td>
+                            <td><%=verification.remarks%></td>
+                            <td><%=verification.class_awarded%></td>
+                          </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                    <%= will_paginate @verifications %>
+
+                <%end%>
+           
+                -->
+       
             </div>            
         </div>
     </section>

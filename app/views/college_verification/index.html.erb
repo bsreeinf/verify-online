@@ -29,7 +29,10 @@
         <div class="container relative">            
             <!--<h2 class="section-title font-alt mb-60 mb-sm-30">
                 Multi Page Demo
-            </h2> -->            
+            </h2> -->    
+             <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%= message %></div>
+            <% end %>        
             <div class="row multi-columns-row ">
                 
                 <% if @college_verifications.blank? %>    
@@ -39,28 +42,18 @@
                     
                     
                     <%else%>
-                        <!--
-                        <%= form_tag status_path, :method => 'get' do %>
-                            <%= hidden_field_tag :direction, params[:direction]  %>
-                            <%= hidden_field_tag :sort, params[:sort] %>
-                            <p>
-                                <%= text_field_tag :search, params[:search] %>
-                                <%=  submit_tag "Search", :name => nil %>
-                            </p>
-                        <%end%>
-
-                        -->
+                       
                         <table class="table table-striped ">
                             <thead>
                               <tr>
                                 <th>Name</th>
                                 <th>Hallticket No</th>
                                 <th>Document Link</th>
-                                <th>Type of Studies</th>
                                 <th>Course</th>
-                                <th>Course Duration</th>
-                                <th>Remarks</th>  
+                                <th>Type of Studies</th>                                
+                                <th>Course Duration</th>                                  
                                 <th>Class Awarded</th>
+                                <th>Remarks</th>
                                 <th>Status</th>
                               </tr>
                             </thead>
@@ -72,12 +65,39 @@
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
                                 <td><%=college_verification.course%></td>
                                 <td><%=college_verification.type_of_studies%></td>
-                                <td><%=college_verification.course_duration%></td>
-                                <td><%=college_verification.remarks%></td>
+                                <td><%=college_verification.course_duration%></td>                                
                                 <td><%=college_verification.class_awarded%></td>
-                                <td><%=college_verification.verification_status_id%></td>
+                                <td><%=college_verification.remarks%></td>
+                                <td><%=college_verification.verification_status.description%></td>
+                                
 
                               </tr>
+                              <tr>
+                                  <td colspan="9">
+                                    <div class="edit_form" id="task-form" >
+                                    <%= form_tag update_path   , :method => :put do%>
+                                        <%= hidden_field_tag :id, college_verification.id %>
+                                        <%=label_tag 'Course'%>
+                                        <%= text_field_tag :course,college_verification.course %>
+                                        <%=label_tag 'Type of Studies'%>
+                                        <%= text_field_tag :type_of_studies,college_verification.type_of_studies %>
+                                        <%=label_tag 'Course Duration'%>
+                                        <%= text_field_tag :course_duration,college_verification.course_duration %> 
+                                        <%=label_tag 'Class Awarded'%>   
+                                        <%= text_field_tag :class_awarded ,college_verification.class_awarded%>   
+                                        <%=label_tag 'Remarks'%>                                 
+                                        <%= text_field_tag :remarks,college_verification.remarks %>  
+                                        <%=label_tag 'Status'%>                                 
+                                       
+                                        <% @people =VerificationStatus.all%>                                    
+                                        <%= select_tag :verification_status_id, options_from_collection_for_select(@people, "id", "description") %>
+                                        <%= submit_tag "Update" %>
+                                    <%end %>                                  
+                                  </div>
+                                </td>
+
+                              </tr>
+                              
                             <% end %>
                             </tbody>
                         </table>

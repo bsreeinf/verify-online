@@ -7,7 +7,7 @@
                 <div class="home-text" style="    padding: 100px 0px 45px 0px;">
                     
                     <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       Verification
+                       <%= current_user.college.name%>
                     </h1>                    
                     <div class="local-scroll hidden-xs">
                        <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
@@ -31,7 +31,51 @@
             <div class="row">
                 
              
-                
+                <% if @college_verifications_completed.blank? %>    
+                        <div class="jumbotron align-center">
+                            <p>You have no new verification request.</p>
+                        </div>
+                    
+                    
+                    <%else%>
+                       
+                        <table class="table table-striped ">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Hallticket No</th>
+                                <th>Document Link</th>
+                                <th>Course</th>
+                                <th>Type of Studies</th>                                
+                                <th>Course Duration</th>                                  
+                                <th>Class Awarded</th>
+                                <th>Remarks</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <% @college_verifications_completed.each do |college_verification| %>
+                              <tr>
+                                <td><%=college_verification.name%></td>
+                                <td><%=college_verification.hallticket_no%></td>
+                                <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
+                                <td><%=college_verification.course%></td>
+                                <td><%=college_verification.type_of_studies%></td>
+                                <td><%=college_verification.course_duration%></td>                                
+                                <td><%=college_verification.class_awarded%></td>
+                                <td><%=college_verification.remarks%></td>
+                                <td><%=college_verification.verification_status.description%></td>
+                                
+
+                              </tr>
+                              
+                              
+                            <% end %>
+                            </tbody>
+                        </table>
+                        <%= will_paginate @college_verifications_completed %>
+
+                    <%end%>
                 
             </div>            
         </div>
