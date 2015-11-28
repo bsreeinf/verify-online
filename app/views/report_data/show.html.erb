@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>College:</strong>
+  <%= @report_datum.college_id %>
+</p>
+
+<p>
+  <strong>Header link:</strong>
+  <%= @report_datum.header_link %>
+</p>
+
+<p>
+  <strong>Signature link:</strong>
+  <%= @report_datum.signature_link %>
+</p>
+
+<p>
+  <strong>From address:</strong>
+  <%= @report_datum.from_address %>
+</p>
+
+<p>
+  <strong>To address:</strong>
+  <%= @report_datum.to_address %>
+</p>
+
+<p>
+  <strong>Letter title:</strong>
+  <%= @report_datum.letter_title %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @report_datum.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @report_datum.body %>
+</p>
+
+<%= link_to 'Edit', edit_report_datum_path(@report_datum) %> |
+<%= link_to 'Back', report_data_path %>

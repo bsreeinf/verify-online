@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Report Data</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>College</th>
+      <th>Header link</th>
+      <th>Signature link</th>
+      <th>From address</th>
+      <th>To address</th>
+      <th>Letter title</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @report_data.each do |report_datum| %>
+      <tr>
+        <td><%= report_datum.college_id %></td>
+        <td><%= report_datum.header_link %></td>
+        <td><%= report_datum.signature_link %></td>
+        <td><%= report_datum.from_address %></td>
+        <td><%= report_datum.to_address %></td>
+        <td><%= report_datum.letter_title %></td>
+        <td><%= report_datum.subject %></td>
+        <td><%= report_datum.body %></td>
+        <td><%= link_to 'Show', report_datum %></td>
+        <td><%= link_to 'Edit', edit_report_datum_path(report_datum) %></td>
+        <td><%= link_to 'Destroy', report_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Report datum', new_report_datum_path %>
