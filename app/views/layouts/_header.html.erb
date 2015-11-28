@@ -49,10 +49,13 @@
                         <!-- Sub -->
                         <ul class="mn-sub to-left">
                             
-                           <li><%= link_to "Profile", current_user %></li>
-                           <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
-                           <li role="separator" class="divider"></li>
-                           <li><%= link_to "Logout", logout_path, method: :delete %></li>   
+                            <% if is_college_admin?  %>
+                                <li><%= link_to "Report Template", report_data_url %></li>
+                            <%end%>
+                            
+                            <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+                            <li role="separator" class="divider"></li>
+                            <li><%= link_to "Logout", logout_path, method: :delete %></li>   
                             
                         </ul>
                         <!-- End Sub -->                                

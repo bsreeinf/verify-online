@@ -1,0 +1,49 @@
+<%= form_for(@report_datum) do |f| %>
+  <% if @report_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report_datum.errors.count, "error") %> prohibited this report_datum from being saved:</h2>
+
+      <ul>
+      <% @report_datum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :college_id_id %><br>
+    <%= f.text_field :college_id_id %>
+  </div>
+  <div class="field">
+    <%= f.label :header_link %><br>
+    <%= f.text_field :header_link %>
+  </div>
+  <div class="field">
+    <%= f.label :signature_link %><br>
+    <%= f.text_field :signature_link %>
+  </div>
+  <div class="field">
+    <%= f.label :from_address %><br>
+    <%= f.text_area :from_address %>
+  </div>
+  <div class="field">
+    <%= f.label :to_address %><br>
+    <%= f.text_area :to_address %>
+  </div>
+  <div class="field">
+    <%= f.label :letter_title %><br>
+    <%= f.text_field :letter_title %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
