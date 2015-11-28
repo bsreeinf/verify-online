@@ -72,7 +72,7 @@
                                 <td><%=verification.hallticket_no%></td>
                                 <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
                                 <td><%=verification.amount%></td>
-                                <td><%=verification.service_tax%></td>
+                                <td><%=verification.service_tax.round(2)%></td>
                                 <td><%=verification.course%></td>
                                 <td><%=verification.type_of_studies%></td>
                                 <td><%=verification.course_duration%></td>

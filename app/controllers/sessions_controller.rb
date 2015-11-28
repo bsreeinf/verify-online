@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         # redirect_back_or user
         if is_college_admin?  
-          redirect_to view_verifications_path
+          redirect_back_or view_verifications_path
         else
-          redirect_to apply_path 
+          redirect_back_or apply_path 
         end
       else
         message  = "Account not activated. "
