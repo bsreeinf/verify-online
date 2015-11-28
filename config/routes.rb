@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get    'apply'                        => 'student_verification#apply'
   post   'apply'                        => 'student_verification#apply'
   get    'status'                       => 'student_verification#status'
+
   get    'history'                      => 'student_verification#history'
   post   'payment'                      => 'student_verification#send_to_ccavenue'
   get    'payment'                      => 'student_verification#send_to_ccavenue'
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
 
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
+  get    'final_report'                 => 'college_verification#report'
   get    'payment_details'              => 'college_verification#payment'
   put    'update'                       => 'college_verification#update'
 
@@ -39,6 +41,10 @@ Rails.application.routes.draw do
 
   resources :users
   resources :colleges
+
+  get      'report_template'               => 'college#report_template'
+  post     'edit_report_format'            => 'college#edit_report_format'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

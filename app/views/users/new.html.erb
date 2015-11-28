@@ -9,17 +9,17 @@
 		<%= form_for(@user, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
 			<% if @user.errors.any? %>
 		    <div id="error_explanation">
-		      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+				<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-		      <ul>
-		      <% @user.errors.full_messages.each do |message| %>
-		        <li><%= message %></li>
-		      <% end %>
-		      </ul>
+				<ul>
+				<% @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+				</ul>
 		    </div>
-		  <% end %>
-		<!-- <form class="form contact-form" id="contact_form"> -->
-		    <div class="clearfix">   
+		<% end %>
+
+		<div class="clearfix">   
 
 		    		<!-- Name -->
 		            <div class="form-group">
@@ -58,7 +58,6 @@
 		                <%= f.submit "Sign Up", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
 		            </div>         
 		          
-		        
 		    </div>            
 		    
 		    

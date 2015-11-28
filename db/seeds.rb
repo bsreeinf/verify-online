@@ -94,6 +94,7 @@ end
 	hallticket_no = FFaker::Lorem.characters(6)	
 	document_link = "https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/uploads/dummy/wo.jpg"	
 	amount = rand(500..2000)
+	service_tax = amount * 0.05
 	course = FFaker::Lorem.characters(5).upcase
 	type_of_studies = 	FFaker::Lorem.characters(3).upcase
 
@@ -108,6 +109,7 @@ end
 		hallticket_no: hallticket_no,
 		document_link: document_link,
 		amount: amount,
+		service_tax: service_tax,
 		course: course,
 		type_of_studies: type_of_studies
 		)

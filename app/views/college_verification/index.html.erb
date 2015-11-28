@@ -46,57 +46,79 @@
                         <table class="table table-striped ">
                             <thead>
                               <tr>
-                                <th>Name</th>
                                 <th>Hallticket No</th>
-                                <th>Document Link</th>
-                                <th>Course</th>
-                                <th>Type of Studies</th>                                
-                                <th>Course Duration</th>                                  
-                                <th>Class Awarded</th>
-                                <th>Remarks</th>
+                                <th>Name</th>
+                                <th>Document</th>
                                 <th>Status</th>
+                                <th></th>
                               </tr>
                             </thead>
                             <tbody>
                             <% @college_verifications.each do |college_verification| %>
                               <tr>
-                                <td><%=college_verification.name%></td>
                                 <td><%=college_verification.hallticket_no%></td>
-                                <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
-                                <td><%=college_verification.course%></td>
-                                <td><%=college_verification.type_of_studies%></td>
-                                <td><%=college_verification.course_duration%></td>                                
-                                <td><%=college_verification.class_awarded%></td>
-                                <td><%=college_verification.remarks%></td>
+                                <td><%=college_verification.name%></td>
+                                <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a></td>                                
                                 <td><%=college_verification.verification_status.description%></td>
+                                <td><a class="update_verification_button">Update Status</a></td>
                                 
 
                               </tr>
-                              <tr>
-                                  <td colspan="9">
-                                    <div class="edit_form" id="task-form" >
-                                    <%= form_tag update_path   , :method => :put do%>
-                                        <%= hidden_field_tag :id, college_verification.id %>
-                                        <%=label_tag 'Course'%>
-                                        <%= text_field_tag :course,college_verification.course %>
-                                        <%=label_tag 'Type of Studies'%>
-                                        <%= text_field_tag :type_of_studies,college_verification.type_of_studies %>
-                                        <%=label_tag 'Course Duration'%>
-                                        <%= text_field_tag :course_duration,college_verification.course_duration %> 
-                                        <%=label_tag 'Class Awarded'%>   
-                                        <%= text_field_tag :class_awarded ,college_verification.class_awarded%>   
-                                        <%=label_tag 'Remarks'%>                                 
-                                        <%= text_field_tag :remarks,college_verification.remarks %>  
-                                        <%=label_tag 'Status'%>                                 
-                                       
-                                        <% @people =VerificationStatus.all%>                                    
-                                        <%= select_tag :verification_status_id, options_from_collection_for_select(@people, "id", "description") %>
-                                        <%= submit_tag "Update" %>
-                                    <%end %>                                  
-                                  </div>
-                                </td>
+                              <tr class="update_verification_form" style="display: none;">
+                                    <td></td>
+                                    <td colspan="3">
+                                        <div class="edit_form" id="task-form" >
+                                            <div class="form contact-form" id="contact_form">
+                                            <%= form_tag update_path   , :method => :put do%>
+                                                <%= hidden_field_tag :id, college_verification.id %>
+                                                <div class="clearfix">
+                                                    <div class="row align-center "> 
+                                                        <div class="col-sm-4 mb-40">  
+                                         
+                                                            <!-- <%=label_tag 'Course'%> -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= text_field_tag :course, college_verification.course, :class => "input-md round form-control", :placeholder => "Course", :pattern => ".{1,100}" %>
+                                                            </div>
+                                                            <!-- <%=label_tag 'Type of Studies'%> -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= text_field_tag :type_of_studies, college_verification.type_of_studies, :class => "input-md round form-control", :placeholder => "Type of Studies", :pattern => ".{1,100}" %>
+                                                            </div>
+                                                            <!-- <%=label_tag 'Course Duration'%> -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= text_field_tag :course_duration, college_verification.course_duration, :class => "input-md round form-control", :placeholder => "Course Duration", :pattern => ".{1,100}" %>
+                                                            </div>
+                                                            <!-- <%=label_tag 'Class Awarded'%>    -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= text_field_tag :class_awarded, college_verification.class_awarded, :class => "input-md round form-control", :placeholder => "Class Awarded", :pattern => ".{1,100}" %>
+                                                            </div>
+                                                        </div>
 
-                              </tr>
+
+                                                        <div class="col-sm-4 mb-40">
+                                                            <!-- <%=label_tag 'Status'%> -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= select_tag :verification_status_id, options_from_collection_for_select(VerificationStatus.all, "id", "description"), {:class => "input-md form-control"} %>    
+                                                            </div>
+                                                            <!-- <%=label_tag 'Remarks'%>                                  -->
+                                                            <div class="field" style="margin-bottom: 10px;">
+                                                                <%= text_area_tag :remarks, college_verification.remarks, :class => "input-md round form-control", :placeholder => "Remarks", :pattern => ".{1,300}", :style => "resize: none; height: 131px;"  %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 mb-40">
+                                                            <!-- Send Button -->
+                                                            <div class="pt-10" style="margin-top: 131px;">
+                                                                <%= submit_tag "UPDATE", :class => "submit_btn btn btn-mod btn-medium btn-round", :id => "update-btn" %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%end %> 
+                                            </div>
+                                                                        
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
                               
                             <% end %>
                             </tbody>

@@ -1,0 +1,27 @@
+<!-- 
+	This is the layout that will be converted to PDF. 
+	PDF view only! HTML might will not support some of the the tags used here 
+-->
+<table style="width:100%">
+	<thead>
+		<tr class="report_letter_head">
+			<td>
+				<%= image_tag '<%=@verification_stub.header_link%>', :style => 'height : 100px;' %>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr class="empty_row" style="margin-bottom:20px;">
+			<td></td>
+		</tr>
+		<tr class="report_subject">
+			<td>SUBJECT HERE</td>
+		</tr>
+		<tr>
+			<td>
+				<%=@verification_stub.name%>
+			</td>
+		</tr>
+	</tbody>
+</table>

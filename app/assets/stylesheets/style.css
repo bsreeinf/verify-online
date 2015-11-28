@@ -2296,37 +2296,6 @@ a.logo:hover{
     color: #fff;
 }
 
-/* added new */
-
-#search-result
-{
-  width:250px;
-  display:none;
-  /*float:left;*/
-  border-left:solid 1px #dedede;
-  border-right:solid 1px #dedede;
-  border-bottom:solid 1px #dedede;
-  overflow:hidden;
-}
-.display_box
-{
-padding:4px; 
-border-top:solid 1px #dedede; 
-font-size:12px; 
-background: white;
-    border-top: 1px solid gray;
-    /* height: 30px; */
-    padding: 10px;
-    color: black;
-}
-.display_box:hover
-{
-background:#3b5998;
-color:#FFFFFF;
-cursor: pointer;
-}
-/*  */
-
 
 /* Social links */
 
@@ -6428,4 +6397,48 @@ section:hover .small-item-carousel .owl-next{
 	.multi-columns-row .col-lg-3:nth-child(4n + 5) { clear: left; }
 	.multi-columns-row .col-lg-2:nth-child(6n + 7) { clear: left; }
 	.multi-columns-row .col-lg-1:nth-child(12n + 13) { clear: left; }
+
+
+
+  /* added new */
+
+#search-result
+{
+  width:250px;
+  display:none;
+  /*float:left;*/
+  border-left:solid 1px #dedede;
+  border-right:solid 1px #dedede;
+  border-bottom:solid 1px #dedede;
+  overflow:hidden;
+}
+.display_box
+{
+padding:4px; 
+border-top:solid 1px #dedede; 
+font-size:12px; 
+background: white;
+    border-top: 1px solid gray;
+    /* height: 30px; */
+    padding: 10px;
+    color: black;
+}
+.display_box:hover {
+  background:#08714F;
+  color:#FFFFFF;
+  cursor: pointer;
+}
+.display_box > a {
+  color: #444 !important;
+  cursor: pointer;
+  text-decoration: none !important; 
+  padding: 10px !important; 
+  display: block !important;
+}.display_box > a:hover {
+  color:#FFFFFF !important;
+}
+.update_verification_button{
+  cursor: pointer !important;
+}
+
 }

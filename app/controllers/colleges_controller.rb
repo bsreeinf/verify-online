@@ -1,6 +1,7 @@
 class CollegesController < ApplicationController
   before_action :logged_in_user
   before_action :set_college, only: [:show, :edit, :update, :destroy]
+  before_action :set_report, only: [:edit_report_format]
 
   # GET /colleges
   # GET /colleges.json
@@ -15,6 +16,10 @@ class CollegesController < ApplicationController
   # GET /colleges/1
   # GET /colleges/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json {render json: @college}
+    end
 
   end
 
@@ -25,6 +30,23 @@ class CollegesController < ApplicationController
 
   # GET /colleges/1/edit
   def edit
+  end
+
+  #view report template as HTML and further implement edit; this posts to edit_report_format
+  def report_template
+    
+  end
+
+  def edit_report_format
+    respond_to do |format|
+      if @report.update(report_params)
+        format.html { redirect_to @report, notice: 'College report template was successfully updated.' }
+        format.json { render :show, status: :ok, location: @report }
+      else
+        format.html { render :edit }
+        format.json { render json: @report.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /colleges
@@ -76,5 +98,13 @@ class CollegesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def college_params
       params.require(:college).permit(:user_id, :name, :address, :verification_amount)
+    end
+
+    def set_report
+      @report = ReportDatum.find(params[:id])
+    end
+
+    def report_params
+      params.require(:college).permit(:college_id, :header_link, :footer_link, :signature_link, :addresser, :subject, :body)
     end
 end

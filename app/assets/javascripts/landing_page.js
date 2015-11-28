@@ -20,8 +20,7 @@ $(document).on('page:change', function() {
       $.each(arr, function(i, obj) {
         $('#search-result').append(
           '<div data-url="' + i + '" class="display_box search-result" style="padding: 0;">' +
-            '<a style="color: #444; text-decoration: none; padding: 10px; display: block;" ' +
-            'href="/apply?college_id=' + obj['id'] + '&college_name=' + obj['name'] + '">' + obj['name'] + 
+            '<a class="search-result-acnhor" href="/apply?college_id=' + obj['id'] + '&college_name=' + obj['name'] + '">' + obj['name'] + 
             '</a></div>').show();
         i++;
         $('#search-result-' + i).on('click', function() {
@@ -41,13 +40,13 @@ $(document).on('page:change', function() {
     return false;
   });
 
-  $(document).mouseup(function(e) {
-    var container;
-    container = $('#search-field');
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-      $('#search-result').empty().hide();
-    }
-  });
+  // $(document).mouseup(function(e) {
+  //   var container;
+  //   container = $('#search-field');
+  //   if (!container.is(e.target) && container.has(e.target).length === 0) {
+  //     $('#search-result').empty().hide();
+  //   }
+  // });
 
   // Search page code
 
@@ -58,6 +57,7 @@ $(document).on('page:change', function() {
     console.log('keypress main');
     
     if (searchbox !== '') {
+      console.log('search not empty')
       var arr = jQuery.grep(dataString, function( n, i ) {
         return n['name'].toLowerCase().indexOf(searchbox.toLowerCase()) >=0 ;
       });
