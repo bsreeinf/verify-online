@@ -1,3 +1,3 @@
 class ReportDatum < ActiveRecord::Base
-  belongs_to :college_id
+  belongs_to :college
 end

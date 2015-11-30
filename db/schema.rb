@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20151128152608) do
   end
 
   create_table "report_data", force: :cascade do |t|
-    t.integer  "college_id_id"
+    t.integer  "college_id"
     t.string   "header_link"
     t.string   "signature_link"
     t.text     "from_address"
@@ -83,11 +83,12 @@ ActiveRecord::Schema.define(version: 20151128152608) do
     t.string   "letter_title"
     t.string   "subject"
     t.text     "body"
+    t.text     "designation"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
-  add_index "report_data", ["college_id_id"], name: "index_report_data_on_college_id_id"
+  add_index "report_data", ["college_id"], name: "index_report_data_on_college_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "hallticket_no"

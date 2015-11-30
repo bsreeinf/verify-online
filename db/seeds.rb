@@ -20,12 +20,24 @@ cuser=User.create!(
 	password_confirmation: "password",
 	activated:    true,
 	activated_at: Time.zone.now
-	)
+)
 College.create!(
 	user_id: cuser.id,
 	name: "East Point College of engineering", 
 	address: "Aavaada  Halli",
-	verification_amount: 800)
+	verification_amount: 800
+)
+ReportDatum.create!(
+	college_id: 1, 
+	header_link: FFaker::Avatar.image, 
+	signature_link: FFaker::Avatar.image, 
+	from_address: FFaker::Address.street_address, 
+	to_address: FFaker::Address.street_address, 
+	letter_title: FFaker::Lorem.sentence, 
+	subject: FFaker::Lorem.sentence, 
+	body: FFaker::Lorem.paragraph,
+	designation: FFaker::Job.title
+)
 
 User.create!(
 	name:  'allen',
@@ -71,13 +83,24 @@ VerificationStatus.create!(	description: "Unmatched")
 end
 
 
-
+i = 0
 30.times do |n|
-	
+	i = i + 1
 	name = FFaker::Company.name
 	address = FFaker::Address.street_address
 	amount = rand(500..2000)
 	College.create!(name: name, address: address,verification_amount: amount)
+
+	ReportDatum.create!(
+		college_id: (i + 1), 
+		header_link: FFaker::Avatar.image, 
+		signature_link: FFaker::Avatar.image, 
+		from_address: FFaker::Address.street_address, 
+		to_address: FFaker::Address.street_address, 
+		letter_title: FFaker::Lorem.sentence, 
+		subject: FFaker::Lorem.sentence, 
+		body: FFaker::Lorem.paragraph
+	)
 end
 
 30.times do |n|
@@ -97,10 +120,6 @@ end
 	service_tax = amount * 0.05
 	course = FFaker::Lorem.characters(5).upcase
 	type_of_studies = 	FFaker::Lorem.characters(3).upcase
-
-
-
-
 
 	VerificationRequest.create!(student_id: student_id,
 		college_id: college_id,
