@@ -4,13 +4,13 @@ class CollegeVerificationController < ApplicationController
 
   def index
   	
-  	@college_verifications =  VerificationRequest.all.where("college_id == ? AND verification_status_id = ?", @college_id, 1).paginate(page: params[:page],:per_page => 10)
+  	@college_verifications =  VerificationRequest.all.where("college_id = ? AND verification_status_id = ?", @college_id, 1).paginate(page: params[:page],:per_page => 10)
   end
 
 
   def completed
   	
-  	@college_verifications_completed =  VerificationRequest.all.where("college_id == ? AND verification_status_id != ?", @college_id,1).paginate(page: params[:page],:per_page => 10)
+  	@college_verifications_completed =  VerificationRequest.all.where("college_id = ? AND verification_status_id != ?", @college_id,1).paginate(page: params[:page],:per_page => 10)
   end
 
   def report
@@ -30,7 +30,7 @@ class CollegeVerificationController < ApplicationController
   end
 
   def payment
-    @college_verifications =  VerificationRequest.all.where("college_id == ?", @college_id)
+    @college_verifications =  VerificationRequest.all.where("college_id = ?", @college_id)
     @payments = Payment.all.where
   end
 

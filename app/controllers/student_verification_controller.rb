@@ -55,7 +55,14 @@ class StudentVerificationController < ApplicationController
 	def status
 		# store variables in session or flash between two actions
 		# flash[:var] = ["hello", "goodbye"]
-		@verifications = VerificationRequest.all.where("student_id = ?",current_user.id).search(params[:search]).order(sort_column + " COLLATE NOCASE " + sort_direction).paginate(page: params[:page],:per_page => 10)
+		# @verifications = VerificationRequest.all.where(
+		# 	"student_id = ?",current_user.id
+		# 	).search(params[:search]).order(
+		# 		sort_column + " COLLATE NOCASE " + sort_direction
+		# 		).paginate(page: params[:page],:per_page => 10)
+		@verifications = VerificationRequest.all.where(
+			"student_id = ?",current_user.id
+			).search(params[:search]).paginate(page: params[:page],:per_page => 10)
 		
 	end
 
