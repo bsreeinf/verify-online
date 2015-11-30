@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20151130141836) do
   create_table "verification_requests", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "college_id"
+    t.integer  "verification_status_id", default: 1
     t.string   "name"
     t.string   "hallticket_no"
     t.string   "document_link"
@@ -137,7 +138,6 @@ ActiveRecord::Schema.define(version: 20151130141836) do
     t.string   "class_awarded"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.integer  "verification_status_id", default: 1
   end
 
   create_table "verification_statuses", force: :cascade do |t|

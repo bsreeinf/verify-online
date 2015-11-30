@@ -77,6 +77,6 @@ class CollegesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def college_params
-      params.require(:college).permit(:user_id, :name, :address, :verification_amount)
+      params.require(:college).permit(:user_id, :name, :address, :logo, :verification_amount)
     end
 end

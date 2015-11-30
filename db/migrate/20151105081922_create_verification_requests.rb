@@ -3,6 +3,7 @@ class CreateVerificationRequests < ActiveRecord::Migration
     create_table :verification_requests do |t|
       t.references :student
       t.references :college
+      t.references :verification_status, default: 1
       
       t.string :name
       t.string :hallticket_no
