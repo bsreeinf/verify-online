@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
-  resources :users
+  resources :users, except: [:show]
   resources :colleges
   resources :report_data
 
@@ -95,4 +95,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+get 'application/raise_not_found'
+get '*a' => redirect("application/raise_not_found")
+
+
 end

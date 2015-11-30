@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy ]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,     only: :destroy
 
   # GET /users
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def update   
     if @user.update(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to  :action => 'edit'
     else
       render 'edit'
     end 
