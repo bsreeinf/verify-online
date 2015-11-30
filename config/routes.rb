@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:show]
   resources :colleges
-  resources :report_data
+  resources :report_data, only: [:index, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

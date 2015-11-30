@@ -1,6 +1,6 @@
 class CollegeVerificationController < ApplicationController
 	 before_action :set_college_id
-
+   layout 'application', :except => [:report]
 
   def index
   	
@@ -18,7 +18,13 @@ class CollegeVerificationController < ApplicationController
     respond_to do |format|
       format.pdf do
         # gsub removes all whitespaces
-        render pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", template: "college_verification/report.html.erb"
+        render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+                template: "college_verification/report.html.erb",
+                margin:  {  top:               10,
+                            bottom:            10,
+                            left:              10,
+                            right:             10 
+                }
       end
     end
   end

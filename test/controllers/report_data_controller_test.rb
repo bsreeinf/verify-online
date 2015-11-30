@@ -18,7 +18,7 @@ class ReportDataControllerTest < ActionController::TestCase
 
   test "should create report_datum" do
     assert_difference('ReportDatum.count') do
-      post :create, report_datum: { body: @report_datum.body, college_id_id: @report_datum.college_id_id, from_address: @report_datum.from_address, header_link: @report_datum.header_link, letter_title: @report_datum.letter_title, signature_link: @report_datum.signature_link, subject: @report_datum.subject, to_address: @report_datum.to_address }
+      post :create, report_datum: { body: @report_datum.body, college_id: @report_datum.college_id, designation: @report_datum.designation, from_address: @report_datum.from_address, header: @report_datum.header, letter_title: @report_datum.letter_title, signature: @report_datum.signature, subject: @report_datum.subject, to_address: @report_datum.to_address }
     end
 
     assert_redirected_to report_datum_path(assigns(:report_datum))
@@ -35,7 +35,7 @@ class ReportDataControllerTest < ActionController::TestCase
   end
 
   test "should update report_datum" do
-    patch :update, id: @report_datum, report_datum: { body: @report_datum.body, college_id_id: @report_datum.college_id_id, from_address: @report_datum.from_address, header_link: @report_datum.header_link, letter_title: @report_datum.letter_title, signature_link: @report_datum.signature_link, subject: @report_datum.subject, to_address: @report_datum.to_address }
+    patch :update, id: @report_datum, report_datum: { body: @report_datum.body, college_id: @report_datum.college_id, designation: @report_datum.designation, from_address: @report_datum.from_address, header: @report_datum.header, letter_title: @report_datum.letter_title, signature: @report_datum.signature, subject: @report_datum.subject, to_address: @report_datum.to_address }
     assert_redirected_to report_datum_path(assigns(:report_datum))
   end
 

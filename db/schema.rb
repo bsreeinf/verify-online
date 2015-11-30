@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128152608) do
+ActiveRecord::Schema.define(version: 20151130141836) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -76,16 +76,22 @@ ActiveRecord::Schema.define(version: 20151128152608) do
 
   create_table "report_data", force: :cascade do |t|
     t.integer  "college_id"
-    t.string   "header_link"
-    t.string   "signature_link"
     t.text     "from_address"
     t.text     "to_address"
     t.string   "letter_title"
     t.string   "subject"
     t.text     "body"
     t.text     "designation"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "header_file_name"
+    t.string   "header_content_type"
+    t.integer  "header_file_size"
+    t.datetime "header_updated_at"
+    t.string   "signature_file_name"
+    t.string   "signature_content_type"
+    t.integer  "signature_file_size"
+    t.datetime "signature_updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "report_data", ["college_id"], name: "index_report_data_on_college_id"
