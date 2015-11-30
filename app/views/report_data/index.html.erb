@@ -1,41 +1,116 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Report') %>
+<section class="home-section bg-dark-alfa-50 " data-background=<%= asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
+  <div class="container">            
+      <!-- Hero Content -->
+      <div class="home-content">
+          <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+              
+              <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                Report - <%=current_user.college.name%>
+              </h1>                                      
+          </div>
+      </div>
+      <!-- End Hero Content -->            
+  </div>
+</section>
 
-<h1>Listing Report Data</h1>
+<section class="page-section" style="padding-top: 80px; background-color: #D4D4D4;">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for(@report_datum, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
+      <% if @report_datum.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@report_datum.errors.count, "error") %> prohibited this report_datum from being saved:
+          </h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>College</th>
-      <th>Header link</th>
-      <th>Signature link</th>
-      <th>From address</th>
-      <th>To address</th>
-      <th>Letter title</th>
-      <th>Subject</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <ul>
+            <% @report_datum.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <tbody>
-    <% @report_data.each do |report_datum| %>
-      <tr>
-        <td><%= report_datum.college_id %></td>
-        <td><%= report_datum.header_link %></td>
-        <td><%= report_datum.signature_link %></td>
-        <td><%= report_datum.from_address %></td>
-        <td><%= report_datum.to_address %></td>
-        <td><%= report_datum.letter_title %></td>
-        <td><%= report_datum.subject %></td>
-        <td><%= report_datum.body %></td>
-        <td><%= link_to 'Show', report_datum %></td>
-        <td><%= link_to 'Edit', edit_report_datum_path(report_datum) %></td>
-        <td><%= link_to 'Destroy', report_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="clearfix align-centre">  
+      <p id="notice"><%= notice %></p> 
+        <div style="padding: 40px; background-color: white; border-radius: 5px; box-shadow: 1px 1px 6px;">
+        
+          
+
+          <div class="form-group" style="display: none;">
+              <%= f.text_field :college_id , :value => @report_datum.college_id, :hidden => "" %>
+          </div>
+
+          <div class="form-group" style="display: none;">
+              <%= f.text_field :header_link , :value => @report_datum.header_link, :hidden => "" %>
+          </div>
+          
+          <div class="form-group" style="display: none;">
+              <%= f.text_field :signature_link , :value => @report_datum.signature_link, :hidden => "" %>
+          </div>
+            
+          <div class="row" title="Header image">
+            <img src=<%= asset_url("header.png")%> style="width: 100%; "/>
+          </div>
+          <div class="row" title="From address">
+            <div class="col-md-6" style="padding-left: 0;">
+              <div class="form-group">
+                  <%= f.text_area :from_address , :class => "input-md round form-control", :placeholder =>"From Address", :rows => "4", :value => @report_datum.from_address, :style => "width: 50%;" %>
+              </div> 
+            </div>
+            <div class="col-md-6 align-right" title="Letter date will be auto-filled when report is generated">
+              DATE
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group" title="Letter title">
+                <%= f.text_field :letter_title , :class => "input-md round form-control",:placeholder =>"Letter Title", :type => "text", :required => true, :value => @report_datum.letter_title %>
+            </div> 
+          </div>
+          <div class="row">
+
+            <div class="form-group" title="To address">
+                <%= f.text_area :to_address , :class => "input-md round form-control", :placeholder =>"To Address", :rows => "4", :value => @report_datum.to_address, :style => "width: 25%;" %>
+            </div> 
+          </div>
+          <br/><br/>Sir/Madam,<br/><br/>
+          <div class="row">
+
+            <div class="form-group" title="Subject">
+                <%= f.text_field :subject , :class => "input-md round form-control",:placeholder =>"Subject", :type => "text", :required => true, :value => @report_datum.subject %>
+            </div> 
+          </div>
+          <br/>
+          <div class="row">
+
+            <div class="form-group" title="Body">
+                <%= f.text_area :body , :class => "input-md round form-control",:placeholder =>"Body", :type => "text", :rows => "15", :value => @report_datum.body %>
+            </div> 
+          </div>
+          <br><br><br>Yours Faithfully,
+          <div class="row" title="Signature">
+            <img src=<%= asset_url("signature.png")%>/>
+          </div>
+          <div class="row">
+
+            <div class="form-group" title="Designation">
+                <%= f.text_area :designation, :class => "input-md round form-control",:placeholder =>"Designation", :type => "text", :rows => "3", :value => @report_datum.designation, :style => "width: 20%;" %>
+            </div> 
+          </div>
+
+        </div>     
+      </div>
+          
+      <div class="clearfix">
+
+        <!-- Send Button -->
+        <div class="align-right pt-10 form-group">
+            <!-- <button class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button> -->
+            <%= f.submit "Update", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+        </div>         
+                
+      </div>            
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Report datum', new_report_datum_path %>
+  </div>
+</section>
