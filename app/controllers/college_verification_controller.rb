@@ -17,9 +17,10 @@ class CollegeVerificationController < ApplicationController
     @disable_header_footer = true
     @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
     respond_to do |format|
+      format.html
       format.pdf do
         render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-                template: "college_verification/report.pdf.erb"
+                template: "college_verification/report.html.erb"
       end
     end
   end
