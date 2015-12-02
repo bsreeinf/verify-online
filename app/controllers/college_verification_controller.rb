@@ -19,8 +19,14 @@ class CollegeVerificationController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-                template: "college_verification/report.html.erb"
+        html = render_to_string(template: "college_verification/report.html.erb") 
+        pdf = WickedPdf.new.pdf_from_string(html) 
+        send_data(pdf, 
+          :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
+          :disposition => 'attachment') 
+
+        # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+        #         template: "college_verification/report.html.erb"
       end
     end
   end
