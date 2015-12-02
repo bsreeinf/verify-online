@@ -70,7 +70,7 @@ gem 'wicked_pdf'
 gem 'country_select'
 gem 'paperclip'
 gem 'aws-sdk-v1'
-gem 'wkhtmltopdf-heroku'
+# gem 'wkhtmltopdf-heroku'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
