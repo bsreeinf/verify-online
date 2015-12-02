@@ -19,6 +19,6 @@ WickedPdf.config = {
   # (but can be overridden in `render :pdf` calls)
   # layout: 'pdf.html',
   # if Rails.env.staging? || Rails.env.production?
-	exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')  	
+	# exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')  	
   # end
 }
