@@ -29,8 +29,8 @@ College.create!(
 )
 ReportDatum.create!(
 	college_id: 1, 
-	header_link: FFaker::Avatar.image, 
-	signature_link: FFaker::Avatar.image, 
+	# header_link: FFaker::Avatar.image, 
+	# signature_link: FFaker::Avatar.image, 
 	from_address: FFaker::Address.street_address, 
 	to_address: FFaker::Address.street_address, 
 	letter_title: FFaker::Lorem.sentence, 
@@ -93,8 +93,8 @@ i = 0
 
 	ReportDatum.create!(
 		college_id: (i + 1), 
-		header_link: FFaker::Avatar.image, 
-		signature_link: FFaker::Avatar.image, 
+		# header_link: FFaker::Avatar.image, 
+		# signature_link: FFaker::Avatar.image, 
 		from_address: FFaker::Address.street_address, 
 		to_address: FFaker::Address.street_address, 
 		letter_title: FFaker::Lorem.sentence, 

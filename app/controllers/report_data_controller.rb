@@ -31,7 +31,7 @@ class ReportDataController < InheritedResources::Base
     end
 
     def report_datum_params
-      params.require(:report_datum).permit(:college_id, :header_link, :signature_link, :from_address, :to_address, :letter_title, :subject, :body, :designation)
+      params.require(:report_datum).permit(:college_id, :from_address, :to_address, :letter_title, :subject, :body, :designation, :header, :signature)
     end
 end
 

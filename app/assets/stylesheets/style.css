@@ -6441,4 +6441,24 @@ background: white;
   cursor: pointer !important;
 }
 
+
+.image_preview_box{
+  cursor: pointer;
+}
+.change_image_button{
+  position: absolute;
+  background: rgba(40, 113, 79, 0.64);
+  padding: 10px;
+  cursor:  pointer;
+  color: white;
+}
+.image_preview_box .change_image_button {
+    display: none;
+}
+.image_preview_box:hover .change_image_button {
+    display: inline;
+}
+
+
+
 }

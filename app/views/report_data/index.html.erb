@@ -16,7 +16,7 @@
 
 <section class="page-section" style="padding-top: 80px; background-color: #D4D4D4;">
   <div class="col-md-8 col-md-offset-2">
-    <%= form_for(@report_datum, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
+    <%= form_for(@report_datum, multipart: true, :html => {:class => 'form contact-form', :id => 'contact_form'}) do |f| %>
       <% if @report_datum.errors.any? %>
         <div id="error_explanation">
           <h2>
@@ -38,34 +38,22 @@
           
 
           <div class="form-group" style="display: none;">
-              <%= f.text_field :college_id , :value => @report_datum.college_id, :hidden => "" %>
+              <%= f.text_field :college_id , :value => @report_datum.college_id%>
           </div>
-
           <div class="form-group" style="display: none;">
-              <%= f.text_field :header_link , :value => @report_datum.header_link, :hidden => "" %>
+              <%= f.file_field :header, :accept => "image/*" %>
           </div>
-          
           <div class="form-group" style="display: none;">
-              <%= f.text_field :signature_link , :value => @report_datum.signature_link, :hidden => "" %>
+              <%= f.file_field :signature, :accept => "image/*" %>
           </div>
             
-
-
-
-
-
-
-          <div class="row" title="Header image">
-            <!-- <img src=<%= asset_url("header.png")%> style="width: 100%; "/> -->
-            <%=image_tag @report_datum.header_link , :style=> "width: 100%; " %>
+          <div class="row image_preview_box" title="Header image">
+            <div class="change_image_button" id="cib1">
+              Click to change
+            </div>
+            <img id="header_preview" src="<%= @report_datum.header.url %>" style="width: 100%; "/>
           </div>
-
-
-
-
-
-
-
+          <br>
 
           <div class="row" title="From address">
             <div class="col-md-6" style="padding-left: 0;">
@@ -103,9 +91,13 @@
             </div> 
           </div>
           <br><br><br>Yours Faithfully,
-          <div class="row" title="Signature">
-            <!-- <img src=<%= asset_url("signature.png")%>/> -->
-            <%=image_tag @report_datum.signature_link , :style=> "width: 20%; " %>
+
+          <div class="row image_preview_box" title="Signature">
+          <div class="change_image_button" id="cib2">
+              Click to change
+            </div>
+            <img id="signature_preview" src="<%= @report_datum.signature.url %>"/>
+
           </div>
           <div class="row">
 
