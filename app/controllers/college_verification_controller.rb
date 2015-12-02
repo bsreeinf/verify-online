@@ -14,17 +14,12 @@ class CollegeVerificationController < ApplicationController
   end
 
   def report
+    @disable_header_footer = true
     @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
     respond_to do |format|
       format.pdf do
-        # gsub removes all whitespaces
         render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-                template: "college_verification/report.html.erb",
-                margin:  {  top:               10,
-                            bottom:            10,
-                            left:              10,
-                            right:             10 
-                }
+                template: "college_verification/report.pdf.erb"
       end
     end
   end
