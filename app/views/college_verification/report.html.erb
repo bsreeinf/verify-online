@@ -4,22 +4,22 @@
 -->
 <html>
 	<head>
-		<title>Report_<%=@verification_stub.hallticket_no%>_<%=local_time(Time.current, '%b %e, %Y')%></title>
+		<title>Report_<%=@verification_stub.hallticket_no%>_<%=local_time(Time.current, '%d%e%Y%H%M%S')%></title>
 	</head>
 	<body>
 		<table style="width:100%;">
 			<tr class="report_letter_head" >
-				<td style="width:100%;"><img src="<%=current_user.college.report_datum.header.url%>" style="width:100%;"/></td>
+				<td style="width:100%;" colspan="2"><img src="<%=current_user.college.report_datum.header.url%>" style="width:100%;"/></td>
 			</tr>
 
 			<tr><td><br></td></tr>
 			<tr>
 				<td><%=current_user.college.report_datum.from_address%></td>
-				<td width="200"><%=local_time(Time.current, '%e/%m/%Y')%></td>
+				<td align="right"><%=local_time(Time.current, '%d/%m/%Y')%></td>
 			</tr>
 			
 			<tr><td><br></td></tr>
-			<tr><td align="center" style="width:100%;"><%=current_user.college.report_datum.letter_title%></td></tr>
+			<tr><td align="center" style="width:100%;" colspan="2"><%=current_user.college.report_datum.letter_title%></td></tr>
 
 			<tr><td><br></td></tr>
 			<tr><td><%=current_user.college.report_datum.to_address%></td></tr>
@@ -28,10 +28,10 @@
 			<tr><td>Sir/Madam,</td></tr>
 
 			<tr><td><br></td></tr>
-			<tr><td align="center" style="width:100%;"><%=current_user.college.report_datum.subject%></td></tr>
+			<tr><td align="center" style="width:100%;" colspan="2"><%=current_user.college.report_datum.subject%></td></tr>
 
 			<tr><td><br></td></tr>
-			<tr><td style="width:100%;"><%=current_user.college.report_datum.body.sub! '_STATUS_', "#{@verification_stub.verification_status.description}"%></td></tr>
+			<tr><td style="width:100%;" colspan="2"><%=current_user.college.report_datum.body.sub! '_STATUS_', "#{@verification_stub.verification_status.description}"%></td></tr>
 
 			<tr><td><br></td></tr>
 			<table style="width:100%;">
