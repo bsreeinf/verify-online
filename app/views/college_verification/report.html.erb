@@ -1,13 +1,4 @@
-<!doctype html>
-<html>
-	<head>
-		<!-- 
-			This is the layout that will be converted to PDF. 
-			PDF view only! HTML might will not support some of the the tags used here 
-		-->
-		<title>Report_<%=@verification_stub.hallticket_no%>_<%=local_time(Time.current, '%d%e%Y%H%M%S')%></title>
-	</head>
-	<body>
+
 		<table style="width:100%;">
 			<tr class="report_letter_head" >
 				<td style="width:100%;" colspan="2"><img src="<%=current_user.college.report_datum.header.url%>" style="width:100%;"/></td>
@@ -65,5 +56,3 @@
 			<tr><td><%=current_user.college.report_datum.designation%></td></tr>
 
 		</table>
-	</body>
-</html>
