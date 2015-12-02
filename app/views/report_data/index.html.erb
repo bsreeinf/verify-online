@@ -49,9 +49,24 @@
               <%= f.text_field :signature_link , :value => @report_datum.signature_link, :hidden => "" %>
           </div>
             
+
+
+
+
+
+
           <div class="row" title="Header image">
-            <img src=<%= asset_url("header.png")%> style="width: 100%; "/>
+            <!-- <img src=<%= asset_url("header.png")%> style="width: 100%; "/> -->
+            <%=image_tag @report_datum.header_link , :style=> "width: 100%; " %>
           </div>
+
+
+
+
+
+
+
+
           <div class="row" title="From address">
             <div class="col-md-6" style="padding-left: 0;">
               <div class="form-group">
@@ -89,7 +104,8 @@
           </div>
           <br><br><br>Yours Faithfully,
           <div class="row" title="Signature">
-            <img src=<%= asset_url("signature.png")%>/>
+            <!-- <img src=<%= asset_url("signature.png")%>/> -->
+            <%=image_tag @report_datum.signature_link , :style=> "width: 20%; " %>
           </div>
           <div class="row">
 
