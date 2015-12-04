@@ -3,8 +3,10 @@ class CollegeVerificationController < ApplicationController
    layout 'application', :except => [:report]
 
   def index
-  	
-  	@college_verifications =  VerificationRequest.all.where("college_id = ? AND verification_status_id = ?", @college_id, 1).paginate(page: params[:page],:per_page => 10)
+  	if params.has_key(:search_tag)?
+      @college_verifications =  VerificationRequest.all.where("college_id = ? AND verification_status_id = ?", @college_id, 1).paginate(page: params[:page],:per_page => 10)
+    else  
+  	  @college_verifications =  VerificationRequest.all.where("college_id = ? AND verification_status_id = ?", @college_id, 1).paginate(page: params[:page],:per_page => 10)
   end
 
 

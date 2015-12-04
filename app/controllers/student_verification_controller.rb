@@ -2,37 +2,27 @@ class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
 	helper_method :sort_column, :sort_direction
 
-
 	before_action :logged_in_user, only: [:apply, :status, :history ]
 	before_action :set_s3_direct_post, only: [:apply]
 	
-	
-
-
 	def apply
-		
-	        
-
-	        if request.post?
-	        	puts "post request"
-				redirect_to payment_path
-			else
-				@colleges = College.all
-				if(params.has_key?(:college_id))
-		        	@college_id = params[:college_id]
-		        end
-		        @college = College.first 
-		        render 'apply'
-			end
-		
-		
-		
+        if request.post?
+        	puts "post request"
+			redirect_to payment_path
+		else
+			@colleges = College.all
+			if(params.has_key?(:college_id))
+	        	@college_id = params[:college_id]
+	        end
+	        @college = College.first 
+	        render 'apply'
+		end
 	end
 
 	def add_verification
 		@verification_request = VerificationRequest.new(verification_params)
 		@verification_request.amount = College.where(:id => @verification_request.college_id).pluck(:verification_amount)[0]
-		@verification_request.verification_status_id = 0
+		@verification_request.verification_status_id = 1
 		@verification_request.service_tax = (@verification_request.amount * 0.05).round(2)
 
 	    # respond_to do |format|
