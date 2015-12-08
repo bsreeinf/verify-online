@@ -51,17 +51,6 @@
                     
                     
                     <%else%>
-                        <!--
-                        <%= form_tag status_path, :method => 'get' do %>
-                            <%= hidden_field_tag :direction, params[:direction]  %>
-                            <%= hidden_field_tag :sort, params[:sort] %>
-                            <p>
-                                <%= text_field_tag :search, params[:search] %>
-                                <%=  submit_tag "Search", :name => nil %>
-                            </p>
-                        <%end%>
-
-                        -->
                         <table class="table table-striped ">
                             <thead>
                               <tr>
@@ -71,30 +60,75 @@
                                 <th>Document Link</th>
                                 <th><%= sortable "amount", "Amount" %></th>
                                 <th>Service Tax</th>
-                                <th><%= sortable "course", "Course" %></th>
-                                <th><%= sortable "type_of_studies", "Type of Studies" %></th>
-                                <th><%= sortable "course_duration", "Course Duration" %></th>
-                                <th><%= sortable "remarks", "Remarks" %></th>
-                                <th><%= sortable "class_awarded", "Class Awarded" %></th>
+                                <!-- 
+                                    <th><%= sortable "course", "Course" %></th>
+                                    <th><%= sortable "type_of_studies", "Type of Studies" %></th>
+                                    <th><%= sortable "course_duration", "Course Duration" %></th>
+                                    <th><%= sortable "remarks", "Remarks" %></th>
+                                    <th><%= sortable "class_awarded", "Class Awarded" %></th> 
+                                -->
                                 <th>Requested on</th>
+                                <th></th>
                               </tr>
                             </thead>
                             <tbody>
                             <% @verifications.each_with_index do |verification, i| %>
-                              <tr>
-                                <td><%=i+1%></td>
-                                <td><%=verification.name%></td>
-                                <td><%=verification.hallticket_no%></td>
-                                <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
-                                <td><%=verification.amount%></td>
-                                <td><%=verification.service_tax.round(2)%></td>
-                                <td><%=verification.course%></td>
-                                <td><%=verification.type_of_studies%></td>
-                                <td><%=verification.course_duration%></td>
-                                <td><%=verification.remarks%></td>
-                                <td><%=verification.class_awarded%></td>
-                                <td><%=local_time(verification.created_at, '%d/%m/%Y %H:%M:%S')%></td>
-                              </tr>
+                                <tr>
+                                    <td><%=i+1%></td>
+                                    <td><%=verification.name%></td>
+                                    <td><%=verification.hallticket_no%></td>
+                                    <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
+                                    <td><%=verification.amount%></td>
+                                    <td><%=verification.service_tax.round(2)%></td>
+                                    <!--
+                                        <td><%=verification.course%></td>
+                                        <td><%=verification.type_of_studies%></td>
+                                        <td><%=verification.course_duration%></td>
+                                        <td><%=verification.remarks%></td>
+                                        <td><%=verification.class_awarded%></td> 
+                                    -->
+                                    <td><%=local_time(verification.created_at, '%d/%m/%Y %H:%M%p')%></td>
+                                    <%if verification.verification_status_id != 1%>
+                                        <td style="cursor: pointer;"><a class="show_verification_details">Show details</a></td>
+                                    <%else%>
+                                        <td></td>
+                                    <%end%>
+                                </tr>
+                                <tr class="verification_details" style="display: none; padding: 10px">
+                                    <td colspan="2"></td>
+                                    <td colspan="5">                             
+                                        <div class="row mb-10">
+                                            <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Course</div>
+                                            <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.course%></div>
+                                        </div>                                      
+                                        <div class="row mb-10">
+                                            <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Type of studies</div>
+                                            <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.type_of_studies%></div>
+                                        </div>                                     
+                                        <div class="row mb-10">
+                                            <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Course duration</div>
+                                            <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.course_duration%></div>
+                                        </div>                                       
+                                        <div class="row mb-10">
+                                            <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Class awarded</div>
+                                            <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.class_awarded%></div>
+                                        </div>                                       
+                                        <div class="row mb-10">
+                                            <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Remarks</div>
+                                            <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.remarks%></div>
+                                        </div>
+                                        <div class="row mb-10">
+                                            <div class="col-md-12 align-right no-transp font-alt" style="text-transform: inherit !important;">
+                                                <a href="/final_report.pdf?verification_id=<%=verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;Click to download report</a>
+                                            </div>
+                                        </div>                                       
+                                    </td>
+                                    <%if verification.verification_status_id != 1%>
+                                        <td></td>
+                                    <%else%>
+                                        <td></td>
+                                    <%end%>
+                                </tr>
                             <% end %>
                             </tbody>
                         </table>

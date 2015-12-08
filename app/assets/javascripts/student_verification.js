@@ -14,12 +14,12 @@ $(document).on('page:change', function(event) {
   // Helper methods
 
   // Validates if file exists and filesize < MAX_FILE_SIZE
-  $.fn.fileValidate = function(file, MAX_FILE_SIZE){
+  $.fn.fileValidate = function(file){
     if(file === undefined){
       console.log("No file selected");
       return false;
     }
-
+    console.log("filesize : " + file.size);
     if(file.size > MAX_FILE_SIZE * 1024){
       console.log("File size exceeds limit : " + (file.size/1024) + "KB");
       return false;
@@ -27,7 +27,6 @@ $(document).on('page:change', function(event) {
     
     return true;
   }
-
 
   // Make AJAX call to get verification amount and display it below select box.
   // Handles loader also.
@@ -87,11 +86,6 @@ $(document).on('page:change', function(event) {
       return blob;
   }
 
-  $.fn.updateVerificationAmountLabel = function(){
-    verification_amount_total += verification_amount;
-    $('#verification_amount_total_lable').text(Math.round(verification_amount_total * 1.05) + "");
-  }
-
   // End of Helper methods
 
 
@@ -108,11 +102,6 @@ $(document).on('page:change', function(event) {
   // Prevent form submit and locally cache data so that it can be posted later.
   $('#form').on('submit', function(event){
     event.preventDefault();
-
-    if($("#filler-box").css("display") != 'none'){
-      $("#filler-box").css("display","none");
-      $("#verifications-table").css("display","inherit");
-    }
 
     var fr = new FileReader();
     var verification_stub = new Array();
@@ -138,8 +127,6 @@ $(document).on('page:change', function(event) {
     }
 
     table_data.push(verification_stub);
-    
-    $().updateVerificationAmountLabel();
 
     // reset fields
     verification_amount = 0;
@@ -153,20 +140,45 @@ $(document).on('page:change', function(event) {
   });
 
   $.fn.renderTable = function(){
+    if(table_data.length == 0 && $("#filler-box").css("display") == 'none'){
+      $("#filler-box").css("display","inherit");
+      $("#verifications-table").css("display","none");
+    } else {
+      $("#filler-box").css("display","none");
+      $("#verifications-table").css("display","inherit");
+    }
+
+    $('#verifications_tbody').html('');
+    verification_amount_total = 0;
+
     for (var i = 0; i < table_data.length; i++) {
-      $('#verifications_tbody').html('');
       verification_stub = table_data[i];
       $('#verifications_tbody').append('<tr>'+
-        '<td style="width:10%">' + table_data.length + '</td>' + 
-        '<td style="width:20%">' + verification_stub['college_name'] + '</td>' + 
+        '<td style="width:10%">' + (i+1) + '</td>' + 
+        '<td style="width:25%">' + verification_stub['college_name'] + '</td>' + 
         '<td style="width:20%">' + verification_stub['name'] + '</td>' + 
         '<td style="width:15%">' + verification_stub['hallticket_no'] + '</td>' + 
-        '<td style="width:20%"><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
+        '<td style="width:15%"><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
         '<td style="width:10%">Rs ' + verification_stub['verification_amount'] + '</td>' + 
-        '<td style="width:5%"><a style="cursor:pointer;"><i class="fa fa-times dark"></i></a></td>' + 
-        '<td id="progress-' + table_data.length + '" style="display: none; width: 0px; background-color: rgba(175, 28, 28, 0.26); position: absolute;"></td>' +
+        '<td class="ver-delete" style="width:5%"><a style="cursor:pointer;"><i class="fa fa-times dark"></i></a></td>' + 
+        '<td class="ver-progress" style="display: none; width: 0px; background-color: rgba(49, 175, 28, 0.258824); position: absolute;"></td>' +
         '</tr>');
+
+        verification_amount_total += verification_stub['verification_amount'];
     };
+    
+
+    $('#verification_amount_total_lable').text(Math.round(verification_amount_total * 1.05) + "");
+
+
+    $('.ver-delete').on('click', function(){
+      console.log('del pressed');
+      indexToDelete = $(this).parent().index();
+      table_data = jQuery.grep(table_data, function(value, i) {
+        return i != indexToDelete;
+      });
+      $().renderTable();
+    });
   }
 
   $("#btnProceedToPay").on('click', function(){
@@ -231,6 +243,11 @@ $(document).on('page:change', function(event) {
 
       // Initialize file upload to S3. 
       // NOTE: doesn't start the upload since no files have been provided yet
+
+      var progressBar = $('.ver-progress');
+      $(progressBar).css("display", "inherit");
+      $(progressBar).css("height", $(progressBar).parent().height());
+
       $("body").fileupload({
         url:             $("#rails-data").data('url'),
         type:            'POST',
@@ -241,9 +258,11 @@ $(document).on('page:change', function(event) {
         replaceFileInput: false,
         progressall: function (e, data) {
            console.log(parseInt(data.loaded / data.total * 100, 10));
+           $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
         },
         start: function (e) {
           console.log("started");
+
         },
         done: function(e, data) {
           console.log("Uploading done");
@@ -275,5 +294,14 @@ $(document).on('page:change', function(event) {
 
     }
   }
+
+  // STATUS page code here
+  $(".show_verification_details").on('click',function(){
+    currentDisplay = $(this).parent().parent().next("tr").css("display");
+    if(currentDisplay == "none")
+      $(this).closest("tr").next("tr").show();
+    else
+      $(this).closest("tr").next("tr").hide();
+  });
   
 });
