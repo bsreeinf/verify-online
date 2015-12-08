@@ -87,7 +87,7 @@
                                         <td><%=verification.remarks%></td>
                                         <td><%=verification.class_awarded%></td> 
                                     -->
-                                    <td><%=local_time(verification.created_at, '%d/%m/%Y %H:%M%p')%></td>
+                                    <td><%=local_time(verification.created_at, '%d/%m/%Y %l:%M%p')%></td>
                                     <%if verification.verification_status_id != 1%>
                                         <td style="cursor: pointer;"><a class="show_verification_details">Show details</a></td>
                                     <%else%>
@@ -97,7 +97,7 @@
                                 <tr class="verification_details" style="display: none; padding: 10px">
                                     <td colspan="2"></td>
                                     <td colspan="5">                             
-                                        <div class="row mb-10">
+                                        <div class="row mb-10" style="margin-top: 15px;">
                                             <div class="col-md-4 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;">Course</div>
                                             <div class="col-md-8 hs-line-8 no-transp font-alt" style="text-transform: inherit !important;"><%=verification.course%></div>
                                         </div>                                      

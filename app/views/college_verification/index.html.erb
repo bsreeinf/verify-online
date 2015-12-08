@@ -57,6 +57,8 @@
                         <table class="table table-striped ">
                             <thead>
                               <tr>
+                                <th>Sl. no.</th>
+                                <th>Requested on</th>
                                 <th>Hallticket No</th>
                                 <th>Name</th>
                                 <th>Document</th>
@@ -65,8 +67,10 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <% @college_verifications.each do |college_verification| %>
+                            <% @college_verifications.each_with_index do |college_verification, i| %>
                               <tr>
+                                <td><%=i+1%></td>
+                                <td><%=local_time(college_verification.created_at, '%d/%m/%Y %l:%M%p')%></td>
                                 <td><%=college_verification.hallticket_no%></td>
                                 <td><%=college_verification.name%></td>
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a></td>                                
