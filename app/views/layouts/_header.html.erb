@@ -23,16 +23,19 @@
 
                 
 
-                <% if logged_in? %>
-                    <% if params[:controller] =='student_verification'  %>
-                        <li><%= link_to "Dashboard", apply_path, :class => "active" %></li>
-                    <%else%>
-                        <li><%= link_to "Dashboard", apply_path%></li>
-                    <%end%>                   
-
-
+                <% if logged_in? %>                  
                     <% if is_college_admin?  %>
-                        <li><%= link_to "College", view_verifications_path %></li>                    
+                        <% if params[:controller] =='college_verification'  %>
+                            <li><%= link_to "College", view_verifications_path, :class => "active" %></li>    
+                        <%else%>
+                            <li><%= link_to "College", view_verifications_path %></li>    
+                        <%end%>
+                    <%else%>
+                        <% if params[:controller] =='student_verification'  %>
+                            <li><%= link_to "Dashboard", apply_path, :class => "active" %></li>
+                        <%else%>
+                            <li><%= link_to "Dashboard", apply_path%></li>
+                        <%end%> 
                     <%end%>
 
                 <% end %>

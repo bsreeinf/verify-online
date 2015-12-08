@@ -50,9 +50,19 @@ class StudentVerificationController < ApplicationController
 		# 	).search(params[:search]).order(
 		# 		sort_column + " COLLATE NOCASE " + sort_direction
 		# 		).paginate(page: params[:page],:per_page => 10)
-		@verifications = VerificationRequest.all.where(
-			"student_id = ?",current_user.id
-			).search(params[:search]).paginate(page: params[:page],:per_page => 10)
+		if params.has_key?(:search_tag)
+	      @verifications =  VerificationRequest.all.where(
+	        "student_id = ? AND (hallticket_no LIKE ? OR name LIKE ?)", 
+	          current_user.id, 
+	          "%#{params[:search_tag]}%",
+	          "%#{params[:search_tag]}%"
+	        ).paginate(page: params[:page],:per_page => 10)
+	    else  
+	      @verifications =  VerificationRequest.all.where(
+	        "student_id = ?", 
+	          current_user.id
+	        ).paginate(page: params[:page],:per_page => 10)
+	    end
 		
 	end
 

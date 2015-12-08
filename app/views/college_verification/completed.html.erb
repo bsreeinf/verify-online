@@ -29,6 +29,18 @@
         <div class="container relative">            
           
             <div class="row">
+                <%= form_tag(:completed_verifications, :method => "get", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
+                    <div class="clearfix">                                                  
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                <input type="text" name="search_tag" id="search_tag" class="input-md round form-control" placeholder="Search by name or hallticket number">
+                            </div>
+                            <div class="col-md-2">
+                                <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                            </div> 
+                        </div>
+                    </div>
+                <% end %> 
                 
              
                 <% if @college_verifications_completed.blank? %>    
@@ -42,6 +54,7 @@
                         <table class="table table-striped ">
                             <thead>
                               <tr>
+                                <th>Sl. no.</th>
                                 <th>Hallticket No</th>
                                 <th>Name</th>
                                 <th>Document</th>
@@ -55,8 +68,9 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <% @college_verifications_completed.each do |college_verification| %>
+                            <% @college_verifications_completed.each_with_index do |college_verification, i| %>
                               <tr>
+                                <td><%=i+1%></td>
                                 <td><%=college_verification.name%></td>
                                 <td><%=college_verification.hallticket_no%></td>
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                

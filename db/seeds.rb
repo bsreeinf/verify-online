@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
 cuser=User.create!(
 	name:  'sreenath',
 	email: "sreenath@gmail.com",
@@ -32,10 +23,10 @@ ReportDatum.create!(
 	# header_link: FFaker::Avatar.image, 
 	# signature_link: FFaker::Avatar.image, 
 	from_address: FFaker::Address.street_address, 
-	to_address: FFaker::Address.street_address, 
+	to_address: "_USER_TO_ADDRESS_", 
 	letter_title: FFaker::Lorem.sentence, 
 	subject: FFaker::Lorem.sentence, 
-	body: FFaker::Lorem.paragraph,
+	body: "#{FFaker::Lorem.paragraph} _STATUS_ #{FFaker::Lorem.paragraph}",
 	designation: FFaker::Job.title
 )
 
@@ -53,10 +44,10 @@ User.create!(
 	activated:    true,
 	activated_at: Time.zone.now
 	)
-VerificationStatus.create!(	description: "New"	)
 VerificationStatus.create!(	description: "Pending"	)
-VerificationStatus.create!(	description: "Matched"	)
-VerificationStatus.create!(	description: "Unmatched")
+VerificationStatus.create!(	description: "Insuff"	)
+VerificationStatus.create!(	description: "Genuine"	)
+VerificationStatus.create!(	description: "Fake")
 
 
 15.times do |n|
@@ -89,17 +80,18 @@ i = 0
 	name = FFaker::Company.name
 	address = FFaker::Address.street_address
 	amount = rand(500..2000)
-	College.create!(name: name, address: address,verification_amount: amount)
+	college = College.create!(name: name, address: address,verification_amount: amount)
 
 	ReportDatum.create!(
-		college_id: (i + 1), 
+		college_id: college.id, 
 		# header_link: FFaker::Avatar.image, 
 		# signature_link: FFaker::Avatar.image, 
 		from_address: FFaker::Address.street_address, 
-		to_address: FFaker::Address.street_address, 
+		to_address: "_USER_TO_ADDRESS_", 
 		letter_title: FFaker::Lorem.sentence, 
 		subject: FFaker::Lorem.sentence, 
-		body: FFaker::Lorem.paragraph
+		body: "#{FFaker::Lorem.paragraph} _STATUS_ #{FFaker::Lorem.paragraph}",
+		designation: FFaker::Job.title
 	)
 end
 
@@ -135,10 +127,4 @@ end
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-
-#Agustin O'Kon DDS
-#buddy@thiel.co
-
-
-#Romaguera LLC
 

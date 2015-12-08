@@ -23,7 +23,6 @@
     </section>
     <!-- End Home Section -->
 
-
     <!-- Section -->
     <section class="small-section" id="multi-page">
         <div class="container relative">            
@@ -34,7 +33,18 @@
                 <div class="alert alert-<%= message_type %>"><%= message %></div>
             <% end %>        
             <div class="row multi-columns-row ">
-                
+                <%= form_tag(:view_verifications, :method => "get", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
+                    <div class="clearfix">                                                  
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                <input type="text" name="search_tag" id="search_tag" class="input-md round form-control" placeholder="Search by name or hallticket number">
+                            </div>
+                            <div class="col-md-2">
+                                <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                            </div> 
+                        </div>
+                    </div>
+                <% end %> 
                 <% if @college_verifications.blank? %>    
                         <div class="jumbotron align-center">
                             <p>You have no new verification request.</p>
@@ -42,6 +52,7 @@
                     
                     
                     <%else%>
+                         
                        
                         <table class="table table-striped ">
                             <thead>

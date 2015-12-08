@@ -109,6 +109,11 @@ $(document).on('page:change', function(event) {
   $('#form').on('submit', function(event){
     event.preventDefault();
 
+    if($("#filler-box").css("display") != 'none'){
+      $("#filler-box").css("display","none");
+      $("#verifications-table").css("display","inherit");
+    }
+
     var fr = new FileReader();
     var verification_stub = new Array();
     
@@ -120,7 +125,7 @@ $(document).on('page:change', function(event) {
 
     verification_stub['id'] = table_data.length;
     verification_stub['college_id'] = $('#college')[0].value;
-    verification_stub['college_name'] = $("#college option")[$("#college")[0].selectedIndex].text
+    verification_stub['college_name'] = $("#college option")[$("#college")[0].selectedIndex].text;
     verification_stub['verification_amount'] = verification_amount;
     verification_stub['name'] = $('#name').val();
     verification_stub['hallticket_no'] = $('#hallticket_no').val();
@@ -142,22 +147,27 @@ $(document).on('page:change', function(event) {
     $("#form").trigger('reset');
 
     // add row to table
-    $('#verifications_tbody').append('<tr>'+
-      '<td>' + verification_stub['college_name'] + '</td>' + 
-      '<td>' + verification_stub['name'] + '</td>' + 
-      '<td>' + verification_stub['hallticket_no'] + '</td>' + 
-      '<td><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
-      '<td>Rs ' + verification_stub['verification_amount'] + '</td>' + 
-      '</tr>');
+    $().renderTable();
+    
 
-    // Add dummy filenames
-    // $('#verifications_tbody').append('<tr>'+
-    //   '<input name="college_id" value="' + verification_stub['college_id'] + '" type="hidden"/>'+
-    //   '<input name="student_name" value="' + verification_stub['name'] + '" type="hidden"/>'+
-    //   '<input name="hallticket_no" value="' + verification_stub['hallticket_no'] + '" type="hidden"/>'+
-    //   '</tr>');
-    // $('#verify_document').appendTo("#verifications_tbody");
   });
+
+  $.fn.renderTable = function(){
+    for (var i = 0; i < table_data.length; i++) {
+      $('#verifications_tbody').html('');
+      verification_stub = table_data[i];
+      $('#verifications_tbody').append('<tr>'+
+        '<td style="width:10%">' + table_data.length + '</td>' + 
+        '<td style="width:20%">' + verification_stub['college_name'] + '</td>' + 
+        '<td style="width:20%">' + verification_stub['name'] + '</td>' + 
+        '<td style="width:15%">' + verification_stub['hallticket_no'] + '</td>' + 
+        '<td style="width:20%"><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
+        '<td style="width:10%">Rs ' + verification_stub['verification_amount'] + '</td>' + 
+        '<td style="width:5%"><a style="cursor:pointer;"><i class="fa fa-times dark"></i></a></td>' + 
+        '<td id="progress-' + table_data.length + '" style="display: none; width: 0px; background-color: rgba(175, 28, 28, 0.26); position: absolute;"></td>' +
+        '</tr>');
+    };
+  }
 
   $("#btnProceedToPay").on('click', function(){
     

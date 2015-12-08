@@ -14,6 +14,7 @@ class ReportDataController < InheritedResources::Base
   def update
     respond_to do |format|
       if @report_datum.update(report_datum_params)
+        @report_datum.header.url
         format.html { redirect_to report_data_path}
         format.json { render :show, status: :ok, location: @report_datum }
       else

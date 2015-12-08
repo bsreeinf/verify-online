@@ -14,16 +14,16 @@
 	<tr><td align="center" style="width:100%;" colspan="2"><%=current_user.college.report_datum.letter_title%></td></tr>
 
 	<tr><td><br></td></tr>
-	<tr><td><%=current_user.college.report_datum.to_address%></td></tr>
+	<tr><td><%=(current_user.college.report_datum.to_address.sub! '_USER_TO_ADDRESS_', "#{current_user.address}<br/>#{current_user.city} - #{current_user.pincode}<br/>#{current_user.state}").html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
 	<tr><td>Sir/Madam,</td></tr>
 
 	<tr><td><br></td></tr>
-	<tr><td align="center" style="width:100%;" colspan="2"><%=current_user.college.report_datum.subject%></td></tr>
+	<tr><td align="center" style="width:100%;" colspan="2"><%=("<strong>SUB:&nbsp;#{current_user.college.report_datum.subject}</strong>").html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
-	<tr><td style="width:100%;" colspan="2"><%=current_user.college.report_datum.body.sub! '_STATUS_', "#{@verification_stub.verification_status.description}"%></td></tr>
+	<tr><td style="width:100%;" colspan="2"><%=(current_user.college.report_datum.body.sub! '_STATUS_', "<strong>#{@verification_stub.verification_status.description}</strong>").html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
 	<table style="width:100%;">
@@ -44,8 +44,10 @@
 			<td><%=@verification_stub.type_of_studies%></td>
 		</tr>
 	</table>
-
-
+	<%if !@verification_stub.remarks.blank? %>
+		<tr><td><br><br></td></tr>
+		<tr><td style="width:100%;" colspan="2"><strong>Remarks:&nbsp;</strong><%=@verification_stub.remarks%></td></tr>
+	<%end%>
 	<tr><td><br><br><br></td></tr>
 	<tr><td>Yours faithfully,</td></tr>
 	<tr><td><br></td></tr>

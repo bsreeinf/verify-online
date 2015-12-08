@@ -5,6 +5,7 @@ class CreateVerificationRequests < ActiveRecord::Migration
       t.references :college
       t.references :verification_status, default: 1
       
+      t.string :verification_code
       t.string :name
       t.string :hallticket_no
       t.string :document_link
