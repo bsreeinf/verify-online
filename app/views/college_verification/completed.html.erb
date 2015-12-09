@@ -84,9 +84,10 @@
                                 <td><%=college_verification.remarks%></td>
                                 <td><%=college_verification.verification_status.description%></td>
                                 <td><%=local_time(college_verification.updated_at, '%d/%m/%Y %l:%M%p')%></td>
-                                <td><a href="/final_report.pdf?verification_id=<%=college_verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;Download</a>       </td>  
+                                <td>
+                                    <a href="/final_report.pdf?verification_id=<%=college_verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;</a>
+                                </td>  
                               </tr>
-                              
                               
                             <% end %>
                             </tbody>

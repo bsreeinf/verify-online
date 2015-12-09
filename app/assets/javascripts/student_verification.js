@@ -140,13 +140,13 @@ $(document).on('page:change', function(event) {
   });
 
   $.fn.renderTable = function(){
-    if(table_data.length == 0 && $("#filler-box").css("display") == 'none'){
-      $("#filler-box").css("display","inherit");
-      $("#verifications-table").css("display","none");
-    } else {
+    // if(table_data.length == 0 && $("#filler-box").css("display") == 'none'){
+    //   $("#filler-box").css("display","inherit");
+    //   $("#verifications-table").css("display","none");
+    // } else {
       $("#filler-box").css("display","none");
       $("#verifications-table").css("display","inherit");
-    }
+    // }
 
     $('#verifications_tbody').html('');
     verification_amount_total = 0;
