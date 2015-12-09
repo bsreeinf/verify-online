@@ -78,14 +78,14 @@
                                     <td><%=verification.amount%></td>
                                     <td><%=verification.service_tax.round(2)%></td>
                                     <td><%=local_time(verification.created_at, '%d/%m/%Y %l:%M%p')%></td>
+                                    <td><%=verification.verification_status.description%></td>
                                     <%if verification.verification_status_id != 1%>
-                                        <td><%=verification.verification_status.description%></td>
+
                                         <td><%=local_time(verification.updated_at, '%d/%m/%Y %l:%M%p')%></td>
                                         <td>
                                             <a href="/final_report_user.pdf?verification_id=<%=verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;</a>
                                         </td>
                                     <%else%>
-                                        <td></td>
                                         <td></td>
                                         <td></td>
                                     <%end%>
