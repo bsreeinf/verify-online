@@ -42,6 +42,7 @@ class CollegeVerificationController < ApplicationController
   def report
     @disable_header_footer = true
     @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
+    @user = User.find_by(id: @verification_stub.student_id)
     respond_to do |format|
       format.html
       format.pdf do

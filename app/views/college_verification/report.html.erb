@@ -14,7 +14,7 @@
 	<tr><td align="center" style="width:100%;" colspan="2"><%=current_user.college.report_datum.letter_title%></td></tr>
 
 	<tr><td><br></td></tr>
-	<tr><td><%=(current_user.college.report_datum.to_address.sub! '_USER_TO_ADDRESS_', "#{current_user.address}<br/>#{current_user.city} - #{current_user.pincode}<br/>#{current_user.state}").html_safe%></td></tr>
+	<tr><td><%=(current_user.college.report_datum.to_address.sub! '_USER_TO_ADDRESS_', "#{@user.address}<br/>#{@user.city} - #{@user.pincode}<br/>#{@user.state}").html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
 	<tr><td>Sir/Madam,</td></tr>
