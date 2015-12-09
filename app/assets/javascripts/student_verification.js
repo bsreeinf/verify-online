@@ -144,8 +144,8 @@ $(document).on('page:change', function(event) {
     //   $("#filler-box").css("display","inherit");
     //   $("#verifications-table").css("display","none");
     // } else {
-      $("#filler-box").css("display","none");
-      $("#verifications-table").css("display","inherit");
+      // $("#filler-box").css("display","none");
+      // $("#verifications-table").css("display","inherit");
     // }
 
     $('#verifications_tbody').html('');
