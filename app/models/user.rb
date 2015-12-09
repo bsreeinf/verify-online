@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
   
   #relationships
-  has_one :college 
-
+  has_one :college
+  has_one :student
 
   #validations
   validates :name,  presence: true, length: { maximum: 50 }

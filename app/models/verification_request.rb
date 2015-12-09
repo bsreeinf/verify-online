@@ -1,5 +1,7 @@
 class VerificationRequest < ActiveRecord::Base
 
+	belongs_to :student
+	belongs_to :college
 	belongs_to :verification_status
 	belongs_to :payment
 

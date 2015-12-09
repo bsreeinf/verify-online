@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
   get    'final_report'                 => 'college_verification#report'
+  get    'final_report_user'            => 'student_verification#report'
   get    'payment_details'              => 'college_verification#payment'
   put    'update'                       => 'college_verification#update'
 

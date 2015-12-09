@@ -2,7 +2,7 @@ class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
 	helper_method :sort_column, :sort_direction
 
-	before_action :logged_in_user, only: [:apply, :status, :history ]
+	before_action :logged_in_user, only: [:apply, :status, :history, :report ]
 	before_action :set_s3_direct_post, only: [:apply]
 	
 	def apply
@@ -41,6 +41,26 @@ class StudentVerificationController < ApplicationController
 	def update_multiple
 
 	end
+
+	def report
+	    @disable_header_footer = true
+	    @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
+	    @college = College.find(@verification_stub.college_id)
+	    @user = User.find(current_user.id)
+	    respond_to do |format|
+	      format.html
+	      format.pdf do
+	        html = render_to_string(template: "student_verification/report.html.erb") 
+	        pdf = WickedPdf.new.pdf_from_string(html) 
+	        send_data(pdf, 
+	          :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
+	          :disposition => 'attachment') 
+
+	        # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+	        #         template: "college_verification/report.html.erb"
+	      end
+	    end
+	  end
 
 	def status
 		# store variables in session or flash between two actions

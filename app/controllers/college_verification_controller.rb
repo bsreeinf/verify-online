@@ -1,5 +1,5 @@
 class CollegeVerificationController < ApplicationController
-	 before_action :set_college_id
+	 before_action :set_college_id, :except => [:report]
    layout 'application', :except => [:report]
 
   def index
