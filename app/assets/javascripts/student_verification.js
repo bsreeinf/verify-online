@@ -15,10 +15,10 @@ $(document).on('page:change', function(event) {
 
   // Validates if file exists and filesize < MAX_FILE_SIZE
   $.fn.fileValidate = function(file){
-    if(file === undefined){
+    if(file == undefined){
       console.log("No file selected");
-      $("#error_explanation").css("display","inherit");
-      $("#error_explanation").html("No file selected");
+      $('#error_explanation').css("display","inherit");
+      $('#error_explanation').html("No file selected");
       return false;
     }
     console.log("filesize : " + file.size);
@@ -92,8 +92,6 @@ $(document).on('page:change', function(event) {
 
   // End of Helper methods
 
-
-
   // Update verification amount when a college is selected from select box
   $('#college').on('change', function() {
     $().loadVerificationAmount($('#college')[0].value);
@@ -145,13 +143,13 @@ $(document).on('page:change', function(event) {
   });
 
   $.fn.renderTable = function(){
-    // if(table_data.length == 0 && $("#filler-box").css("display") == 'none'){
-    //   $("#filler-box").css("display","inherit");
-    //   $("#verifications-table").css("display","none");
-    // } else {
-      // $("#filler-box").css("display","none");
-      // $("#verifications-table").css("display","inherit");
-    // }
+    if(table_data.length == 0 && $("#filler-box").css("display") == 'none'){
+      $("#filler-box").css("display","inherit");
+      $("#verifications-table").css("display","none");
+    } else {
+      $("#filler-box").css("display","none");
+      $("#verifications-table").css("display","inherit");
+    }
 
     $('#verifications_tbody').html('');
     verification_amount_total = 0;
