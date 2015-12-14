@@ -70,7 +70,7 @@
                             <% @college_verifications.each_with_index do |college_verification, i| %>
                               <tr>
                                 <td><%=i+1%></td>
-                                <td><%=local_time(college_verification.created_at, '%d/%m/%Y %l:%M%p')%></td>
+                                <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td><%=college_verification.hallticket_no%></td>
                                 <td><%=college_verification.name%></td>
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a></td>                                
@@ -92,19 +92,19 @@
                                          
                                                             <!-- <%=label_tag 'Course'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_field_tag :course, college_verification.course, :class => "input-md round form-control", :placeholder => "Course", :title => "Course", :pattern => ".{1,100}" %>
+                                                                <%= text_field_tag :course, college_verification.course, :class => "input-md round form-control", :placeholder => "Course", :title => "Course", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Type of Studies'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_field_tag :type_of_studies, college_verification.type_of_studies, :class => "input-md round form-control", :placeholder => "Type of Studies", :title => "Type of studies", :pattern => ".{1,100}" %>
+                                                                <%= text_field_tag :type_of_studies, college_verification.type_of_studies, :class => "input-md round form-control", :placeholder => "Type of Studies", :title => "Type of studies", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Course Duration'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_field_tag :course_duration, college_verification.course_duration, :class => "input-md round form-control", :placeholder => "Course Duration", :title => "Course Duration", :pattern => ".{1,100}" %>
+                                                                <%= text_field_tag :course_duration, college_verification.course_duration, :class => "input-md round form-control", :placeholder => "Year of Passing", :title => "Course Duration", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Class Awarded'%>    -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_field_tag :class_awarded, college_verification.class_awarded, :class => "input-md round form-control", :title => "Class Awarded", :placeholder => "Class Awarded", :pattern => ".{1,100}" %>
+                                                                <%= text_field_tag :class_awarded, college_verification.class_awarded, :class => "input-md round form-control", :title => "Class Awarded", :placeholder => "Class Awarded", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                         </div>
 
@@ -112,11 +112,11 @@
                                                         <div class="col-sm-4 mb-40">
                                                             <!-- <%=label_tag 'Status'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= select_tag :verification_status_id, options_from_collection_for_select(VerificationStatus.all, "id", "description"), {:class => "input-md form-control", :title => "Verification Status"} %>    
+                                                                <%= select_tag :verification_status_id, options_from_collection_for_select(VerificationStatus.all, "id", "description"), {:class => "input-md form-control", :title => "Verification Status", :style => "text-transform: none !important;"} %>    
                                                             </div>
                                                             <!-- <%=label_tag 'Remarks'%>                                  -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_area_tag :remarks, college_verification.remarks, :class => "input-md round form-control", :placeholder => "Remarks", :title => "Remarks", :pattern => ".{1,300}", :style => "resize: none; height: 131px;"  %>
+                                                                <%= text_area_tag :remarks, college_verification.remarks, :class => "input-md round form-control", :placeholder => "Remarks", :title => "Remarks", :pattern => ".{1,300}", :style => "resize: none; height: 131px; text-transform: none !important;"  %>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4 mb-40">

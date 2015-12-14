@@ -72,16 +72,18 @@ class StudentVerificationController < ApplicationController
 		# 		).paginate(page: params[:page],:per_page => 10)
 		if params.has_key?(:search_tag)
 	      @verifications =  VerificationRequest.all.where(
-	        "student_id = ? AND (hallticket_no LIKE ? OR name LIKE ?)", 
+	        "student_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
 	          current_user.id, 
 	          "%#{params[:search_tag]}%",
 	          "%#{params[:search_tag]}%"
-	        ).paginate(page: params[:page],:per_page => 10)
+	        ).order('created_at DESC')
+	      .paginate(page: params[:page],:per_page => 10)
 	    else  
 	      @verifications =  VerificationRequest.all.where(
 	        "student_id = ?", 
 	          current_user.id
-	        ).paginate(page: params[:page],:per_page => 10)
+	        ).order('created_at DESC')
+	      .paginate(page: params[:page],:per_page => 10)
 	    end
 		
 	end
@@ -89,7 +91,8 @@ class StudentVerificationController < ApplicationController
 	def history
 		# @hello = flash[:var].first
 		# puts @hello
-		@payments = Payment.all.paginate(page: params[:page],:per_page => 10)
+		@payments = Payment.all.order('created_at DESC')
+		.paginate(page: params[:page],:per_page => 10)
 		
 	end
 

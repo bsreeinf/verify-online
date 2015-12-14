@@ -5,18 +5,20 @@ class CollegeVerificationController < ApplicationController
   def index
   	if params.has_key?(:search_tag)
       @college_verifications =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id = ? AND (hallticket_no LIKE ? OR name LIKE ?)", 
+        "college_id = ? AND verification_status_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
           @college_id, 
           1, 
           "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%"
-        ).paginate(page: params[:page],:per_page => 10)
+        ).order('created_at DESC').
+        paginate(page: params[:page],:per_page => 10)
     else  
   	  @college_verifications =  VerificationRequest.all.where(
         "college_id = ? AND verification_status_id = ?", 
           @college_id, 
           1
-        ).paginate(page: params[:page],:per_page => 10)
+        ).order('created_at DESC')
+      .paginate(page: params[:page],:per_page => 10)
     end
   end
 
@@ -24,18 +26,20 @@ class CollegeVerificationController < ApplicationController
   def completed
     if params.has_key?(:search_tag)
       @college_verifications_completed =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id != ? AND (hallticket_no LIKE ? OR name LIKE ?)", 
+        "college_id = ? AND verification_status_id != ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
           @college_id, 
           1, 
           "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%"
-        ).paginate(page: params[:page],:per_page => 10)
+        ).order('created_at DESC')
+      .paginate(page: params[:page],:per_page => 10)
     else  
       @college_verifications_completed =  VerificationRequest.all.where(
         "college_id = ? AND verification_status_id != ?", 
           @college_id, 
           1
-        ).paginate(page: params[:page],:per_page => 10)
+        ).order('created_at DESC')
+      .paginate(page: params[:page],:per_page => 10)
     end
   end
 

@@ -74,7 +74,7 @@
                             <% @college_verifications_completed.each_with_index do |college_verification, i| %>
                               <tr>
                                 <td><%=i+1%></td>
-                                <td><%=local_time(college_verification.created_at, '%d/%m/%Y %l:%M%p')%></td>
+                                <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td><%=college_verification.name%></td>
                                 <td><%=college_verification.hallticket_no%></td>
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
@@ -84,7 +84,7 @@
                                 <td><%=college_verification.class_awarded%></td>
                                 <td><%=college_verification.remarks%></td> -->
                                 <td><%=college_verification.verification_status.description%></td>
-                                <td><%=local_time(college_verification.updated_at, '%d/%m/%Y %l:%M%p')%></td>
+                                <td><%=local_time(college_verification.updated_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td>
                                     <a href="/final_report.pdf?verification_id=<%=college_verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;</a>
                                 </td>  

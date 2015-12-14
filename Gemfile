@@ -65,6 +65,9 @@ gem 'active_model_serializers'
 # Rails engine for cache-friendly, client-side local time
 gem 'local_time'
 
+# Pg is the Ruby interface to the {PostgreSQL RDBMS}
+gem 'pg'
+
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku'
 gem 'wkhtmltopdf-binary'
@@ -75,9 +78,6 @@ gem 'aws-sdk-v1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 end
 
 group :development do
@@ -89,8 +89,6 @@ group :development do
 end
 
 group :production do
-  # Pg is the Ruby interface to the {PostgreSQL RDBMS}
-  gem 'pg',             '~> 0.18.3'
   
   # This gem enables serving assets in production and setting your logger to standard out
   gem 'rails_12factor', '~> 0.0.3'

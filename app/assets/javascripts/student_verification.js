@@ -185,7 +185,10 @@ $(document).on('page:change', function(event) {
   }
 
   $("#btnProceedToPay").on('click', function(){
-    
+    if(!$('#agreement').is(':checked')){
+      alert("You have to accept terms of agreement to proceed");
+      return;
+    }
     // Disable $("#btnProceedToPay")
     $(this).prop('disabled', true);
 
