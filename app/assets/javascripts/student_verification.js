@@ -17,11 +17,15 @@ $(document).on('page:change', function(event) {
   $.fn.fileValidate = function(file){
     if(file === undefined){
       console.log("No file selected");
+      $("#error_explanation").css("display","inherit");
+      $("#error_explanation").html("No file selected");
       return false;
     }
     console.log("filesize : " + file.size);
     if(file.size > MAX_FILE_SIZE * 1024){
       console.log("File size exceeds limit : " + (file.size/1024) + "KB");
+      $("#error_explanation").css("display","inherit");
+      $("#error_explanation").html("File size exceeds 512 KB");
       return false;
     }
     
@@ -102,6 +106,7 @@ $(document).on('page:change', function(event) {
   // Prevent form submit and locally cache data so that it can be posted later.
   $('#form').on('submit', function(event){
     event.preventDefault();
+    $("#error_explanation").css("display","none");
 
     var fr = new FileReader();
     var verification_stub = new Array();
@@ -153,8 +158,8 @@ $(document).on('page:change', function(event) {
 
     for (var i = 0; i < table_data.length; i++) {
       verification_stub = table_data[i];
-      $('#verifications_tbody').append('<tr>'+
-        '<td style="width:10%">' + (i+1) + '</td>' + 
+      $('#verifications_tbody').append('<tr>' +
+        '<td style="width:10%">' + (i + 1) + '</td>' + 
         '<td style="width:25%">' + verification_stub['college_name'] + '</td>' + 
         '<td style="width:20%">' + verification_stub['name'] + '</td>' + 
         '<td style="width:15%">' + verification_stub['hallticket_no'] + '</td>' + 

@@ -1,7 +1,7 @@
 (function($){
-    "use strict"; // Start of use strict
+     "use strict"; // Start of use strict
     
-   
+       
     /* ---------------------------------------------
      Scripts initialization
      --------------------------------------------- */
@@ -16,26 +16,30 @@
         });       
         
         
-    
-        init_scroll_navigate();
         
+        init_scroll_navigate();
+         
         $(window).trigger("scroll");
         $(window).trigger("resize");
         
-        // Hash menu forwarding
-        if (window.location.hash){
-            var hash_offset = $(window.location.hash).offset().top;
-            $("html, body").animate({
-                scrollTop: hash_offset
-            });
-        }
+        $(document).on('page:change', function(event) { 
+            if(window.location.hash){
+                var hash_offset = $(window.location.hash).offset().top;
+                $("html, body").animate({
+                    scrollTop: hash_offset
+                });
+            }
+        });
         
     });
     
     $(document).ready(function(){
-          
-    $(document).on('page:change', function(event) {    
-        $(window).trigger("resize");            
+        
+        $(document).on('page:change', function(event) { 
+
+
+            console.log("init metods called")   
+            $(window).trigger("resize");            
             init_classic_menu();
             init_fullscreen_menu();
             init_side_panel();
@@ -48,10 +52,45 @@
             initPageSliders();
             initWorkFilter();
             init_map();
-         
+            
             init_wow();
             init_masonry();
-        });
+               
+
+            
+      });
+
+        var mobileTest;
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            mobileTest = true;
+            $("html").addClass("mobile");
+        }
+        else {
+            mobileTest = false;
+            $("html").addClass("no-mobile");
+        }
+        
+        var mozillaTest;
+        if (/mozilla/.test(navigator.userAgent)) {
+            mozillaTest = true;
+        }
+        else {
+            mozillaTest = false;
+        }
+        var safariTest;
+        if (/safari/.test(navigator.userAgent)) {
+            safariTest = true;
+        }
+        else {
+            safariTest = false;
+        }
+        
+        // Detect touch devices    
+        if (!("ontouchstart" in document.documentElement)) {
+            document.documentElement.className += " no-touch";
+        }
+
+
     });
     
     $(window).resize(function(){
@@ -145,29 +184,33 @@
     /* ---------------------------------------------
      Nav panel classic
      --------------------------------------------- */
-    
+    /*Below two variables are redundent, still keeping it for testing reasons*/
     var mobile_nav = $(".mobile-nav");
     var desktop_nav = $(".desktop-nav");
+
+
     
     function init_classic_menu_resize(){
-        
+        var desktop_nav = $(".desktop-nav");
         // Mobile menu max height
         $(".mobile-on .desktop-nav > ul").css("max-height", $(window).height() - $(".main-nav").height() - 20 + "px");
         
         // Mobile menu style toggle
         if ($(window).width() <= 1024) {
             $(".main-nav").addClass("mobile-on");
+            
         }
         else 
             if ($(window).width() > 1024) {
                 $(".main-nav").removeClass("mobile-on");
+              
                 desktop_nav.show();
             }
     }
     
     function init_classic_menu(){
-    
-        
+        var desktop_nav = $(".desktop-nav");
+        var mobile_nav = $(".mobile-nav");
         // Navbar sticky
         
         $(".js-stick").sticky({
@@ -203,8 +246,8 @@
         });
         
         // Mobile menu toggle
-        
         mobile_nav.click(function(){
+           
         
             if (desktop_nav.hasClass("js-opened")) {
                 desktop_nav.slideUp("slow", "easeOutExpo").removeClass("js-opened");
@@ -741,12 +784,13 @@ function initPageSliders(){
 /* ---------------------------------------------
      Fullscreen menu
    --------------------------------------------- */
-    
+    /*Bottom two variables are not required, but still keeping it for testing purposes*/
     var fm_menu_wrap = $("#fullscreen-menu");
     var fm_menu_button = $(".fm-button");
     
     function init_fullscreen_menu(){
-        
+        var fm_menu_wrap = $("#fullscreen-menu");
+        var fm_menu_button = $(".fm-button");
         fm_menu_button.click(function(){
             
             if ($(this).hasClass("animation-process")){
@@ -838,18 +882,18 @@ function initPageSliders(){
 /* ---------------------------------------------
      Side panel
    --------------------------------------------- */
-    
+    /* Bottom four variables are not required, but still keeping it for testing purposes */
     var side_panel = $(".side-panel");
     var sp_button = $(".sp-button");
     var sp_close_button = $(".sp-close-button");
     var sp_overlay = $(".sp-overlay");
     
     function sp_panel_close(){
-        side_panel.animate({
+        $(".side-panel").animate({
             opacity: 0,
             left: -270
         }, 500, "easeOutExpo");
-        sp_overlay.fadeOut();
+        $(".sp-overlay").fadeOut();
         
         
         if ($(".owl-carousel").lenth) {
@@ -860,10 +904,12 @@ function initPageSliders(){
     function init_side_panel(){
         (function($){
             "use strict";
-            
+            var sp_button = $(".sp-button");
+            var sp_close_button = $(".sp-close-button");
+            var sp_overlay = $(".sp-overlay");
             sp_button.click(function(){
             
-                side_panel.animate({
+                $(".side-panel").animate({
                     opacity: 1,
                     left: 0
                 }, 500, "easeOutExpo");
@@ -926,6 +972,9 @@ function initPageSliders(){
     function init_side_panel_resize(){
         (function($){
             "use strict";
+            var sp_button = $(".sp-button");
+            var side_panel = $(".side-panel");
+             var sp_close_button = $(".sp-close-button");
             
              if ($(window).width() >= 1199){
                side_panel.css({
@@ -959,7 +1008,11 @@ var work_grid = $("#work-grid, #isotope");
 function initWorkFilter(){
     (function($){
      "use strict";
+
      var isotope_mode;
+     var fselector = 0;
+     var work_grid = $("#work-grid, #isotope");
+
      if (work_grid.hasClass("masonry")){
          isotope_mode = "masonry";
      } else{
@@ -975,6 +1028,7 @@ function initWorkFilter(){
         });
         
         $(".filter").click(function(){
+          
             $(".filter").removeClass("active");
             $(this).addClass("active");
             fselector = $(this).attr('data-filter');
@@ -1017,7 +1071,7 @@ var gmMapDiv = $("#map-canvas");
 
 function init_map(){
     (function($){
-        
+        var gmMapDiv = $("#map-canvas");
         $(".map-section").click(function(){
             $(this).toggleClass("js-active");
             $(this).find(".mt-open").toggle();
@@ -1036,7 +1090,7 @@ function init_map(){
                 marker: {
                     address: gmMarkerAddress,
                     options: {
-                        icon: "images/map-marker.png"
+                        icon: "<%= asset_path("map-marker.png")%>"
                     }
                 },
                 map: {
@@ -1088,8 +1142,9 @@ function init_wow(){
  --------------------------------------------- */
 
 function init_masonry(){
-    (function($){    
     
+    (function($){    
+       
         $(".masonry").imagesLoaded(function(){
             $(".masonry").masonry();
         });

@@ -37,44 +37,48 @@
           <% end %>
               
               <!-- Col -->
-              <div class="col-sm-4 mb-40">
+              <div class="row mb-40">
                   
                   <!-- Form -->
                   <form id="form" role="form" class="form" onsubmit="event.preventDefault();">
-                      <div id="error_explanation"></div>
-                      <div class="mb-20 mb-md-10">
-                        <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name", @selected_college_index), include_blank: "Select College", class: "input-md form-control", required: true %>
-                        <p id="verification-amount" name="verification-amount" class="help-block"style="padding-left: 2px;">
-                              Verification fees INR <span id="verification_amount_lable">0</span>&nbsp;<i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear;
-                              -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear;
-                              animation: spinner 3s infinite linear;" id="verification_amount_loader" class="fa fa-gear dark"></i>
-                          </p>
-                      </div>
+                      <div class="alert alert-warning" style="display:none;" id="error_explanation"></div>
+                      <div class="row mb-20 mb-md-10">
+                        <div class="col-md-3">
+                          <%= select_tag :college, options_from_collection_for_select(@colleges, "id", "name", @selected_college_index), include_blank: "Select College", class: "input-md form-control", required: true %>
+                          <p id="verification-amount" name="verification-amount" class="help-block"style="padding-left: 2px;">
+                                Verification fees INR <span id="verification_amount_lable">0</span>&nbsp;<i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear;
+                                -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear;
+                                animation: spinner 3s infinite linear;" id="verification_amount_loader" class="fa fa-gear dark"></i>
+                            </p>
+                        </div>
 
-                      <div class="mb-20 mb-md-10">
-                          <!-- Name -->
-                          <input type="text" name="name" id="name" value="<%= current_user.name %>" class="input-md form-control" placeholder="Name" maxlength="100">
+                        <div class="col-md-3">
+                          <div class="mb-20 mb-md-10">
+                              <!-- Name -->
+                              <input type="text" name="name" id="name" value="<%= current_user.name %>" class="input-md form-control" placeholder="Name" maxlength="100">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="mb-20 mb-md-10">
+                              <!-- Hallticket Number -->
+                              <input type="text" name="hallticket_no" id="hallticket_no" value="" class="input-md form-control" placeholder="Hallticket Number" maxlength="100">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="mb-20 mb-md-10">
+                              <label for="exampleInputFile">
+                                  Upload document to verify
+                              </label>
+                              <input type="file" id="verify_document">
+                              <p class="help-block">
+                                  NOTE: File size should be less that 512KB
+                              </p>
+                          </div>
+                        </div>
+                        <div class="align-right pt-10 form-group">                            
+                          <%= submit_tag "Add", :class => "submit_btn btn btn-mod btn-medium btn-round",:id =>"add_verification"%>
+                        </div>
                       </div>
-
-                      <div class="mb-20 mb-md-10">
-                          <!-- Hallticket Number -->
-                          <input type="text" name="hallticket_no" id="hallticket_no" value="" class="input-md form-control" placeholder="Hallticket Number" maxlength="100">
-                      </div>
-                      
-                      <div class="mb-20 mb-md-10">
-                          <label for="exampleInputFile">
-                              Upload document to verify
-                          </label>
-                          <input type="file" id="verify_document">
-                          <p class="help-block">
-                              NOTE: File size should be less that 512KB
-                          </p>
-                      </div>
-
-                      <div class="align-right pt-10 form-group">                            
-                        <%= submit_tag "Add", :class => "submit_btn btn btn-mod btn-medium btn-round",:id =>"add_verification"%>
-                      </div>
-                      
                                                   
                   </form>
                   <!-- End Form -->
@@ -84,17 +88,17 @@
               <!-- End Col -->
               
               <!-- Col -->
-              <!-- <div id="filler-box" class="jumbotron align-center col-sm-8 mb-40 table-responsive scrollable-table">
+              <div id="filler-box" class="jumbotron align-center row mb-40">
                 <p>No documents selected for upload</p>
-              </div> -->
-              <div id="verifications-table" class="col-sm-8 mb-40" style="/*display: none;*/">
-                  <table class="table table-striped table-responsive scrollable-table">
+              </div>
+              <div id="verifications-table" class="row mb-10" style="display: none;">
+                  <table class="table table-striped table-responsive">
                     <thead>
                       <tr>
-                        <th style="width:10%">Sl. no.</th>
+                        <th style="width:10%">S.No.</th>
                         <th style="width:25%">College</th>
-                        <th style="width:20%">Name</th>
-                        <th style="width:15%">Hallticket no.</th>
+                        <th style="width:20%">Candidate Name</th>
+                        <th style="width:15%">HT Number/ Roll No</th>
                         <th style="width:15%">Document</th>
                         <th style="width:10%">Fees</th>
                         <th style="width:5%"></th>
