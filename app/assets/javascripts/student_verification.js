@@ -250,9 +250,9 @@ $(document).on('page:change', function(event) {
       // Initialize file upload to S3. 
       // NOTE: doesn't start the upload since no files have been provided yet
 
-      var progressBar = $('.ver-progress');
-      $(progressBar).css("display", "inherit");
-      $(progressBar).css("height", $(progressBar).parent().height());
+      // var progressBar = $('.ver-progress');
+      // $(progressBar).css("display", "inherit");
+      // $(progressBar).css("height", $(progressBar).parent().height());
 
       $("body").fileupload({
         url:             $("#rails-data").data('url'),

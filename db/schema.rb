@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20151130141836) do
     t.integer  "student_id"
     t.integer  "college_id"
     t.integer  "verification_status_id", default: 1
-    t.string   "verification_code"
+    t.string   "verification_token"
     t.string   "name"
     t.string   "hallticket_no"
     t.string   "document_link"

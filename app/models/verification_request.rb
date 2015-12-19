@@ -1,5 +1,6 @@
 class VerificationRequest < ActiveRecord::Base
-
+	include Tokenable
+	
 	belongs_to :student
 	belongs_to :college
 	belongs_to :verification_status

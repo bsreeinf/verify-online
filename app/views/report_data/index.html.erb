@@ -56,7 +56,7 @@
           <div class="row" title="From address">
             <div class="col-md-6" style="padding-left: 0;">
               <div class="form-group">
-                  <%= f.text_area :from_address , :class => "input-md round form-control", :placeholder =>"From Address", :rows => "4", :value => @report_datum.from_address, :style => "width: 50%;" %>
+                  <%= f.text_area :from_address , :class => "input-md round form-control", :placeholder =>"From Address", :rows => "4", :value => @report_datum.from_address, :style => "width: 50%; text-transform: none !important;" %>
               </div> 
             </div>
             <div class="col-md-6 align-right" title="Letter date will be auto-filled when report is generated">
@@ -65,27 +65,27 @@
           </div>
           <div class="row">
             <div class="form-group" title="Letter title">
-                <%= f.text_field :letter_title , :class => "input-md round form-control",:placeholder =>"Letter Title", :type => "text", :required => true, :value => @report_datum.letter_title %>
+                <%= f.text_field :letter_title , :class => "input-md round form-control",:placeholder =>"Letter Title", :type => "text", :required => true, :value => @report_datum.letter_title, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <div class="row">
 
             <div class="form-group" title="To address">
-                <%= f.text_area :to_address , :class => "input-md round form-control", :placeholder =>"To Address", :rows => "4", :value => @report_datum.to_address, :style => "width: 25%;" %>
+                <%= f.text_area :to_address , :class => "input-md round form-control", :placeholder =>"To Address", :rows => "4", :value => @report_datum.to_address, :style => "width: 25%; text-transform: none !important;" %>
             </div> 
           </div>
           <br/><br/>Sir/Madam,<br/><br/>
           <div class="row">
 
             <div class="form-group" title="Subject">
-                <%= f.text_field :subject , :class => "input-md round form-control",:placeholder =>"Subject", :type => "text", :required => true, :value => @report_datum.subject %>
+                <%= f.text_field :subject , :class => "input-md round form-control",:placeholder =>"Subject", :type => "text", :required => true, :value => @report_datum.subject, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <br/>
           <div class="row">
 
             <div class="form-group" title="Body">
-                <%= f.text_area :body , :class => "input-md round form-control",:placeholder =>"Body", :type => "text", :rows => "15", :value => @report_datum.body %>
+                <%= f.text_area :body , :class => "input-md round form-control",:placeholder =>"Body", :type => "text", :rows => "15", :value => @report_datum.body, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <br><br><br>Yours Faithfully,
@@ -100,7 +100,7 @@
           <div class="row">
 
             <div class="form-group" title="Designation">
-                <%= f.text_area :designation, :class => "input-md round form-control",:placeholder =>"Designation", :type => "text", :rows => "3", :value => @report_datum.designation, :style => "width: 20%;" %>
+                <%= f.text_area :designation, :class => "input-md round form-control",:placeholder =>"Designation", :type => "text", :rows => "3", :value => @report_datum.designation, :style => "width: 20%; text-transform: none !important;" %>
             </div> 
           </div>
 

@@ -5,9 +5,10 @@ class CollegeVerificationController < ApplicationController
   def index
   	if params.has_key?(:search_tag)
       @college_verifications =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
+        "college_id = ? AND verification_status_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
           @college_id, 
           1, 
+          "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%"
         ).order('created_at DESC').
@@ -26,9 +27,10 @@ class CollegeVerificationController < ApplicationController
   def completed
     if params.has_key?(:search_tag)
       @college_verifications_completed =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id != ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
+        "college_id = ? AND verification_status_id != ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
           @college_id, 
           1, 
+          "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%",
           "%#{params[:search_tag]}%"
         ).order('created_at DESC')
@@ -46,11 +48,12 @@ class CollegeVerificationController < ApplicationController
   def report
     @disable_header_footer = true
     @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
+    @college = current_user.college
     @user = User.find_by(id: @verification_stub.student_id)
+    @client_ip = request.remote_ip
     respond_to do |format|
-      format.html
       format.pdf do
-        html = render_to_string(template: "college_verification/report.html.erb") 
+        html = render_to_string(template: "report_data/report.html.erb") 
         pdf = WickedPdf.new.pdf_from_string(html) 
         send_data(pdf, 
           :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 

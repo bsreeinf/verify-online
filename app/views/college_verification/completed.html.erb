@@ -55,6 +55,7 @@
                             <thead>
                               <tr>
                                 <th>Sl. no.</th>
+                                <th>Verification ID</th>
                                 <th>Requested on</th>
                                 <th>Name</th>
                                 <th>Hallticket No</th>
@@ -74,9 +75,10 @@
                             <% @college_verifications_completed.each_with_index do |college_verification, i| %>
                               <tr>
                                 <td><%=i+1%></td>
-                                <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
+                                <td style="text-transform: uppercase;"><%=college_verification.verification_token%></td>
+                                <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y')%></td>
                                 <td><%=college_verification.name%></td>
-                                <td><%=college_verification.hallticket_no%></td>
+                                <td style="text-transform: uppercase;"><%=college_verification.hallticket_no%></td>
                                 <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>                                
                                 <!-- <td><%=college_verification.course%></td>
                                 <td><%=college_verification.type_of_studies%></td>

@@ -5,23 +5,19 @@ class CreateVerificationRequests < ActiveRecord::Migration
       t.references :college
       t.references :verification_status, default: 1
       
-      t.string :verification_code
+      t.string :verification_token
       t.string :name
       t.string :hallticket_no
       t.string :document_link
       t.float :amount
       t.float :service_tax
 
-      
-
       t.string :course              
       t.string :type_of_studies    
       t.string :course_duration		
       t.string :remarks				
       t.string :class_awarded		
-
-
-
+      
       t.timestamps null: false
     end
   end

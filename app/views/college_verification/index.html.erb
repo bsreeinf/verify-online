@@ -58,6 +58,7 @@
                             <thead>
                               <tr>
                                 <th>Sl. no.</th>
+                                <th>Verification ID</th>
                                 <th>Requested on</th>
                                 <th>Hallticket No</th>
                                 <th>Name</th>
@@ -68,18 +69,34 @@
                             </thead>
                             <tbody>
                             <% @college_verifications.each_with_index do |college_verification, i| %>
-                              <tr>
-                                <td><%=i+1%></td>
-                                <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
-                                <td><%=college_verification.hallticket_no%></td>
-                                <td><%=college_verification.name%></td>
-                                <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a></td>                                
-                                <td><%=college_verification.verification_status.description%></td>
-                                <td><a class="update_verification_button">Update Status</a></td>
+                                <%days_diff = (Time.now.beginning_of_day - college_verification.created_at.beginning_of_day).to_i / 86400%>
+                                <tr <%=
+                                if days_diff >= 20
+                                    "class='error'"
+                                elsif days_diff >=10
+                                    "class='warning'"
+                                end%>>
+                                    <td><%=i+1%></td>
+                                    <td style="text-transform: uppercase;"><%=college_verification.verification_token%></td>
+                                    
+                                    <!-- <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%> -->
+                                    <td><%=local_time(college_verification.created_at + 330.minutes, '%d/%m/%Y')%>
+                                        <%= if days_diff == 0
+                                                "(Today)"
+                                            elsif days_diff == 1
+                                                "(#{days_diff} day ago)"
+                                            else 
+                                                "(#{days_diff} days ago)"
+                                            end%></td>
+                                    <td style="text-transform: uppercase;"><%=college_verification.hallticket_no%></td>
+                                    <td><%=college_verification.name%></td>
+                                    <td><a href="<%=college_verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a></td>                                
+                                    <td><%=college_verification.verification_status.description%></td>
+                                    <td><a class="update_verification_button">Update Status</a></td>
                                 
 
-                              </tr>
-                              <tr class="update_verification_form" style="display: none;">
+                                </tr>
+                                <tr class="update_verification_form" style="display: none;">
                                     <td></td>
                                     <td colspan="3">
                                         <div class="edit_form" id="task-form" >
@@ -92,6 +109,9 @@
                                          
                                                             <!-- <%=label_tag 'Course'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
+                                                                <%= select_tag :verification_status_id, options_from_collection_for_select(VerificationStatus.all, "id", "description"), {:class => "input-md form-control", :title => "Verification Status", :style => "text-transform: none !important;"} %>    
+                                                            </div>
+                                                            <div class="field" style="margin-bottom: 10px;">
                                                                 <%= text_field_tag :course, college_verification.course, :class => "input-md round form-control", :placeholder => "Course", :title => "Course", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Type of Studies'%> -->
@@ -103,16 +123,14 @@
                                                                 <%= text_field_tag :course_duration, college_verification.course_duration, :class => "input-md round form-control", :placeholder => "Year of Passing", :title => "Course Duration", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Class Awarded'%>    -->
-                                                            <div class="field" style="margin-bottom: 10px;">
-                                                                <%= text_field_tag :class_awarded, college_verification.class_awarded, :class => "input-md round form-control", :title => "Class Awarded", :placeholder => "Class Awarded", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
-                                                            </div>
+                                                            
                                                         </div>
 
 
                                                         <div class="col-sm-4 mb-40">
                                                             <!-- <%=label_tag 'Status'%> -->
                                                             <div class="field" style="margin-bottom: 10px;">
-                                                                <%= select_tag :verification_status_id, options_from_collection_for_select(VerificationStatus.all, "id", "description"), {:class => "input-md form-control", :title => "Verification Status", :style => "text-transform: none !important;"} %>    
+                                                                <%= text_field_tag :class_awarded, college_verification.class_awarded, :class => "input-md round form-control", :title => "Class Awarded", :placeholder => "Class Awarded", :pattern => ".{1,100}", :style => "text-transform: none !important;" %>
                                                             </div>
                                                             <!-- <%=label_tag 'Remarks'%>                                  -->
                                                             <div class="field" style="margin-bottom: 10px;">

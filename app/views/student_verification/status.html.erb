@@ -55,6 +55,7 @@
                             <thead>
                               <tr>
                                 <th>S.No.</th>
+                                <th>Verification ID</th>
                                 <th><%= sortable "name", "Name" %></th>
                                 <th><%= sortable "hallticket_no", "HT Number/ Roll.No." %></th>
                                 <th>College</th>
@@ -71,8 +72,9 @@
                             <% @verifications.each_with_index do |verification, i| %>
                                 <tr>
                                     <td><%=i+1%></td>
+                                    <td style="text-transform: uppercase;"><%=verification.verification_token%></td>
                                     <td><%=verification.name%></td>
-                                    <td><%=verification.hallticket_no%></td>
+                                    <td style="text-transform: uppercase;"><%=verification.hallticket_no%></td>
                                     <td><%=verification.college.name%></td>
                                     <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
                                     <td><%=verification.amount%></td>

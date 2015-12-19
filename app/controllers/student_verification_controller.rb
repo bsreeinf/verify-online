@@ -47,10 +47,10 @@ class StudentVerificationController < ApplicationController
 	    @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
 	    @college = College.find(@verification_stub.college_id)
 	    @user = User.find(current_user.id)
+	    @client_ip = request.remote_ip
 	    respond_to do |format|
-	      format.html
 	      format.pdf do
-	        html = render_to_string(template: "student_verification/report.html.erb") 
+	        html = render_to_string(template: "report_data/report.html.erb") 
 	        pdf = WickedPdf.new.pdf_from_string(html) 
 	        send_data(pdf, 
 	          :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
@@ -72,8 +72,9 @@ class StudentVerificationController < ApplicationController
 		# 		).paginate(page: params[:page],:per_page => 10)
 		if params.has_key?(:search_tag)
 	      @verifications =  VerificationRequest.all.where(
-	        "student_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ?)", 
+	        "student_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
 	          current_user.id, 
+	          "%#{params[:search_tag]}%",
 	          "%#{params[:search_tag]}%",
 	          "%#{params[:search_tag]}%"
 	        ).order('created_at DESC')
