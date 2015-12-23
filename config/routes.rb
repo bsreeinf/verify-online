@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
   root 'landing_page#index'
 
   get    'search_page'                  => 'landing_page#search_page'
+  get    'verification_status'          => 'landing_page#verification_status'
 
   get    'login'                        => 'sessions#new'
   get    'signup'                       => 'users#new'
   get    'login'                        => 'sessions#new'
   post   'login'                        => 'sessions#create'
   delete 'logout'                       => 'sessions#destroy'
-
+  
 
   get    'apply'                        => 'student_verification#apply'
   post   'apply'                        => 'student_verification#apply'

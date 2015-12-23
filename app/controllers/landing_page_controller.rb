@@ -9,6 +9,14 @@ class LandingPageController < ApplicationController
   	
   end
 
+  def verification_status
+  	@status = VerificationRequest.where("verification_token ILIKE ?", params[:id])
+
+  	respond_to do |format|
+      format.json {render json: @status}
+    end
+  end
+
 
   private
 

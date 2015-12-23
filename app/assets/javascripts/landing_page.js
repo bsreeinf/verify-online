@@ -85,28 +85,33 @@ $(document).on('page:change', function() {
     e.preventDefault();
     var id = $('#everify')[0].value;
     if(id != ''){
-      $('#verification_amount_loader').fadeIn(50);
+      $('#e_verification_loader').fadeIn(50);
     
       $.ajax({
         type: 'GET',
-        url: 'colleges/' + id + '.json',
+        url: 'verification_status.json?id=' + id,
         cache: false,
       })
           .done( function(response) {
-            verification_amount = response.verification_amount;
-            $('#verification_amount_lable').text(verification_amount + "");
+            response = response.landing_page[0];
+            if(response["id"]){
+              $('#ev_success_content').show();
+              $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>VALID</strong>");
+              $('#ev_name').text(response.name + "");
+              $('#ev_hallticket_no').text(response.hallticket_no + "");
+            } else {
+              $('#ev_success_content').hide();
+              $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>INVALID</strong>");
+            }
+            $("#eVerifyModal").modal();
           })
 
           .always( function(response) {
-            $('#verification_amount_loader').fadeOut(50);
+            $('#e_verification_loader').fadeOut(50);
       });
     
-    } else {
-    
-      verification_amount = 0;
-      $('#verification_amount_lable').text(verification_amount + "");
     }
   
-  }
+  });
 
 });
