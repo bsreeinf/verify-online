@@ -42,7 +42,9 @@
 
                 <% if params[:controller] =='landing_page' && params[:action] == 'index' %>
                     <!-- <li><a href="#about">About</a></li> -->
-                    <li><a href="#contact">Contact Us</a></li>         
+                    <li><a href="#contact">Contact Us</a></li>
+                <%else%>
+                    <li><%= link_to "Contact Us", "#{root_url}/#contact",method: :get %></li>
                 <% end %>
        
                 <% if logged_in? %>

@@ -12,7 +12,7 @@
     
 
     <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 parallax-2" data-background=<%= asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
+    <section class="home-section bg-dark-alfa-50 parallax-2" style='background-color: #3498DB;' id="home">
         <div class="js-height-full">
             
             <!-- Hero Content -->
@@ -103,7 +103,7 @@
                 <div class="col-sm-6">
                     
                     <div class="mt-140 mt-lg-80 mb-140 mb-lg-80">
-                        <div class="banner-content">
+                        <div class="banner-content align-centre">
                             <h3 class="banner-heading font-alt">Looking to register your college with us?</h3>
                             <!-- <div class="banner-decription">
                                 Proin fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. 
@@ -127,75 +127,71 @@
     </section>
     <!-- End Call Action Section -->
     
-    <!-- Features Section -->
+    <section class="page-section">
+        <div class="container relative">
+            
+            <h2 class="section-title font-alt mb-70 mb-sm-40">
+                E-verify Status
+            </h2>
+            <div class="widget col-md-4 col-md-offset-4 ">
+                <form id="verify-status" class="form-inline form" role="form">
+                    <div class="search-wrap">
+                        <button class="search-button animate" type="submit" title="Start Search">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <input id="everify" type="text" class="form-control" placeholder="Enter Verification ID">
+                        <i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear; -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear; animation: spinner 3s infinite linear;" id="e_verification_loader" class="fa fa-gear dark"></i>
+                    </div>
+                </form>
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section 
     <section class="page-section">
         <div class="container relative">
             
             <h2 class="section-title font-alt mb-70 mb-sm-40">
                 Why Choose Us?
             </h2>
-            
-            <!-- Features Grid -->
             <div class="row multi-columns-row alt-features-grid">
-                
-                <!-- Features Item -->
                 <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="alt-features-item align-center">
                         <div class="alt-features-icon">
                             <span class="icon-clock"></span>
                         </div>
                         <h3 class="alt-features-title font-alt">We’re Punctual</h3>
-                        <!-- <div class="alt-features-descr align-left">
-                            Proin fringilla augue at maximus vestibulum. 
-                            Nam pulvinar vitae neque et porttitor. Praesent sed 
-                            nisi eleifend, lorem fermentum orci sit amet, iaculis libero.
-                        </div> -->
                     </div>
                 </div>
-                <!-- End Features Item -->
-                
-                <!-- Features Item -->
                 <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="alt-features-item align-center">
                         <div class="alt-features-icon">
                             <span class="icon-linegraph"></span>
                         </div>
-                        <h3 class="alt-features-title font-alt">We’re responsible</h3>
-                        <!-- <div class="alt-features-descr align-left">
-                            Fusce aliquet quam eget neque ultrices elementum. Nulla posuere 
-                            felis id arcu blandit sagittis. Eleifender vestibulum purus, sit 
-                            amet vulputate risus.
-                        </div> -->
-                    </div>
+                        <h3 class="alt-features-title font-alt">We’re responsible</h3>                    </div>
                 </div>
-                <!-- End Features Item -->
-                
-                <!-- Features Item -->
                 <div class="col-sm-6 col-md-4 col-lg-4">
                     <div class="alt-features-item align-center">
                         <div class="alt-features-icon">
                             <span class="icon-chat"></span>
                         </div>
                         <h3 class="alt-features-title font-alt">We're Friendly</h3>
-                        <!-- <div class="alt-features-descr align-left">
-                            Pulvinar vitae neque et porttitor. Integer non dapibus diam, ac 
-                            eleifend lectus. Praesent sed nisi eleifend, fermentum orci sit 
-                            amet, iaculis libero interdum.
-                        </div> -->
                     </div>
                 </div>
-                <!-- End Features Item -->
-                
             </div>
-            <!-- End Features Grid -->
-        
         </div>
-    </section>
-    <!-- End Features Section -->
+    </section> -->
     
     
     <!-- Testimonials Section -->
-    <section class="page-section fullwidth-slider" style="background-color: #185F4D;" data-background=<%= image_path("full-width-images/section-bg-3.jpg")%> >
+    <section class="page-section fullwidth-slider" style="background-color: #3498DB;" data-background=<%= image_path("full-width-images/section-bg-3.jpg")%> >
         
         <!-- Slide Item -->
         <div>

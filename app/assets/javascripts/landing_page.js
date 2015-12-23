@@ -81,4 +81,32 @@ $(document).on('page:change', function() {
     return false;
   });
 
+  $('#verify-status').bind('submit', function(e) {
+    e.preventDefault();
+    var id = $('#everify')[0].value;
+    if(id != ''){
+      $('#verification_amount_loader').fadeIn(50);
+    
+      $.ajax({
+        type: 'GET',
+        url: 'colleges/' + id + '.json',
+        cache: false,
+      })
+          .done( function(response) {
+            verification_amount = response.verification_amount;
+            $('#verification_amount_lable').text(verification_amount + "");
+          })
+
+          .always( function(response) {
+            $('#verification_amount_loader').fadeOut(50);
+      });
+    
+    } else {
+    
+      verification_amount = 0;
+      $('#verification_amount_lable').text(verification_amount + "");
+    }
+  
+  }
+
 });
