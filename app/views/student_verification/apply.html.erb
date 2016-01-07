@@ -140,7 +140,10 @@
                     <div class="row">
                         
                         <!-- Send Button -->
-                        <div class="align-right pt-10 form-group">                            
+                        <div class="align-right pt-10 form-group">    
+                          <i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear;
+                                -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear;
+                                animation: spinner 3s infinite linear;" id="proceed_to_pay_loader" class="fa fa-gear dark"></i>                        
                           <%= submit_tag "Procced to pay", :class => "submit_btn btn btn-mod btn-medium btn-round", :id => "btnProceedToPay" %>
                           <div>&nbsp;</div>
                         </div>
