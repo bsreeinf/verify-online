@@ -45,11 +45,7 @@ index :title => "Verification Requests" do |verification_request|
 	   column "Report" do |verification_request|
 		   raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
 	   end
-	   
-        
-
-
-	       
+	         
 	  actions
 	end
 

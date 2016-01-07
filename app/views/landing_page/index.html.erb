@@ -12,7 +12,7 @@
     
 
     <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 parallax-2" data-background=<%= asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
+    <section class="home-section bg-dark-alfa-50 parallax-2" data-background=<%= asset_url("full-width-images/landing2.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing2.jpg")%>)' id="home">
         <div class="js-height-full">
             
             <!-- Hero Content -->
@@ -28,15 +28,59 @@
                     </h2>
                     
            
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
 
-                    <div id="search-container" class="form align-center" style="position: absolute; width: 100%;">
-                        <div class="mb-20"` style="max-width: 387px; margin: 5px auto;">
-                            <input placeholder="Search Colleges" class="search-field form-control input-md round mb-xs-10" type="text" style="max-width: 100%;"/>
-                            <div id="search-result" style="width: 100%;text-align: left;"></div>
+                            <div id="search-container" class="form align-center" style="position: absolute; width: 100%;">
+                                <div class="mb-20"` style="max-width: 387px; margin: 5px auto;">
+                                    <input id="college-search" placeholder="Search Colleges" class="search-field form-control input-md round mb-xs-10" type="text" style="max-width: 100%;"/>
+                                    <div id="search-result" style="width: 100%;text-align: left;"></div>
+                                </div>
+                                <%= link_to "View all colleges",search_page_path%>  
+                            </div>
                         </div>
-                        <%= link_to "View all colleges",search_page_path%>
-                         
+                        <div class="col-md-6 col-lg-6" style=" padding-top: 5px;">
+
+                            <div class="widget ">
+                                <form id="verify-status" class="form-inline form" role="form">
+                                    <div class="search-wrap">
+                                        
+                                        <input id="everify" name="everify" type="text" class="form-control search-field" placeholder="Enter Verification ID" style="max-width: 387px;"/>
+                                        <button class="search-button animate" type="submit" title="Start Search" style="right:inherit;">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                    
+                                </form>
+                                <p style=" padding-top: 5px;font-size:12px;">E-Verify Status</p>
+                            </div>
+                            <i style="display: none; -webkit-animation: spinner 3s infinite linear; -moz-animation: spinner 3s infinite linear; -ms-animation: spinner 3s infinite linear; -o-animation: spinner 3s infinite linear; animation: spinner 3s infinite linear;" id="e_verification_loader" class="fa fa-gear dark"></i>
+                           
+                            <div id="eVerifyModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="eVerifyModal">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <p class="modal-title font-alt">Verification status</p>
+                                        </div>
+                                        <div class="modal-body black">
+                                            <br>
+                                            <p class="modal-title" id="ev_verify_status">Verification status</p><br>
+                                            <div id="ev_success_content">
+                                                <p>Name: <span id="ev_name" style="font-weight: bold;"></span></p>
+                                                <p>Hallticket / Reg No: <span id="ev_hallticket_no" style="font-weight: bold;"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    
 
                 </div>
             </div>
@@ -127,7 +171,7 @@
     </section>
     <!-- End Call Action Section -->
     
-    <section class="page-section">
+ <!--    <section class="page-section">
         <div class="container relative">
             
             <h2 class="section-title font-alt mb-70 mb-sm-40">
@@ -167,7 +211,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Features Section 
     <section class="page-section">

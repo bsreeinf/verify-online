@@ -1,10 +1,10 @@
 $(document).on('page:change', function() {
 
-  $('.search-field').bind('focus', function() {
+  $('#college-search').bind('focus', function() {
     $('.search-field').trigger('keyup');
   });
 
-  $('.search-field').bind('keyup', function() {
+  $('#college-search').bind('keyup', function() {
     var dataString, searchbox;
     searchbox = $('.search-field').val();
     dataString = $("#colleges").data("url");
@@ -94,6 +94,7 @@ $(document).on('page:change', function() {
       })
           .done( function(response) {
             response = response.landing_page[0];
+            console.log(response);
             if(response["id"]){
               $('#ev_success_content').show();
               $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>VALID</strong>");
