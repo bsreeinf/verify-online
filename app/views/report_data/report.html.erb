@@ -1,4 +1,7 @@
 <style>
+	*{
+		font-size: 22px;
+	}
 	.bordered-table, .bordered-table th, .bordered-table td{
 		border: 1px solid black; 
 		border-collapse: collapse;
@@ -7,25 +10,25 @@
 </style>
 <table style="width:100%;">
 	<tr>
-		<td colspan="2" align="right" style="font-size: 12px;">
+		<td colspan="2" align="right">
 			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=@client_ip%><br>
 		</td>
 	</tr>
 	<tr class="report_letter_head" >
-		<td style="width:100%;" colspan="2"><object data="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png" type="image/png"><img src="<%=@college.report_datum.header.url%>" onerror="this.src='https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png'" style="width:100%;"/></object></td>
+		<td style="width:100%;" colspan="2"><img src="<%=@college.report_datum.header.url%>"/></td>
 	</tr>
 
 	<tr><td><br></td></tr>
 	<tr>
 		<td style="white-space: pre-wrap;"><%=@college.report_datum.from_address%></td>
-		<td align="right">
+		<td align="right" style="text-transform: uppercase;">
 			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes, '%d/%m/%Y')%> <br>
 			Verification ID <%=("<strong>#{@verification_stub.verification_token}</strong>").html_safe%>
 		</td>
 	</tr>
 	
 	<tr><td><br></td></tr>
-	<tr><td align="center" style="width:100%;" colspan="2"><%=@college.report_datum.letter_title%></td></tr>
+	<tr><td align="center" style="width:100%;" colspan="2"><%=(@college.report_datum.letter_title.sub! '_REQUEST_DATE_',local_time(@verification_stub.created_at + 330.minutes, '%d/%m/%Y')).html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
 	<tr><td style="text-transform: capitalize;"><%=(@college.report_datum.to_address.sub! '_USER_TO_ADDRESS_', "#{@user.name}<br/>#{@user.address}<br/>#{@user.city} - #{@user.pincode}<br/>#{@user.state}").html_safe%></td></tr>
@@ -40,7 +43,9 @@
 	<tr><td style="width:100%; white-space: pre-wrap;" colspan="2"><%=(@college.report_datum.body.sub! '_STATUS_', "<strong>#{@verification_stub.verification_status.description}</strong>").html_safe%></td></tr>
 
 	<tr><td><br></td></tr>
-	<table class="bordered-table" style="width:100%;">
+
+	<tr><td colspan="2">
+	<table class="bordered-table" width="100%" style="width:100%;">
 		<tr>
 			<th align="left">S.No.</th>
 			<th align="left">Name</th>
@@ -84,11 +89,13 @@
 		<tr><td><br><br></td></tr>
 		<tr><td style="width:100%;" colspan="2"><strong>Remarks:&nbsp;</strong><%=@verification_stub.remarks%></td></tr>
 	<%end%>
+	</td></tr>
+
 	<tr><td><br><br><br></td></tr>
 	<tr><td>Yours faithfully,</td></tr>
 	<tr><td><br></td></tr>
 	<tr class="report_letter_head">
-		<td><object data="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png" type="image/png"><img src="<%=@college.report_datum.signature.url%>" onerror="this.src='https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png'"/></object></td>
+		<td><img src="<%=@college.report_datum.signature.url%>"/></td>
 	</tr>
 	<tr><td><br></td></tr>
 	<tr><td style="white-space: pre-wrap;"><%=@college.report_datum.designation%></td></tr>

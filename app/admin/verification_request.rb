@@ -21,9 +21,6 @@ index :title => "Verification Requests" do |verification_request|
        column "Hallticket no", :hallticket_no
        column "Requested on", :created_at
 
-
-       column "Document ", :document_link 
-
        column "Document" do |verification_request|
 		   raw "<a href='#{verification_request.document_link }' target='blank'>download</a>"
 	   end
