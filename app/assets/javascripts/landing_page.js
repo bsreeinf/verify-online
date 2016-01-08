@@ -95,14 +95,14 @@ $(document).on('page:change', function() {
           .done( function(response) {
             response = response.landing_page[0];
             console.log(response);
-            if(response["id"]){
+            if(typeof response === 'undefined'){
+              $('#ev_success_content').hide();
+              $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>INVALID</strong>");
+            }else { 
               $('#ev_success_content').show();
               $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>VALID</strong>");
               $('#ev_name').text(response.name + "");
               $('#ev_hallticket_no').text(response.hallticket_no + "");
-            } else {
-              $('#ev_success_content').hide();
-              $('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>INVALID</strong>");
             }
             $("#eVerifyModal").modal();
           })
