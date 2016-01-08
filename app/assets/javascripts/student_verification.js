@@ -194,6 +194,8 @@ $(document).on('page:change', function(event) {
     // Disable $("#btnProceedToPay")
     $(this).prop('disabled', true);
 
+    $("#proceed_to_pay_loader").css("display","initial");
+
     lookup = {};
     for (var i = 0, len = table_data.length; i < len; i++) {
         lookup[table_data[i].id] = table_data[i];
@@ -238,6 +240,7 @@ $(document).on('page:change', function(event) {
 
       console.log("Verification IDs to be sent --> ");
       console.log(verifications_ids_to_send);
+      $("#proceed_to_pay_loader").css("display","none");
     }
   }
 
@@ -266,7 +269,7 @@ $(document).on('page:change', function(event) {
         replaceFileInput: false,
         progressall: function (e, data) {
            console.log(parseInt(data.loaded / data.total * 100, 10));
-           $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
+           // $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
         },
         start: function (e) {
           console.log("started");
