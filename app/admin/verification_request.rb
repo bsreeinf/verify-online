@@ -1,5 +1,5 @@
 ActiveAdmin.register VerificationRequest do
-
+permit_params :student_id, :college_id, :name, :hallticket_no, :document_link
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -33,7 +33,13 @@ index :title => "Verification Requests" do |verification_request|
 		   verification_request.verification_status.description
 	   end
 
-	   column "Report Date" do |verification_request|
+	   column "Request Date" do |verification_request|
+	   		if verification_request.verification_status_id !=1
+	   			raw "#{local_time(verification_request.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
+	   		end
+	   end
+
+	   column "Last updated" do |verification_request|
 	   		if verification_request.verification_status_id !=1
 	   			raw "#{local_time(verification_request.updated_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
 	   		end
