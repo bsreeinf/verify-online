@@ -173,7 +173,7 @@ $(document).on('page:change', function(event) {
     };
     
 
-    $('#verification_amount_total_lable').text(Math.round(verification_amount_total * 1.05) + "");
+    $('#verification_amount_total_lable').text(Math.round(verification_amount_total * 1.145) + "");
 
 
     $('.ver-delete').on('click', function(){
