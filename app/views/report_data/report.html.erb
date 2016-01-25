@@ -125,17 +125,18 @@
 							@verification_stub.type_of_studies
 						end%></td>
 				</tr>
-			<%if !@verification_stub.remarks.blank? %>
-				<tr>
-					<td><br><br></td>
-				</tr>
-				<tr>
-					<td style="width:100%;" colspan="2"><strong>Remarks:&nbsp;</strong><%=@verification_stub.remarks%></td>
-				</tr>
-			<%end%>
 			</table>
 		</td>
 	</tr>
+	
+	<%if !@verification_stub.remarks.blank? %>
+		<tr>
+			<td><br><br></td>
+		</tr>
+		<tr>
+			<td style="width:100%;" colspan="2"><strong>Remarks:&nbsp;</strong><%=@verification_stub.remarks%></td>
+		</tr>
+	<%end%>
 
 	<tr>
 		<td><br><br><br></td>
