@@ -1,10 +1,10 @@
 <!-- Navigation panel -->
-<nav class="main-nav dark transparent stick-fixed">
+<nav class="main-nav stick-fixed">
 
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
         <div class="nav-logo-wrap local-scroll"> 
-                <%= link_to image_tag("logo-white-new.png", alt: "Verify online logo", style: "padding: 0px 7px 7px 7px;"), root_url, method: :get, class: "logo" %>
+                <%= link_to image_tag("logo-white-new.png", alt: "Verify online logo", style: "padding: 9px;"), root_url, method: :get, class: "logo" %>
         </div>
 
            
@@ -73,7 +73,7 @@
                     <% if params[:controller] != 'sessions' %>           
                         <li>
                             <%= link_to(login_path) do %>
-                                <span class="btn btn-mod btn-circle btn-border-w">Login</span>
+                                <span class="btn btn-mod btn-border btn-circle btn-small">Login</span>
                             <%end%>
                         </li>      
                     <% end %>

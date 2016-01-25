@@ -28,7 +28,23 @@
 
     <!-- Section -->
     <section class="page-section">
-      <div class="container relative">
+
+      <div id="instructions-box" class="jumbotron align-center row mb-40" style="margin: -140px 0 0 0;">
+        <div style="max-width: 500px; margin: 0 auto;" class="align-center">
+          <h3 class="alt-features-title font-alt">Instructions</h3>
+          <div class="alt-features-descr align-left">1. Select the college you want to get your documents verified from.</div>
+          <div class="alt-features-descr align-left">2. Enter student name and hallticket number as per the document.</div>
+          <div class="alt-features-descr align-left">3. Select a clear scanned copy of your document.</div>
+          <div class="alt-features-descr align-left">4. Click 'ADD' to proceed.</div>
+          <div class="alt-features-descr align-left">5. Follow above steps to verify multiple documents.</div>
+          <div class="alt-features-descr align-left">6. Once done, click 'PROCEED TO PAY' and pay by card/ cash /net banking.</div>
+          <div class="alt-features-descr align-left">7. You can login to your dashbord to check status of your verifications.</div>
+          
+        </div>
+        <input id="btnContinue" class="submit_btn btn btn-mod btn-medium btn-round" type="button" value="Continue" onclick="(function(){$('#main-box').show(); $('#instructions-box').hide();})();" style="margin-top: 30px;">
+      </div>
+
+      <div id="main-box" class="container relative" style="display: none;">
           
           <!-- Row -->
           <div class="row">
@@ -153,7 +169,7 @@
                   </div>
               
               <!-- End Col -->
-              
+              </div>  
           
           </div>
           <!-- End Row -->

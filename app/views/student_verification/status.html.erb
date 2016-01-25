@@ -60,7 +60,7 @@
                                 <th><%= sortable "hallticket_no", "HT Number/ Roll.No." %></th>
                                 <th>College</th>
                                 <th>Document</th>
-                                <th><%= sortable "amount", "Amount" %></th>
+                                <!-- <th><%= sortable "amount", "Amount" %></th> -->
                                 <!-- <th>Service Tax</th> -->
                                 <th>Request Date</th>
                                 <th>Status</th>
@@ -77,7 +77,7 @@
                                     <td style="text-transform: uppercase;"><%=verification.hallticket_no%></td>
                                     <td><%=verification.college.name%></td>
                                     <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
-                                    <td><%=verification.amount%></td>
+                                    <!-- <td><%=verification.amount%></td> -->
                                     <!-- <td><%=verification.service_tax.round(2)%></td> -->
                                     <td><%=local_time(verification.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                     <td><%=verification.verification_status.description%></td>
