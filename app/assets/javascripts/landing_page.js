@@ -74,6 +74,9 @@ $(document).on('page:change', function() {
         else
           $(ele).hide();
       });
+
+      //re fresh tile spacing
+      initWorkFilter();
         
     } else {
       $('.college-box').show();
