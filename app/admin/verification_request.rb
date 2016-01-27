@@ -34,19 +34,21 @@ index :title => "Verification Requests" do |verification_request|
 	   end
 
 	   column "Request Date" do |verification_request|
-	   		if verification_request.verification_status_id !=1
+	   		if verification_request.verification_status_id > 2
 	   			raw "#{local_time(verification_request.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
 	   		end
 	   end
 
 	   column "Last updated" do |verification_request|
-	   		if verification_request.verification_status_id !=1
+	   		if verification_request.verification_status_id > 2
 	   			raw "#{local_time(verification_request.updated_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
 	   		end
 	   end
 
 	   column "Report" do |verification_request|
-		   raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
+	   		if verification_request.verification_status_id > 2
+		   		raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
+		   	end
 	   end
 	         
 	  actions
