@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20151223054617) do
   create_table "colleges", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
+    t.string   "email"
+    t.string   "phone"
     t.string   "address"
     t.float    "verification_amount"
     t.string   "logo"

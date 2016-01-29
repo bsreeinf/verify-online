@@ -15,6 +15,8 @@ cuser=User.create!(
 College.create!(
 	user_id: cuser.id,
 	name: "East Point College of engineering", 
+	email: FFaker::Internet.safe_email,
+	phone: FFaker::PhoneNumber.short_phone_number,
 	address: "Aavaada  Halli",
 	verification_amount: 800
 )
@@ -79,13 +81,13 @@ i = 0
 	i = i + 1
 	name = FFaker::Company.name
 	address = FFaker::Address.street_address
+	email = FFaker::Internet.safe_email
+	phone = FFaker::PhoneNumber.short_phone_number
 	amount = rand(500..2000)
-	college = College.create!(name: name, address: address,verification_amount: amount)
+	college = College.create!(name: name, email: email, phone: phone, address: address,verification_amount: amount)
 
 	ReportDatum.create!(
 		college_id: college.id, 
-		# header_link: FFaker::Avatar.image, 
-		# signature_link: FFaker::Avatar.image, 
 		from_address: FFaker::Address.street_address, 
 		to_address: "_USER_TO_ADDRESS_", 
 		letter_title: FFaker::Lorem.sentence, 
@@ -128,4 +130,4 @@ end
 
 
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.create!(email: 'admin@verifyonline.in', password: 'VerifyOnline@_123', password_confirmation: 'VerifyOnline@_123')

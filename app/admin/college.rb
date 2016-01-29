@@ -3,7 +3,7 @@ ActiveAdmin.register College do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :user_id, :name, :address, :logo, :verification_amount
+permit_params :user_id, :name, :email, :phone, :address, :logo, :verification_amount
 #
 # or
 #

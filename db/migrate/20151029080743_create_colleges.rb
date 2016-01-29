@@ -3,6 +3,8 @@ class CreateColleges < ActiveRecord::Migration
     create_table :colleges do |t|
       t.references :user
       t.string :name
+      t.string :email
+      t.string :phone
       t.string :address
       t.float :verification_amount
       t.string :logo

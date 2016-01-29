@@ -17,6 +17,7 @@ index :title => "Verification Requests" do |verification_request|
 	selectable_column
        column "Sl. no.", :id
        column "Verification ID", :verification_token
+
        column "Name", :name
        column "Hallticket no", :hallticket_no
        column "Requested on", :created_at
@@ -26,7 +27,7 @@ index :title => "Verification Requests" do |verification_request|
 	   end
 
        column "College" do |verification_request|
-		   verification_request.college.name
+		   link_to verification_request.college.name, admin_college_path(verification_request.college)
 	   end
 	   column "Amount", :amount
        column "Status" do |verification_request|
