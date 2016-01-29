@@ -13,46 +13,72 @@ permit_params :student_id, :college_id, :name, :hallticket_no, :document_link
 #   permitted
 # end
 
-index :title => "Verification Requests" do |verification_request|
-	selectable_column
-       column "Sl. no.", :id
-       column "Verification ID", :verification_token
+	csv do |verification_request|
+		column ("Sl. no.") {|verification_request| verification_request.id}
+		column ("Verification ID") {|verification_request| verification_request.verification_token}
 
-       column "Name", :name
-       column "Hallticket no", :hallticket_no
-       column "Requested on", :created_at
+		column ("Name") {|verification_request| verification_request.name}
+		column ("Hallticket no") {|verification_request| verification_request.hallticket_no}
+		column ("Requested on") {|verification_request| verification_request.created_at}
 
-       column "Document" do |verification_request|
-		   raw "<a href='#{verification_request.document_link }' target='blank'>download</a>"
-	   end
+		column ("Document Link") do |verification_request|
+		   verification_request.document_link
+		end
 
-       column "College" do |verification_request|
-		   link_to verification_request.college.name, admin_college_path(verification_request.college)
-	   end
-	   column "Amount", :amount
-       column "Status" do |verification_request|
+		column ("College") do |verification_request|
+		   verification_request.college.name
+		end
+
+		column ("Status") do |verification_request|
 		   verification_request.verification_status.description
-	   end
+		end
 
-	   column "Request Date" do |verification_request|
-	   		if verification_request.verification_status_id > 2
-	   			raw "#{local_time(verification_request.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
-	   		end
-	   end
+		column ("Request Date") {|verification_request| verification_request.created_at}
 
-	   column "Last updated" do |verification_request|
-	   		if verification_request.verification_status_id > 2
-	   			raw "#{local_time(verification_request.updated_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
-	   		end
-	   end
+		column ("Last updated") {|verification_request| verification_request.updated_at}
+	end
 
-	   column "Report" do |verification_request|
-	   		if verification_request.verification_status_id > 2
+	index :title => "Verification Requests" do |verification_request|
+		selectable_column
+
+		column "Sl. no.", :id
+		column "Verification ID", :verification_token
+
+		column "Name", :name
+		column "Hallticket no", :hallticket_no
+		column "Requested on", :created_at
+
+		column "Document" do |verification_request|
+		   raw "<a href='#{verification_request.document_link }' target='blank'>download</a>"
+		end
+
+		column "College" do |verification_request|
+		   link_to verification_request.college.name, admin_college_path(verification_request.college)
+		end
+
+		column "Status" do |verification_request|
+		   verification_request.verification_status.description
+		end
+
+		column "Request Date" do |verification_request|
+				if verification_request.verification_status_id > 2
+					raw "#{local_time(verification_request.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
+				end
+		end
+
+		column "Last updated" do |verification_request|
+				if verification_request.verification_status_id > 2
+					raw "#{local_time(verification_request.updated_at + 330.minutes, '%d/%m/%Y %l:%M%p')}"
+				end
+		end
+
+		column "Report" do |verification_request|
+				if verification_request.verification_status_id > 2
 		   		raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
 		   	end
-	   end
-	         
-	  actions
+		end
+		         
+		actions
 	end
 
  end
