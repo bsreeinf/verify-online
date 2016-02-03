@@ -56,7 +56,7 @@ $(document).on('page:change', function() {
     dataString = $("#colleges").data("url");
     console.log('keypress main');
     
-    if (searchbox !== '') {
+    // if (searchbox !== '') {
       console.log('search not empty')
       var arr = jQuery.grep(dataString, function( n, i ) {
         return n['name'].toLowerCase().indexOf(searchbox.toLowerCase()) >=0 ;
@@ -78,9 +78,11 @@ $(document).on('page:change', function() {
       //re fresh tile spacing
       initWorkFilter();
         
-    } else {
-      $('.college-box').show();
-    }
+    // } else {
+    //   $.each($('.college-box'),function(i, ele){
+    //     $(ele).show();
+    //   });
+    // }
     return false;
   });
 
