@@ -9,11 +9,11 @@
                     <h1 class="hs-line-8 no-transp font-alt mb-30 mb-xs-30">
                        <%= current_user.college.name%>
                     </h1>                    
-                    <h2 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                    <!-- <h2 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
                         <a href="mailto:<%= current_user.college.email%>"><%= current_user.college.email%></a> 
                             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                         <a href="tel:<%= current_user.college.phone%>"><%= current_user.college.phone%></a>
-                    </h2>
+                    </h2> -->
                     <div class="local-scroll hidden-xs">
                        <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
                         <span>&nbsp;</span>
