@@ -28,7 +28,8 @@ class ReportDataController < InheritedResources::Base
 
   	# Use callbacks to share common setup or constraints between actions.
     def set_report_datum
-      @report_datum = ReportDatum.find(current_user.college.id)
+      @report_datum = ReportDatum.find_or_create_by(id: current_user.college.id)
+      @report_datum.college_id = current_user.college.id
     end
 
     def report_datum_params

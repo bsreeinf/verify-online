@@ -73,9 +73,20 @@ permit_params :student_id, :college_id, :name, :hallticket_no, :document_link
 		end
 
 		column "Report" do |verification_request|
-				if verification_request.verification_status_id > 2
-		   		raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
-		   	end
+			show_link = false
+			if !verification_request.college.report_datum.nil? 
+				if !verification_request.college.report_datum.header_file_name.nil? && 
+					!verification_request.college.report_datum.signature_file_name.nil? 
+	   				show_link = true 
+	   			end
+	   		end
+	   		if verification_request.verification_status_id > 2
+			   	if show_link == true 
+			   		raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
+			   	else
+			   		"Report format unavailable"
+			   	end
+			end
 		end
 		         
 		actions

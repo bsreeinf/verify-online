@@ -31,6 +31,18 @@
         </div>
       <% end %>
 
+      <div id="instructions-box" class="jumbotron align-center row mb-40" style="margin: -60px 0 0 0;">
+        <div style="max-width: 800px; margin: 0 auto;" class="align-center">
+          <h3 class="alt-features-title font-alt">IMPORTANT</h3>
+          <div class="alt-features-descr align-left">1. Add letter head and digital signature to enable users to download reports.</div>
+          <div class="alt-features-descr align-left">1. Letter head dimensions should be approximately 1000px x 200px and in JPG/PNG format only.</div>
+          <div class="alt-features-descr align-left">1. Digital signature dimensions should be approximately 200px x 100px and in JPG/PNG format only.</div>
+          <div class="alt-features-descr align-left">2. Using '_REQUEST_DATE_' in 'Letter Title' field will be replaced with the verification request date.</div>
+          <div class="alt-features-descr align-left">3. Using '_USER_TO_ADDRESS_' in 'To Address' field will be replaced with the user's address that was provided during registration.</div>
+          <div class="alt-features-descr align-left">4. Using '_STATUS_' in 'Body' field will be replaced with the user's verification status (Eg: Insuff, Genuine etc.).</div>
+        </div>
+      </div>
+
       <div class="clearfix align-centre">  
       <p id="notice"><%= notice %></p> 
         <div style="padding: 40px; background-color: white; border-radius: 5px; box-shadow: 1px 1px 6px;">
@@ -49,7 +61,7 @@
             <div class="change_image_button" id="cib1">
               Click to change
             </div>
-            <img id="header_preview" src="<%= @report_datum.header.url %>" style="width: 100%; "/>
+            <img id="header_preview" src="<%= @report_datum.header.url %>" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
           </div>
           <br>
 
@@ -94,7 +106,7 @@
           <div class="change_image_button" id="cib2">
               Click to change
             </div>
-            <img id="signature_preview" src="<%= @report_datum.signature.url %>"/>
+            <img id="signature_preview" src="<%= @report_datum.signature.url %>" alt="DIGITAL SIGNATURE"/>
 
           </div>
           <div class="row">
