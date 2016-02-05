@@ -86,15 +86,15 @@ i = 0
 	amount = rand(500..2000)
 	college = College.create!(name: name, email: email, phone: phone, address: address,verification_amount: amount)
 
-	ReportDatum.create!(
-		college_id: college.id, 
-		from_address: FFaker::Address.street_address, 
-		to_address: "_USER_TO_ADDRESS_", 
-		letter_title: FFaker::Lorem.sentence, 
-		subject: FFaker::Lorem.sentence, 
-		body: "#{FFaker::Lorem.paragraph} _STATUS_ #{FFaker::Lorem.paragraph}",
-		designation: FFaker::Job.title
-	)
+	# ReportDatum.create!(
+	# 	college_id: college.id, 
+	# 	from_address: FFaker::Address.street_address, 
+	# 	to_address: "_USER_TO_ADDRESS_", 
+	# 	letter_title: FFaker::Lorem.sentence, 
+	# 	subject: FFaker::Lorem.sentence, 
+	# 	body: "#{FFaker::Lorem.paragraph} _STATUS_ #{FFaker::Lorem.paragraph}",
+	# 	designation: FFaker::Job.title
+	# )
 end
 
 30.times do |n|

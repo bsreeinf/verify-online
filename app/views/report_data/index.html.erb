@@ -6,7 +6,7 @@
           <div class="home-text" style="    padding: 100px 0px 45px 0px;">
               
               <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                Report - <%=current_user.college.name%>
+                Report - <%=@college.name%>
               </h1>                                      
           </div>
       </div>
@@ -63,7 +63,7 @@
               Click to change
             </div>
             <%if !@report_datum.nil?
-              if @report_datum.header_file_name.nil? %>
+              if !@report_datum.header_file_name.nil? %>
                 <img id="header_preview" src="<%= @report_datum.header.url %>" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
               <%else%>
                 <img id="header_preview" src="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
@@ -115,7 +115,7 @@
               Click to change
             </div>
             <%if !@report_datum.nil?
-              if @report_datum.header_file_name.nil? %>
+              if !@report_datum.header_file_name.nil? %>
                 <img id="signature_preview" src="<%= @report_datum.signature.url %>" alt="DIGITAL SIGNATURE"/>
               <%else%>
                 <img id="signature_preview" src="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png" alt="DIGITAL SIGNATURE"/>

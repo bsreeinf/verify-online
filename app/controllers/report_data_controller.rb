@@ -39,6 +39,9 @@ class ReportDataController < InheritedResources::Base
       @designation = @report_datum.designation
     end
 
+    @college = College.select(:name).where(:id => @col_id).first
+
+
     respond_to do |format|
       format.html
       format.json {render json: @report_datum}
@@ -64,8 +67,13 @@ class ReportDataController < InheritedResources::Base
 
   	# Use callbacks to share common setup or constraints between actions.
     def set_report_datum
-      @report_datum = ReportDatum.find_or_create_by(id: current_user.college.id)
-      @report_datum.college_id = current_user.college.id
+      if !params[:college_id].nil?
+        @col_id = params[:college_id]
+      else
+        @col_id = current_user.college.id
+      end
+      @report_datum = ReportDatum.find_or_create_by(id: @col_id)
+      @report_datum.college_id = @col_id
     end
 
     def report_datum_params
