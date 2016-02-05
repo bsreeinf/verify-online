@@ -35,11 +35,12 @@
         <div style="max-width: 800px; margin: 0 auto;" class="align-center">
           <h3 class="alt-features-title font-alt">IMPORTANT</h3>
           <div class="alt-features-descr align-left">1. Add letter head and digital signature to enable users to download reports.</div>
-          <div class="alt-features-descr align-left">1. Letter head dimensions should be approximately 1000px x 200px and in JPG/PNG format only.</div>
-          <div class="alt-features-descr align-left">1. Digital signature dimensions should be approximately 200px x 100px and in JPG/PNG format only.</div>
-          <div class="alt-features-descr align-left">2. Using '_REQUEST_DATE_' in 'Letter Title' field will be replaced with the verification request date.</div>
-          <div class="alt-features-descr align-left">3. Using '_USER_TO_ADDRESS_' in 'To Address' field will be replaced with the user's address that was provided during registration.</div>
-          <div class="alt-features-descr align-left">4. Using '_STATUS_' in 'Body' field will be replaced with the user's verification status (Eg: Insuff, Genuine etc.).</div>
+          <div class="alt-features-descr align-left">2. Letter head dimensions should be approximately 1000px x 200px and in JPG/PNG format only.</div>
+          <div class="alt-features-descr align-left">3. Digital signature dimensions should be approximately 200px x 100px and in JPG/PNG format only.</div>
+          <div class="alt-features-descr align-left">4. Using '_REQUEST_DATE_' in 'Letter Title' field will be replaced with the verification request date.</div>
+          <div class="alt-features-descr align-left">5. Using '_USER_TO_ADDRESS_' in 'To Address' field will be replaced with the user's address that was provided during registration.</div>
+          <div class="alt-features-descr align-left">6. Using '_STATUS_' in 'Body' field will be replaced with the user's verification status (Eg: Insuff, Genuine etc.).</div>
+          <div class="alt-features-descr align-left">7. Users will not be able to download reports until a legitemate report header and digital signature have been uploaded.</div>
         </div>
       </div>
 
@@ -61,14 +62,21 @@
             <div class="change_image_button" id="cib1">
               Click to change
             </div>
-            <img id="header_preview" src="<%= @report_datum.header.url %>" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
+            <%if !@report_datum.nil?
+              if @report_datum.header_file_name.nil? %>
+                <img id="header_preview" src="<%= @report_datum.header.url %>" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
+              <%else%>
+                <img id="header_preview" src="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png" alt="COLLEGE LETTER HEAD" style="width: 100%; "/>
+              <%end
+            end%>
+            
           </div>
           <br>
 
           <div class="row" title="From address">
             <div class="col-md-6" style="padding-left: 0;">
               <div class="form-group">
-                  <%= f.text_area :from_address , :class => "input-md round form-control", :placeholder =>"From Address", :rows => "4", :value => @report_datum.from_address, :style => "width: 100%; text-transform: none !important; min-height: 120px;" %>
+                  <%= f.text_area :from_address , :class => "input-md round form-control", :placeholder =>"From Address", :rows => "4", :value => @from_address, :style => "width: 100%; text-transform: none !important; min-height: 120px;" %>
               </div> 
             </div>
             <div class="col-md-6 align-right" title="Letter date will be auto-filled when report is generated">
@@ -77,27 +85,27 @@
           </div>
           <div class="row">
             <div class="form-group" title="Letter title">
-                <%= f.text_field :letter_title , :class => "input-md round form-control",:placeholder =>"Letter Title", :type => "text", :required => true, :value => @report_datum.letter_title, :style => "text-transform: none !important;" %>
+                <%= f.text_field :letter_title , :class => "input-md round form-control",:placeholder =>"Letter Title", :type => "text", :required => true, :value => @letter_title, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <div class="row">
 
             <div class="form-group" title="To address">
-                <%= f.text_area :to_address , :class => "input-md round form-control", :placeholder =>"To Address", :rows => "4", :value => @report_datum.to_address, :style => "width: 50%; text-transform: none !important; min-height: 120px;" %>
+                <%= f.text_area :to_address , :class => "input-md round form-control", :placeholder =>"To Address", :rows => "4", :value => @to_address, :style => "width: 50%; text-transform: none !important; min-height: 120px;" %>
             </div> 
           </div>
           <br/><br/>Sir/Madam,<br/><br/>
           <div class="row">
 
             <div class="form-group" title="Subject">
-                <%= f.text_field :subject , :class => "input-md round form-control",:placeholder =>"Subject", :type => "text", :required => true, :value => @report_datum.subject, :style => "text-transform: none !important;" %>
+                <%= f.text_field :subject , :class => "input-md round form-control",:placeholder =>"Subject", :type => "text", :required => true, :value => @subject, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <br/>
           <div class="row">
 
             <div class="form-group" title="Body">
-                <%= f.text_area :body , :class => "input-md round form-control",:placeholder =>"Body", :type => "text", :rows => "15", :value => @report_datum.body, :style => "text-transform: none !important;" %>
+                <%= f.text_area :body , :class => "input-md round form-control",:placeholder =>"Body", :type => "text", :rows => "15", :value => @body, :style => "text-transform: none !important;" %>
             </div> 
           </div>
           <br><br><br>Yours Faithfully,
@@ -106,13 +114,20 @@
           <div class="change_image_button" id="cib2">
               Click to change
             </div>
-            <img id="signature_preview" src="<%= @report_datum.signature.url %>" alt="DIGITAL SIGNATURE"/>
+            <%if !@report_datum.nil?
+              if @report_datum.header_file_name.nil? %>
+                <img id="signature_preview" src="<%= @report_datum.signature.url %>" alt="DIGITAL SIGNATURE"/>
+              <%else%>
+                <img id="signature_preview" src="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png" alt="DIGITAL SIGNATURE"/>
+              <%end
+            end%>
+
 
           </div>
           <div class="row">
 
             <div class="form-group" title="Designation">
-                <%= f.text_area :designation, :class => "input-md round form-control",:placeholder =>"Designation", :type => "text", :rows => "3", :value => @report_datum.designation, :style => "width: 50%; text-transform: none !important; min-height: 120px;" %>
+                <%= f.text_area :designation, :class => "input-md round form-control",:placeholder =>"Designation", :type => "text", :rows => "3", :value => @designation, :style => "width: 50%; text-transform: none !important; min-height: 120px;" %>
             </div> 
           </div>
 
