@@ -40,6 +40,10 @@ end
         redirect_to login_url
       end
     end
+
+    def has_access
+      logged_in? || admin_user_signed_in?
+    end
     
   
 end

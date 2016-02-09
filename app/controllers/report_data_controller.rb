@@ -1,6 +1,6 @@
 class ReportDataController < InheritedResources::Base
-  before_action :logged_in_user
-  before_action :set_report_datum, only: [:index, :update]
+  before_action :has_access
+  before_action :set_report_datum, only: [:index]
 
   def index
     if @report_datum.from_address.nil?
@@ -51,10 +51,11 @@ class ReportDataController < InheritedResources::Base
   # PATCH/PUT /report_data/1
   # PATCH/PUT /report_data/1.json
   def update
+    @report_datum = ReportDatum.find_or_create_by(college_id: report_datum_params["college_id"])
     respond_to do |format|
       if @report_datum.update(report_datum_params)
         @report_datum.header.url
-        format.html { redirect_to report_data_path}
+        format.html { redirect_to report_data_path(college_id: report_datum_params["college_id"])}
         format.json { render :show, status: :ok, location: @report_datum }
       else
         format.html { render :edit }
@@ -72,7 +73,7 @@ class ReportDataController < InheritedResources::Base
       else
         @col_id = current_user.college.id
       end
-      @report_datum = ReportDatum.find_or_create_by(id: @col_id)
+      @report_datum = ReportDatum.find_or_create_by(college_id: @col_id)
       @report_datum.college_id = @col_id
     end
 

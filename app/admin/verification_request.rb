@@ -80,7 +80,7 @@ permit_params :student_id, :college_id, :name, :hallticket_no, :document_link
 	   				show_link = true 
 	   			end
 	   		end
-	   		if verification_request.verification_status_id > 2
+	   		if verification_request.verification_status_id >= 2
 			   	if show_link == true 
 			   		raw "<a href='/final_report_user.pdf?verification_id=#{verification_request.id}' target='blank'>download</a>"
 			   	else

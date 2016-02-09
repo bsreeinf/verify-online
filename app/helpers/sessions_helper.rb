@@ -41,7 +41,6 @@ module SessionsHelper
     current_user.college.present?
   end
 
-
   # Forgets a persistent session.
   def forget(user)
     user.forget
