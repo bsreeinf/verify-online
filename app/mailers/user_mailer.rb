@@ -7,7 +7,9 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail from: "support@veryfyonline.in", to: user.email, subject: "Account activation"
+    address = Mail::Address.new "support@veryfyonline.in"
+    address.display_name = "VerifyOnline.in Support"
+    mail from: address.format, to: user.email, subject: "Account activation"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,6 +19,8 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail from: "support@veryfyonline.in", to: user.email, subject: "Password reset"
+    address = Mail::Address.new "support@veryfyonline.in"
+    address.display_name = "VerifyOnline.in Support"
+    mail from: address.format, to: user.email, subject: "Password reset"
   end
 end
