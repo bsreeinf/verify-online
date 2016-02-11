@@ -53,11 +53,14 @@ class CollegeVerificationController < ApplicationController
     @client_ip = request.remote_ip
     respond_to do |format|
       format.pdf do
-        html = render_to_string(template: "report_data/report.html.erb") 
-        pdf = WickedPdf.new.pdf_from_string(html) 
+        pdf = WickedPdf.new.pdf_from_string(
+          render_to_string(template: "report_data/report.html.erb"),
+          :footer => {right: "powered by www.verifyonline.in"}
+        ) 
         send_data(pdf, 
           :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
-          :disposition => 'attachment') 
+          :disposition => 'attachment'
+        )
 
         # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
         #         template: "college_verification/report.html.erb"

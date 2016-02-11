@@ -227,7 +227,6 @@ $(document).on('page:change', function(event) {
       data: JSON.parse(JSON.stringify(data_to_send)),
       context: document.body
       }).done(function(data){
-        // window.location.replace('/payment')
         verifications_ids_to_send.ids.push(data["id"]);
       }).always(function() {
         // Hide loader
@@ -241,6 +240,9 @@ $(document).on('page:change', function(event) {
       console.log("Verification IDs to be sent --> ");
       console.log(verifications_ids_to_send);
       $("#proceed_to_pay_loader").css("display","none");
+
+      // Redirect to status
+      window.location.replace("/status");
     }
   }
 
