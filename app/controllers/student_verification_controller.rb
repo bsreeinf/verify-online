@@ -45,7 +45,7 @@ class StudentVerificationController < ApplicationController
 	def report
 	    @disable_header_footer = true
 	    @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
-	    @college = current_user.college
+	    @college = College.find(@verification_stub.college_id)
 	    @user = User.find_by(id: @verification_stub.student_id)
 	    @client_ip = request.remote_ip
 	    respond_to do |format|
