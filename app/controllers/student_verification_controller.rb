@@ -45,27 +45,25 @@ class StudentVerificationController < ApplicationController
 	def report
 	    @disable_header_footer = true
 	    @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
-	    @college = College.find(@verification_stub.college_id)
+	    @college = current_user.college
 	    @user = User.find_by(id: @verification_stub.student_id)
 	    @client_ip = request.remote_ip
 	    respond_to do |format|
 	      format.pdf do
-	        html = render_to_string(template: "report_data/report.html.erb") 
 	        pdf = WickedPdf.new.pdf_from_string(
 	          render_to_string(template: "report_data/report.html.erb"),
-	          :footer => {right: "powered by www.verifyonline.in"}
+	          :footer => {right: "Powered by www.verifyonline.in"}
 	        ) 
-
 	        send_data(pdf, 
 	          :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
 	          :disposition => 'attachment'
-	        ) 
+	        )
 
 	        # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
 	        #         template: "college_verification/report.html.erb"
 	      end
 	    end
-	  end
+	end
 
 	def status
 		# store variables in session or flash between two actions
