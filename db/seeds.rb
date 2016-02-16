@@ -1,6 +1,6 @@
 cuser=User.create!(
-	name:  'sreenath',
-	email: "sreenath@gmail.com",
+	name:  'John',
+	email: "john@example.com",
 	phone: 8553047951,
 	address:   FFaker::Address.street_address,
 	city: 	FFaker::Address.city ,
@@ -14,10 +14,10 @@ cuser=User.create!(
 )
 College.create!(
 	user_id: cuser.id,
-	name: "East Point College of engineering", 
-	email: FFaker::Internet.safe_email,
+	name: "Siddartha Test College", 
+	email: siddartha_college@example.com,
 	phone: FFaker::PhoneNumber.short_phone_number,
-	address: "Aavaada  Halli",
+	address: "Hyderabad",
 	verification_amount: 800
 )
 # ReportDatum.create!(
