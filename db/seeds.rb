@@ -15,7 +15,7 @@ cuser=User.create!(
 College.create!(
 	user_id: cuser.id,
 	name: "Siddartha Test College", 
-	email: siddartha_college@example.com,
+	email: "siddartha_college@example.com",
 	phone: FFaker::PhoneNumber.short_phone_number,
 	address: "Hyderabad",
 	verification_amount: 800
