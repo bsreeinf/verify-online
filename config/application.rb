@@ -28,8 +28,8 @@ module VerifyOnline
         :domain         => 'mail.gmail.com',
         :port           => '587',
         :authentication => :plain,
-        :user_name      => ENV['INFO_EMAIL'],
-        :password       => ENV['INFO_EMAIL_PASSWORD'],        
+        :user_name      => ENV['MASTER_EMAIL'],
+        :password       => ENV['MASTER_EMAIL_PASSWORD'],        
         :enable_starttls_auto => true    
       }
 
