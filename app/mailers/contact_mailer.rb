@@ -6,8 +6,8 @@ class ContactMailer < ActionMailer::Base
 		
 		@message = message
 		mail(
-				to: "freelancetest29@gmail.com",
-				from: 'Verify online <freelancetest29@gmail.com>',
+				to: "support@verifyonline.in",
+				from: 'Verify online <support@verifyonline.in>',
 				subject: "New Contact"
 			)
 	end
