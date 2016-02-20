@@ -17,6 +17,13 @@ class LandingPageController < ApplicationController
     end
   end
 
+  def contact_create
+
+          ContactMailer.contact_created(params[:name],params[:email],params[:message]).deliver_now
+          redirect_to root_path, notice: 'Thanks for contacting us. We will get back to you shortly.' 
+
+  end
+
 
   private
 
