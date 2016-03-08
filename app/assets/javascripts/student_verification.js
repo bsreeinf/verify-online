@@ -162,8 +162,8 @@ $(document).on('page:change', function(event) {
         '<td>' + verification_stub['name'] + '</td>' + 
         '<td>' + verification_stub['hallticket_no'] + '</td>' + 
         '<td><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
-        '<td>Rs ' + verification_stub['verification_amount'] + '</td>' + 
-        '<td>Rs ' + Math.round(verification_stub['verification_amount'] * 0.145, 2) + '</td>' + 
+        // '<td>Rs ' + verification_stub['verification_amount'] + '</td>' + 
+        // '<td>Rs ' + Math.round(verification_stub['verification_amount'] * 0.145, 2) + '</td>' + 
         '<td>Rs ' + Math.round(verification_stub['verification_amount'] * 1.145, 2) + '</td>' + 
         '<td class="ver-delete"><a style="cursor:pointer;"><i class="fa fa-times dark"></i></a></td>' + 
         '<td class="ver-progress" style="display: none; width: 0px; background-color: rgba(49, 175, 28, 0.258824); position: absolute;"></td>' +

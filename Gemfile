@@ -75,6 +75,7 @@ gem 'country_select'
 gem 'paperclip'
 gem 'aws-sdk-v1'
 gem 'faraday'
+gem 'httparty'
 gem 'mvaayoo'
 
 group :development, :test do
