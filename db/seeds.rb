@@ -1,7 +1,7 @@
 cuser=User.create!(
 	name:  'John',
 	email: "john@example.com",
-	phone: 8553047951,
+	phone: 8050236035,
 	address:   FFaker::Address.street_address,
 	city: 	FFaker::Address.city ,
 	pincode: 	560006,

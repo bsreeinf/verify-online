@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get    'search_page'                  => 'landing_page#search_page'
   get    'verification_status'          => 'landing_page#verification_status'
+  post   'contact_create'               => 'landing_page#contact_create'
 
   get    'login'                        => 'sessions#new'
   get    'signup'                       => 'users#new'

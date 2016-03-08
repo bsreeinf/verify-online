@@ -21,7 +21,8 @@ class StudentVerificationController < ApplicationController
 
 	def add_verification
 		@verification_request = VerificationRequest.new(verification_params)
-		@verification_request.amount = College.where(:id => @verification_request.college_id).pluck(:verification_amount)[0]
+		@college_ver = College.where(:id => @verification_request.college_id).first
+		@verification_request.amount = @college_ver.verification_amount
 		@verification_request.verification_status_id = 1
 		@verification_request.service_tax = (@verification_request.amount * 0.145).round(2)
 
@@ -29,6 +30,7 @@ class StudentVerificationController < ApplicationController
 	      if @verification_request.save
 	        # format.html { redirect_to @verification_request, notice: 'Student was successfully created.' }
 	        render json: @verification_request.to_json
+	        Mvaayoo.send_message "New verification for #{@college_ver.name}. Name: #{@verification_request.name}. Hallticket: #{@verification_request.hallticket_no}", @college_ver.user.phone
 	        # format.json { render :show, status: :created, location: @verification_request }
 	      else
 	        # format.html { render :new }

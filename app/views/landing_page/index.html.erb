@@ -121,7 +121,7 @@
                     </div>
                     
                     <div class="col-md-8 col-sm-6 mb-sm-50 mb-xs-30" style="text-align: justify;">
-                        The role of education verification is mandatory and difficult for organizations to meet industry standards while hiring. Enquiring through phone, email and fax, couriering the documents, running to banks to raise drafts is a tedious process for employers. VerifyOnline is a brainchild of our founders who are in to HR Support Services and Background Verification services for several years, all to simplify the process of education verification. 
+                        The role of education verification is mandatory and difficult for organizations to meet industry standards while hiring. Enquiring through phone, email and fax, couriering the documents, running to banks to raise drafts is a tedious process for employers. Verify Online is a brainchild of our founders who are in to HR Support Services and Background Verification services for several years, all to simplify the process of education verification. 
                     </div>
                     
                     <!-- <div class="col-md-4 col-sm-6 mb-sm-50 mb-xs-30">
@@ -417,8 +417,7 @@
             <!-- Contact Form -->                            
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    
-                    <form class="form contact-form" id="contact_form">
+                    <%= form_tag(:contact_create, :method => "post", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
                         <div class="clearfix">
                             
                             <div class="cf-left-col">
@@ -461,18 +460,13 @@
                                 
                                 <!-- Send Button -->
                                 <div class="align-right pt-10">
-                                    <button class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
+                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
                                 </div>
                                 
                             </div>
                             
                         </div>
-                        
-                        
-                        
-                        <div id="result"></div>
-                    </form>
-                    
+                    <% end %>                    
                 </div>
             </div>
             <!-- End Contact Form -->
