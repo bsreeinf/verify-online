@@ -5,6 +5,7 @@ class StudentVerificationController < ApplicationController
 	before_action :logged_in_user, only: [:apply, :status, :history]
 	before_action :set_s3_direct_post, only: [:apply]
 	require 'httparty'
+	
 	def apply
         if request.post?
         	puts "post request"

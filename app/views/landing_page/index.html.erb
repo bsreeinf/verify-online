@@ -10,7 +10,10 @@
     <!-- End Page Loader -->
 
     
-
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+            
     <!-- Home Section -->
     <section class="home-section bg-dark-alfa-50 parallax-2"  style='background-color: #174969; ' id="home">
         <div class="js-height-full">
