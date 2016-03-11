@@ -25,7 +25,7 @@ class StudentVerificationController < ApplicationController
 		@college_ver = College.where(:id => @verification_request.college_id).first
 		@verification_request.amount = @college_ver.verification_amount
 		@verification_request.verification_status_id = 1
-		@verification_request.service_tax = (@verification_request.amount * 0.145).round(2)
+		@verification_request.service_tax = (@verification_request.amount + 114.5).round(2)
 
 	    # respond_to do |format|
 	      if @verification_request.save
