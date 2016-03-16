@@ -46,10 +46,10 @@ College.create!(
 # 	activated:    true,
 # 	activated_at: Time.zone.now
 # 	)
-# VerificationStatus.create!(	description: "Pending"	)
-# VerificationStatus.create!(	description: "Insuff"	)
-# VerificationStatus.create!(	description: "Genuine"	)
-# VerificationStatus.create!(	description: "Fake")
+VerificationStatus.create!(	description: "Pending"	)
+VerificationStatus.create!(	description: "Insuff"	)
+VerificationStatus.create!(	description: "Genuine"	)
+VerificationStatus.create!(	description: "Fake")
 
 
 # 15.times do |n|
