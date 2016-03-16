@@ -25,7 +25,7 @@ class StudentVerificationController < ApplicationController
 		@college_ver = College.where(:id => @verification_request.college_id).first
 		@verification_request.amount = @college_ver.verification_amount
 		@verification_request.verification_status_id = 1
-		@verification_request.service_tax = (@verification_request.amount + 114.5).round(2)
+		@verification_request.service_tax = 114.50
 
 	    # respond_to do |format|
 	      if @verification_request.save
@@ -94,26 +94,39 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def proceed_to_pay
-		verification_ids = JSON.parse(params['verification_ids']).to_h
-		@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
-		    :body => { 
-		    	:title => 'Verify Online Payment', 
-                :description => 'Hi, ', 
-                :currency => 'INR', 
-                :base_price => '100', 
-                :redirect_url => "#{request.base_url}/payment_confirmation",
-                :webhook_url => "#{request.base_url}/instamojo_webhook"
-		    },
-		    :headers => { 
-		    	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
-				'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
-			} 
-		)
-		VerificationRequest.where("id" => verification_ids).update_all(payment_slug: @result.parsed_response["link"]["slug"])
-		# redirect_to @result.parsed_response["link"]["url"]
-		data = []
-		data.url = @result.parsed_response["link"]["url"]
-		render json: data.to_json
+		if(params.has_key?(:verification_ids))
+			verification_ids = params["verification_ids"].split(",")
+			@ver_data = VerificationRequest.all.where("id = ?", verification_ids[0]).first
+			puts "Ver DATA"
+			puts @ver_data
+			@user = User.where("id = ?", @ver_data.user_id).first
+			amount = 0
+			verification_ids.map do |e|
+	            ver = VerificationRequest.all.where("id = ?", e).first
+	            amount += ver.amount
+
+	        end
+			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
+			    :body => { 
+			    	:title => 'Verify Online Payment', 
+	                :description => "Hi, #{@user.name}", 
+	                :currency => 'INR', 
+	                :base_price => "0",#{amount}", 
+	                :redirect_url => "#{request.base_url}/payment_confirmation",
+	                :webhook_url => "#{request.base_url}/instamojo_webhook"
+	                # :webhook_url => "http://requestb.in/1ba20971"
+			    },
+			    :headers => { 
+			    	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
+					'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
+				} 
+			)
+			puts @result.inspect
+			VerificationRequest.where("id" => verification_ids).update_all(payment_slug: @result.parsed_response["link"]["slug"])
+			# redirect_to @result.parsed_response["link"]["url"]
+			data = JSON.parse("{\"url\":\"#{@result.parsed_response["link"]["url"]}\"}")
+			render json: data
+		end
 	end
 
 	def payment_confirmation 

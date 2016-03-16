@@ -4,7 +4,7 @@ $(document).on('page:change', function(event) {
   var verification_amount = 0;
   var verification_amount_total = 0;
   var lookup;
-  var verifications_ids_to_send = {};
+   verifications_ids_to_send = {};
   verifications_ids_to_send.ids = [];
   
   var dataToSend = {};
@@ -229,34 +229,37 @@ $(document).on('page:change', function(event) {
       context: document.body
       }).done(function(data){
         verifications_ids_to_send.ids.push(data["id"]);
+
+        if(table_data.length == numFilesUploaded){
+          console.log("All data collected until now. Use this to create form and execute a submit --> ");
+          console.log(table_data);
+
+          console.log("Verification IDs to be sent --> ");
+          console.log(verifications_ids_to_send);
+
+          ids_to_send = {};
+          ids_to_send["verification_ids"] = verifications_ids_to_send.ids.toString();
+
+          $.ajax({
+            url: "/proceed_to_pay",
+            type: 'POST',
+            data: JSON.parse(JSON.stringify(ids_to_send)),
+            context: document.body
+            }).done(function(data){
+              $("#proceed_to_pay_loader").css("display","none");
+              // Redirect to status
+              window.location.replace(data["url"]);
+            }).always(function() {
+              // Hide loader
+            }
+          );
+        }
+        
       }).always(function() {
         // Hide loader
       }
     );
 
-    if(table_data.length == numFilesUploaded){
-      console.log("All data collected until now. Use this to create form and execute a submit --> ");
-      console.log(table_data);
-
-      console.log("Verification IDs to be sent --> ");
-      console.log(verifications_ids_to_send);
-
-      verifications_ids = {};
-      verifications_ids.verifications_ids = verifications_ids_to_send;
-      $.ajax({
-        url: "/proceed_to_pay",
-        type: 'POST',
-        data: JSON.parse(JSON.stringify(verifications_ids)),
-        context: document.body
-        }).done(function(data){
-          $("#proceed_to_pay_loader").css("display","none");
-          // Redirect to status
-          window.location.replace(data["url"]);
-        }).always(function() {
-          // Hide loader
-        }
-      );
-    }
   }
 
   $.fn.fileUploadToS3 = function(){
