@@ -212,7 +212,7 @@ $(document).on('page:change', function(event) {
     // Construct row data to be sent
     var data_to_send = {};
     var verification_request = {};
-    verification_request["student_id"] = $("#rails-data").data("student-id");
+    verification_request["user_id"] = $("#rails-data").data("user-id");
     verification_request["college_id"] = lookup[temp_id].college_id;
     verification_request["name"] = lookup[temp_id]["name"];
     verification_request["hallticket_no"] = lookup[temp_id].hallticket_no;
@@ -240,10 +240,22 @@ $(document).on('page:change', function(event) {
 
       console.log("Verification IDs to be sent --> ");
       console.log(verifications_ids_to_send);
-      $("#proceed_to_pay_loader").css("display","none");
 
-      // Redirect to status
-      window.location.replace("/status");
+      verifications_ids = {};
+      verifications_ids.verifications_ids = verifications_ids_to_send;
+      $.ajax({
+        url: "/proceed_to_pay",
+        type: 'POST',
+        data: JSON.parse(JSON.stringify(verifications_ids)),
+        context: document.body
+        }).done(function(data){
+          $("#proceed_to_pay_loader").css("display","none");
+          // Redirect to status
+          window.location.replace(data["url"]);
+        }).always(function() {
+          // Hide loader
+        }
+      );
     }
   }
 

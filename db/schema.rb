@@ -70,13 +70,18 @@ ActiveRecord::Schema.define(version: 20151223054617) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "verification_request_id"
-    t.integer  "payment_status_id"
-    t.string   "transaction_code"
-    t.float    "amount"
-    t.string   "mode_of_payment"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "transaction_id"
+    t.string   "buyer"
+    t.string   "buyer_name"
+    t.string   "amount"
+    t.string   "fees"
+    t.string   "mac"
+    t.string   "offer_title"
+    t.string   "buyer_phone"
+    t.string   "currency"
+    t.string   "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "report_data", force: :cascade do |t|
@@ -101,12 +106,6 @@ ActiveRecord::Schema.define(version: 20151223054617) do
 
   add_index "report_data", ["college_id"], name: "index_report_data_on_college_id", using: :btree
 
-  create_table "students", force: :cascade do |t|
-    t.string   "hallticket_no"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -128,8 +127,9 @@ ActiveRecord::Schema.define(version: 20151223054617) do
   end
 
   create_table "verification_requests", force: :cascade do |t|
-    t.integer  "student_id"
+    t.integer  "user_id"
     t.integer  "college_id"
+    t.integer  "payment_id"
     t.integer  "verification_status_id", default: 1
     t.string   "verification_token"
     t.string   "name"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20151223054617) do
     t.string   "course_duration"
     t.string   "remarks"
     t.string   "class_awarded"
+    t.string   "payment_slug"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

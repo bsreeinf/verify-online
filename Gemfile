@@ -74,9 +74,10 @@ gem 'wkhtmltopdf-binary'
 gem 'country_select'
 gem 'paperclip'
 gem 'aws-sdk-v1'
-gem 'faraday'
+gem 'faraday', '~> 0.8.8'
 gem 'httparty'
 gem 'mvaayoo'
+gem 'Instamojo-rb', '~> 1.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

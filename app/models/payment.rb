@@ -1,3 +1,3 @@
 class Payment < ActiveRecord::Base
-	belongs_to :verification_request
+	has_many :verification_requests
 end

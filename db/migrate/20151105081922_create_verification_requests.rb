@@ -1,8 +1,9 @@
 class CreateVerificationRequests < ActiveRecord::Migration
   def change
     create_table :verification_requests do |t|
-      t.references :student
+      t.references :user
       t.references :college
+      t.references :payment
       t.references :verification_status, default: 1
       
       t.string :verification_token
@@ -16,7 +17,9 @@ class CreateVerificationRequests < ActiveRecord::Migration
       t.string :type_of_studies    
       t.string :course_duration		
       t.string :remarks				
-      t.string :class_awarded		
+      t.string :class_awarded
+      		
+      t.string :payment_slug
       
       t.timestamps null: false
     end

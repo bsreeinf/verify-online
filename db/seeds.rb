@@ -46,10 +46,10 @@ College.create!(
 # 	activated:    true,
 # 	activated_at: Time.zone.now
 # 	)
-VerificationStatus.create!(	description: "Pending"	)
-VerificationStatus.create!(	description: "Insuff"	)
-VerificationStatus.create!(	description: "Genuine"	)
-VerificationStatus.create!(	description: "Fake")
+# VerificationStatus.create!(	description: "Pending"	)
+# VerificationStatus.create!(	description: "Insuff"	)
+# VerificationStatus.create!(	description: "Genuine"	)
+# VerificationStatus.create!(	description: "Fake")
 
 
 # 15.times do |n|
@@ -104,7 +104,7 @@ VerificationStatus.create!(	description: "Fake")
 
 
 # 30.times do |n|
-# 	student_id = 2
+# 	user_id = 2
 # 	college_id = 1
 # 	verification_status_id = 1
 # 	name = name = FFaker::Name.name

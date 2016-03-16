@@ -1,10 +1,10 @@
 class VerificationRequest < ActiveRecord::Base
 	include Tokenable
 	
-	# belongs_to :student
+	belongs_to :user
 	belongs_to :college
 	belongs_to :verification_status
-	has_one :payment
+	belongs_to :payment
 
 	def self.search(search)
 	  if search

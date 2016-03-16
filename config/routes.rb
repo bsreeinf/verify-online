@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   get    'status'                       => 'student_verification#status'
 
   get    'history'                      => 'student_verification#history'
-  post   'payment'                      => 'student_verification#send_to_ccavenue'
-  get    'payment'                      => 'student_verification#send_to_ccavenue'
-  post   'update_db'                    => 'student_verification#update_db'
+  get   'proceed_to_pay'               => 'student_verification#proceed_to_pay'
+  get    'payment_confirmation'         => 'student_verification#payment_confirmation'
+  post   'instamojo_webhook'            => 'student_verification#instamojo_webhook'
   post   'add_verification'             => 'student_verification#add_verification'
 
 
