@@ -111,7 +111,7 @@ class StudentVerificationController < ApplicationController
 			    	:title => 'Verify Online Payment', 
 	                :description => "Hi, #{@user.name}", 
 	                :currency => 'INR', 
-	                :base_price => "0",#{amount}", 
+	                :base_price => "#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
 	                # :webhook_url => "http://requestb.in/1ba20971"
@@ -134,9 +134,9 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def instamojo_webhook
-		puts "---- Webhook params start ----"
-	    puts params.inpect
-	    puts "---- Webhook params end ----"
+		# puts "---- Webhook params start ----"
+	    # puts params.inpect
+	    # puts "---- Webhook params end ----"
 
 	    @payment = Payment.new(instamojo_webhook_params)
 		@payment.save
