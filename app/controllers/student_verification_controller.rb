@@ -113,10 +113,10 @@ class StudentVerificationController < ApplicationController
 			    	:title => 'Verify Online Payment', 
 	                :description => "Hi, #{@user.name}", 
 	                :currency => 'INR', 
-	                :base_price => '100', #"#{amount}", 
+	                :base_price => '0', #"#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
-	                # :webhook_url => "http://requestb.in/1ba20971"
+	                # :webhook_url => "http://requestb.in/16bls4y1"
 			    },
 			    :headers => { 
 			    	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
@@ -139,8 +139,9 @@ class StudentVerificationController < ApplicationController
 		# puts "---- Webhook params start ----"
 	    # puts params.inpect
 	    # puts "---- Webhook params end ----"
-
-	    @payment = Payment.new(instamojo_webhook_params)
+	    params_data = instamojo_webhook_params
+	    params_data[:transaction_id] = params_data.delete :payment_id
+	    @payment = Payment.new(params_data)
 		@payment.save
 		VerificationRequest.where("slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
 	end
@@ -153,7 +154,7 @@ class StudentVerificationController < ApplicationController
 
 	    def instamojo_webhook_params
 	    	# params.permit(:variants, :buyer, :custom_fields, :buyer_name, :amount, :mac, :offer_title, :fees, :offer_slug, :buyer_phone, :payment_id, :quantity, :currency, :status, :unit_price)
-	    	params.permit(:transaction_id, :buyer, :buyer_name, :amount, :mac, :offer_title, :fees, :buyer_phone, :currency, :status)
+	    	params.permit(:payment_id, :buyer, :buyer_name, :amount, :mac, :offer_title, :fees, :buyer_phone, :currency, :status)
 	    end
 
 		def set_s3_direct_post
