@@ -143,7 +143,7 @@ class StudentVerificationController < ApplicationController
 	    params_data[:transaction_id] = params_data.delete :payment_id
 	    @payment = Payment.new(params_data)
 		@payment.save
-		VerificationRequest.where("slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
+		VerificationRequest.where("payment_slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
 	end
 
 	private
