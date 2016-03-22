@@ -112,7 +112,8 @@ class StudentVerificationController < ApplicationController
 			    :body => { 
 			    	:title => 'Verify Online Payment', 
 	                :description => "Hi, #{@user.name}", 
-	                :currency => 'INR', 
+	                :currency => 'INR',
+            		:quantity => 1,
 	                :base_price => '0', #"#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
