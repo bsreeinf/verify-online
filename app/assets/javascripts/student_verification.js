@@ -165,16 +165,16 @@ $(document).on('page:change', function(event) {
         '<td><a href="' + verification_stub['file_link'] + '" target="blank"><i class="fa fa-download dark"></i></a></td>' + 
         '<td>Rs ' + verification_stub['verification_amount'] + '</td>' + 
         '<td>Rs ' + tax + '</td>' + 
-        '<td>Rs ' + Math.round(verification_stub['verification_amount'] + tax, 2) + '</td>' + 
+        '<td>Rs ' + (verification_stub['verification_amount'] + tax) + '</td>' + 
         '<td class="ver-delete"><a style="cursor:pointer;"><i class="fa fa-times dark"></i></a></td>' + 
         '<td class="ver-progress" style="display: none; width: 0px; background-color: rgba(49, 175, 28, 0.258824); position: absolute;"></td>' +
         '</tr>');
 
-        verification_amount_total += verification_stub['verification_amount'];
+        verification_amount_total += (verification_stub['verification_amount'] + tax);
     };
     
 
-    $('#verification_amount_total_lable').text(Math.round(verification_amount_total * 1.145) + "");
+    $('#verification_amount_total_lable').text(verification_amount_total + "");
 
 
     $('.ver-delete').on('click', function(){
@@ -254,7 +254,7 @@ $(document).on('page:change', function(event) {
             }
           );
         }
-        
+
       }).always(function() {
         // Hide loader
       }

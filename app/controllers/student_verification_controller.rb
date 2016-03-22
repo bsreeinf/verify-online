@@ -5,7 +5,7 @@ class StudentVerificationController < ApplicationController
 	before_action :logged_in_user, only: [:apply, :status, :history]
 	before_action :set_s3_direct_post, only: [:apply]
 	skip_before_filter :verify_authenticity_token, :except => [:instamojo_webhook]
-	
+
 	require 'httparty'
 	
 	def apply
@@ -105,7 +105,7 @@ class StudentVerificationController < ApplicationController
 			amount = 0
 			verification_ids.map do |e|
 	            ver = VerificationRequest.all.where("id = ?", e).first
-	            amount += ver.amount
+	            amount += ver.amount + 114.5
 
 	        end
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
@@ -113,7 +113,7 @@ class StudentVerificationController < ApplicationController
 			    	:title => 'Verify Online Payment', 
 	                :description => "Hi, #{@user.name}", 
 	                :currency => 'INR', 
-	                :base_price => "#{amount}", 
+	                :base_price => '100', #"#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
 	                # :webhook_url => "http://requestb.in/1ba20971"
