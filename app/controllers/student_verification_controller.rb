@@ -4,6 +4,8 @@ class StudentVerificationController < ApplicationController
 
 	before_action :logged_in_user, only: [:apply, :status, :history]
 	before_action :set_s3_direct_post, only: [:apply]
+	skip_before_filter :verify_authenticity_token, :except => [:instamojo_webhook]
+	
 	require 'httparty'
 	
 	def apply
