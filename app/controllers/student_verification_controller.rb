@@ -145,6 +145,14 @@ class StudentVerificationController < ApplicationController
 	    @payment = Payment.new(params_data)
 		@payment.save
 		VerificationRequest.where("payment_slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
+
+		@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/:#{params["offer_slug"]}", 
+		    :headers => { 
+		    	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
+				'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
+			} 
+		)
+		puts @result.inspect
 	end
 
 	private

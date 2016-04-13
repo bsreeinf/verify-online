@@ -5,6 +5,7 @@ class LandingPageController < ApplicationController
   def index
   
   end
+  
   def search_page
   	
   end

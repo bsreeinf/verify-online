@@ -42,8 +42,7 @@
                         <table class="table table-striped ">
                             <thead style="background: dimgrey; color: white;">
                               <tr>
-                                <th>Verification Request Id</th>
-                                <th>Transaction Code</th>
+                                <th>Payment ID</th>
                                 <th>Amount</th>
                                 <th>Mode of Payment</th>
                                 <th>Payment Status</th>
@@ -53,8 +52,7 @@
                             <tbody>
                             <% @payments.each do |payment| %>
                               <tr>
-                                <td>payment.verification_request_id</td>
-                                <td>payment.transaction_code</td>
+                                <td>payment.transaction_id</td>
                                 <td>payment.amount</td>
                                 <td>payment.mode_of_payment</td>
                                 <td>payment.created_at</td>
