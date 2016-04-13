@@ -1,10 +1,6 @@
 <style>
 	*{
-		/*font-size: 22px !important;*/
-	}
-	body, table, select, input {
-	    font-size: 22px !important;
-	    font-family: arial, tahoma, sans-serif !important;
+		font-size: 22px !important;
 	}
 	.bordered-table, .bordered-table th, .bordered-table td{
 		border: 1px solid black !important;
@@ -12,20 +8,16 @@
 		padding: 5px !important;
 	}
 </style>
-
-<table style="width: 100%;">
+<table style="width: 1000px;">
 	<tr>
-		<td align="right">
+		<td colspan="2" align="right">
 			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=@client_ip%><br>
 		</td>
 	</tr>
-</table>
-<table style="width: 1000px;">
 	<tr class="report_letter_head" >
-		<td style="width:100%; max-width: 100%; height: auto;"><img src="<%=@college.report_datum.header.url%>"/></td>
+		<td style="width:100%; max-width: 1000px; height: auto;" colspan="2"><img src="<%=@college.report_datum.header.medium.url%>"/></td>
 	</tr>
-</table>
-<table style="width: 1000px;">
+
 	<tr>
 		<td><br></td>
 	</tr>
