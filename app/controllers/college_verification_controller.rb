@@ -5,12 +5,21 @@ class CollegeVerificationController < ApplicationController
   def index
   	if params.has_key?(:search_tag)
       @college_verifications =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id <= ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
-          @college_id, 
-          2, 
-          "%#{params[:search_tag]}%",
-          "%#{params[:search_tag]}%",
-          "%#{params[:search_tag]}%"
+        " payment_id != null AND 
+          college_id = ? AND 
+          verification_status_id <= ? AND 
+          (
+            hallticket_no ILIKE ? OR 
+            name ILIKE ? OR verification_token ILIKE ?
+            )
+        ", 
+          
+        @college_id, 
+        2, 
+        "%#{params[:search_tag]}%",
+        "%#{params[:search_tag]}%",
+        "%#{params[:search_tag]}%"
+        
         ).order('created_at DESC').
         paginate(page: params[:page],:per_page => 10)
     else  
@@ -69,8 +78,17 @@ class CollegeVerificationController < ApplicationController
   end
 
   def payment
-    @college_verifications =  VerificationRequest.all.where("college_id = ?", @college_id)
-    @payments = Payment.all.where
+    @college_verifications =  VerificationRequest.select("payment_id").where("college_id = ?", @college_id)
+    if params.has_key?(:search_tag)
+      @payments = Payment.all.where(:id => @college_verifications).where(
+        "transaction_id = ?", 
+        "%#{params[:search_tag]}%",
+        ).order('created_at DESC')
+      .paginate(page: params[:page],:per_page => 10)
+    else  
+      @payments = Payment.all.where(:id => @college_verifications).order('created_at DESC')
+      .paginate(page: params[:page],:per_page => 10)
+    end
   end
 
   def update

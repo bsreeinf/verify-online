@@ -26,61 +26,54 @@
 
     <!-- Section -->
     <section class="small-section" id="multi-page">
-        <div class="container relative">            
-            <!--<h2 class="section-title font-alt mb-60 mb-sm-30">
-                Multi Page Demo
-            </h2> -->            
-            <div class="row multi-columns-row align-center">
-                <div class="jumbotron align-center">
-                    <p>No Payments have been made</p>
-                </div>
-               <!-- <% if @verifications.blank? %>    
-                    <div class="jumbotron align-center">
-                        <p>You have no documents submitted yet. Please <%= link_to "apply", apply_path%> for document verification  </p>
+        <div class="container relative">                     
+            <div class="row">
+                <%= form_tag(:payment_details, :method => "get", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
+                    <div class="clearfix">                                                  
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                <input type="text" name="search_tag" id="search_tag" class="input-md round form-control" placeholder="Search by Transaction ID">
+                            </div>
+                            <div class="col-md-2">
+                                <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                            </div> 
+                        </div>
                     </div>
-           
+                <% end %> 
                 
-                <%else%>
-                 
-                    <table class="table table-striped ">
-                        <thead>
-                          <tr>
-                            <th><%= sortable "name", "Name" %></th>
-                            <th><%= sortable "hallticket_no", "Hallticket Number" %></th>
-                            <th>Document Link</th>
-                            <th><%= sortable "amount", "Amount" %></th>
-                            <th>Service Tax</th>
-                            <th><%= sortable "course", "Course" %></th>
-                            <th><%= sortable "type_of_studies", "Type of Studies" %></th>
-                            <th><%= sortable "course_duration", "Course Duration" %></th>
-                            <th><%= sortable "remarks", "Remarks" %></th>
-                            <th><%= sortable "class_awarded", "Class Awarded" %></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <% @verifications.each do |verification| %>
-                          <tr>
-                            <td><%=verification.name%></td>
-                            <td><%=verification.hallticket_no%></td>
-                            <td><a href="<%=verification.document_link%> " target="blank"><i class="fa fa-download dark"></i></a>       </td>
-                            <td><%=verification.amount%></td>
-                            <td><%=verification.service_tax%></td>
-                            <td><%=verification.course%></td>
-                            <td><%=verification.type_of_studies%></td>
-                            <td><%=verification.course_duration%></td>
-                            <td><%=verification.remarks%></td>
-                            <td><%=verification.class_awarded%></td>
-                          </tr>
-                        <% end %>
-                        </tbody>
-                    </table>
-                    <%= will_paginate @verifications %>
+             
+                <% if @payments.blank? %>    
+                        <div class="jumbotron align-center">
+                            <p>You have no new payments to display.</p>
+                        </div>
+                    
+                    
+                    <%else%>
+                       
+                        <table class="table table-striped ">
+                            <thead style="background: dimgrey; color: white;">
+                              <tr>
+                                <th>Sl. no.</th>
+                                <th>Transaction ID</th>
+                                <th>Received on</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <% @payments.each_with_index do |payment, i| %>
+                              <tr>
+                                <td><%=i+1%></td>
+                                <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
+                                <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
+                              </tr>
+                              
+                            <% end %>
+                            </tbody>
+                        </table>
+                        <%= will_paginate @payments %>
 
-                <%end%>
-           
-                -->
-       
-            </div>            
+                    <%end%>
+                
+            </div>           
         </div>
     </section>
     <!-- End Section -->
