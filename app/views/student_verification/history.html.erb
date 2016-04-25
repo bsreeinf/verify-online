@@ -55,19 +55,18 @@
                             <tbody>
                             <% @payments.each_with_index do |payment, i| %>
                                 <%
-                                    verification_stub = VerificationRequest.find_by(payment_id: payment.id)
-                                    user = User.find_by(id: verification_stub.user_id)
-                                    college = College.find_by(id: verification_stub.college_id)
+                                    @verification_stub = VerificationRequest.find_by(payment_id: payment.id)
+                                    @college = College.find_by(id: @verification_stub.college_id)
                                 %>
                               <tr>
                                 <td><%=i+1%></td>
-                                <td style="text-transform: uppercase;"><%=verification_stub.verification_token%></td>
-                                <td><%=college.name%></td>
-                                <td><%=verification_stub.name%></td>
-                                <td style="text-transform: uppercase;"><%=verification_stub.hallticket_no%></td>
+                                <td style="text-transform: uppercase;"><%=@verification_stub.verification_token%></td>
+                                <td><%=@college.name%></td>
+                                <td><%=@verification_stub.name%></td>
+                                <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
-                                <td>Rs <%=(college.amount + 114.5).round%></td>                       
+                                <td>Rs <%=(@college.amount + 114.5).round%></td>                       
                                 
                               </tr>
                               
