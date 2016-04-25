@@ -88,11 +88,17 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def history
-		# @hello = flash[:var].first
-		# puts @hello
-		@payments = Payment.all.order('created_at DESC')
-		.paginate(page: params[:page],:per_page => 10)
-		
+		@college_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user._id)
+	    if params.has_key?(:search_tag)
+	      @payments = Payment.all.where(:id => @college_verifications).where(
+	        "transaction_id = ?", 
+	        "%#{params[:search_tag]}%",
+	        ).order('created_at DESC')
+	      .paginate(page: params[:page],:per_page => 10)
+	    else  
+	      @payments = Payment.all.where(:id => @college_verifications).order('created_at DESC')
+	      .paginate(page: params[:page],:per_page => 10)
+	    end
 	end
 
 	def proceed_to_pay

@@ -79,7 +79,7 @@
                                 <td style="text-transform: uppercase;"><%=verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
-                                <td>Rs <%=(college.amount + 114.5).round%></td>                       
+                                <td>Rs <%=college.amount%></td>                       
                                 
                               </tr>
                               
