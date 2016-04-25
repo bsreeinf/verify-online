@@ -88,7 +88,7 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def history
-		@college_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user._id)
+		@college_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user.id)
 	    if params.has_key?(:search_tag)
 	      @payments = Payment.all.where(:id => @college_verifications).where(
 	        "transaction_id = ?", 
