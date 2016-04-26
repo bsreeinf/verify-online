@@ -70,7 +70,7 @@ class StudentVerificationController < ApplicationController
 	def status
 		if params.has_key?(:search_tag)
 	      @verifications =  VerificationRequest.all.where(
-	        " payment_id != null AND user_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
+	        " payment_id NOT null AND user_id = ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
 	          current_user.id, 
 	          "%#{params[:search_tag]}%",
 	          "%#{params[:search_tag]}%",

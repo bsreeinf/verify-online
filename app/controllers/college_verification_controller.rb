@@ -5,7 +5,7 @@ class CollegeVerificationController < ApplicationController
   def index
   	if params.has_key?(:search_tag)
       @college_verifications =  VerificationRequest.all.where(
-        " payment_id != null AND 
+        " payment_id NOT null AND 
           college_id = ? AND 
           verification_status_id <= ? AND 
           (
@@ -37,7 +37,7 @@ class CollegeVerificationController < ApplicationController
   def completed
     if params.has_key?(:search_tag)
       @college_verifications_completed =  VerificationRequest.all.where(
-        " payment_id != null AND college_id = ? AND verification_status_id > ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
+        " payment_id NOT null AND college_id = ? AND verification_status_id > ? AND (hallticket_no ILIKE ? OR name ILIKE ? OR verification_token ILIKE ?)", 
           @college_id, 
           2, 
           "%#{params[:search_tag]}%",
@@ -47,7 +47,7 @@ class CollegeVerificationController < ApplicationController
       .paginate(page: params[:page],:per_page => 10)
     else  
       @college_verifications_completed =  VerificationRequest.all.where(
-        "college_id = ? AND verification_status_id > ?", 
+        " payment_id NOT null AND college_id = ? AND verification_status_id > ?", 
           @college_id, 
           2
         ).order('created_at DESC')
