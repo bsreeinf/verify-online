@@ -24,7 +24,7 @@ class CollegeVerificationController < ApplicationController
         paginate(page: params[:page],:per_page => 10)
     else  
   	  @college_verifications =  VerificationRequest.all.where(
-        " payment_id != null AND 
+        " payment_id NOT null AND 
           college_id = ? AND verification_status_id <= ?", 
           @college_id, 
           2
