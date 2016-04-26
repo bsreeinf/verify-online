@@ -82,7 +82,7 @@ class CollegeVerificationController < ApplicationController
     @college_verifications =  VerificationRequest.select("payment_id").where("college_id = ?", @college_id)
     if params.has_key?(:search_tag)
       @payments = Payment.all.where(:id => @college_verifications).where(
-        "transaction_id = ?", 
+        "transaction_id ILIKE ?", 
         "%#{params[:search_tag]}%",
         ).order('created_at DESC')
       .paginate(page: params[:page],:per_page => 10)
