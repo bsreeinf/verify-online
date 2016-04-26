@@ -120,7 +120,7 @@ class StudentVerificationController < ApplicationController
 	                :description => "Hi, #{@user.name}", 
 	                :currency => 'INR',
             		:quantity => 1,
-	                :base_price => '0', #"#{amount}", 
+	                :base_price => "#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
 	                # :webhook_url => "http://requestb.in/16bls4y1"
