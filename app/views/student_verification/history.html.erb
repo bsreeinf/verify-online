@@ -86,6 +86,7 @@
                                 <th>HT Number/ Reg. No.</th>
                                 <th>Transaction Date and Time</th>
                                 <th>Amount Paid</th>
+                                <th>Paid on</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -102,8 +103,8 @@
                                 <td><%=@verification_stub.name%></td>
                                 <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
-                                <td>Rs <%=(@college.verification_amount + 114.5).round%></td>                       
-                                
+                                <td>Rs <%=(@college.verification_amount + 114.5).round%></td>
+                                <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%>
                               </tr>
                               
                             <% end %>
