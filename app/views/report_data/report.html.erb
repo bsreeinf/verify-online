@@ -15,7 +15,7 @@
 		</td>
 	</tr>
 	<tr class="report_letter_head" >
-		<td style="width:100%; max-width: 1000px; height: auto;" colspan="2"><img src="<%=@college.report_datum.header.medium.url%>"/></td>
+		<td style="width:100%; max-width: 1000px; height: auto;" colspan="2"><img src="<%=@college.report_datum.header.url(:medium)%>"/></td>
 	</tr>
 
 	<tr>
@@ -149,7 +149,7 @@
 		<td><br></td>
 	</tr>
 	<tr class="report_letter_head">
-		<td><img src="<%=@college.report_datum.signature.medium.url%>"/></td>
+		<td><img src="<%=@college.report_datum.signature.url(:medium)%>"/></td>
 	</tr>
 	<tr>
 		<td><br></td>
