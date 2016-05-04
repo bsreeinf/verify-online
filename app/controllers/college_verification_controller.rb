@@ -80,15 +80,22 @@ class CollegeVerificationController < ApplicationController
 
   def payment
     @college_verifications =  VerificationRequest.select("payment_id").where("college_id = ?", @college_id)
+    @searched = false
     if params.has_key?(:search_tag)
       @payments = Payment.all.where(:id => @college_verifications).where(
-        "transaction_id ILIKE ?", 
-        "%#{params[:search_tag]}%",
+        "transaction_id = ?", 
+        "%#{params[:search_tag]}%"
         ).order('created_at DESC')
       .paginate(page: params[:page],:per_page => 10)
-    else  
-      @payments = Payment.all.where(:id => @college_verifications).order('created_at DESC')
+      @searched = true
+    elsif params.has_key?(:fromdate) && params.has_key?(:todate)
+      @payments = Payment.all.where(:id => @college_verifications).where(
+        "created_at BETWEEN ? AND ?", 
+        "%#{params[:fromdate]}%",
+        "%#{params[:todate]}%"
+        ).order('created_at DESC')
       .paginate(page: params[:page],:per_page => 10)
+      @searched = true
     end
   end
 

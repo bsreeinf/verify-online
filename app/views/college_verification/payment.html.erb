@@ -31,8 +31,25 @@
                 <%= form_tag(:payment_details, :method => "get", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
                     <div class="clearfix">                                                  
                         <div class="form-group row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <input type="text" name="search_tag" id="search_tag" class="input-md round form-control" placeholder="Search by Transaction ID">
+                            </div>
+                            <div class="col-md-2">
+                                <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                            </div> 
+                        </div>
+                    </div>
+                <% end %>
+                <hr>
+                <%= form_tag(:payment_details, :method => "get", :html => { :class => 'form contact-form', :id => 'contact_form'}) do %>
+                    <div class="clearfix">                                                  
+                        <div class="form-group row">
+                            <div class="col-md-2" style="font-size: 16px; color: #4C4A47;">Search between dates</div>
+                            <div class="col-md-2">
+                                <input type="date" name="fromdate" id="fromdate" class="input-md round form-control" placeholder="From">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="date" name="todate" id="todate" class="input-md round form-control" placeholder="From">
                             </div>
                             <div class="col-md-2">
                                 <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
@@ -41,26 +58,26 @@
                     </div>
                 <% end %> 
                 
-             
-                <% if @payments.blank? %>    
-                        <div class="jumbotron align-center">
-                            <p>You have no new payments to display.</p>
-                        </div>
-                    
-                    
+                <div class="mb-40 table-responsive " style="margin-top: 20px;">
+                    <% if @payments.blank? %>    
+                        <% if @searched == true %>    
+                            <div class="jumbotron align-center">
+                                <p>No payments match search criteria.</p>
+                            </div>
+                        <%end%>
+                        
                     <%else%>
                         
-
                         <table class="table table-striped ">
                             <thead style="background: dimgrey; color: white;">
                               <tr>
                                 <th>Sl. no.</th>
                                 <th>Verification ID</th>
+                                <th>Transaction ID</th>
                                 <th>College/ University Name</th>
                                 <th>Student Name</th>
                                 <th>HT Number/ Reg. No.</th>
                                 <th>Transaction Date and Time</th>
-                                <th>Transaction ID</th>
                                 <th>Amount Paid</th>
                               </tr>
                             </thead>
@@ -73,11 +90,11 @@
                               <tr>
                                 <td><%=i+1%></td>
                                 <td style="text-transform: uppercase;"><%=@verification_stub.verification_token%></td>
+                                <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
                                 <td><%=@college.name%></td>
                                 <td><%=@verification_stub.name%></td>
                                 <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
-                                <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
                                 <td>Rs <%=@college.verification_amount%></td>                       
                                 
                               </tr>
@@ -88,7 +105,7 @@
                         <%= will_paginate @payments %>
 
                     <%end%>
-                
+                </div>
             </div>           
         </div>
     </section>
