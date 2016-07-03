@@ -92,7 +92,7 @@ class StudentVerificationController < ApplicationController
 	    @searched = false
 	    if params.has_key?(:search_tag)
 	      @payments = Payment.all.where(:id => @college_verifications).where(
-	        "transaction_id = ?", 
+	        "transaction_id ILIKE ?", 
 	        "%#{params[:search_tag]}%",
 	        ).order('created_at DESC')
 	      .paginate(page: params[:page],:per_page => 10)
@@ -118,13 +118,12 @@ class StudentVerificationController < ApplicationController
 			amount = 0
 			verification_ids.map do |e|
 	            ver = VerificationRequest.all.where("id = ?", e).first
-	            amount += ver.amount + 114.5
-
+	            amount += ver.amount + (ENV['DEFAULT_VERF_AMOUNT'] * ((1 + ENV['TAX_PERCENT']) / 100))
 	        end
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
 			    	:title => 'Verify Online Payment', 
-	                :description => "Hi, #{@user.name}", 
+	                :description => "Hi #{@user.name},", 
 	                :currency => 'INR',
             		:quantity => 1,
 	                :base_price => "#{amount}", 
