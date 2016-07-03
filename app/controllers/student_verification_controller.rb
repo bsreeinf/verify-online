@@ -79,12 +79,11 @@ class StudentVerificationController < ApplicationController
 	      .paginate(page: params[:page],:per_page => 10)
 	    else  
 	      @verifications =  VerificationRequest.all.where(
-	        "user_id = ?", 
+	        "payment_id IS NOT null AND user_id = ?", 
 	          current_user.id
 	        ).order('created_at DESC')
 	      .paginate(page: params[:page],:per_page => 10)
 	    end
-		
 	end
 
 	def history
