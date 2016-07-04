@@ -1,5 +1,5 @@
-$(document).on('page:change', function() {
-
+$(document).on('ready', function() {
+  console.log('aaa');
   $('#college-search').bind('focus', function() {
     $('.search-field').trigger('keyup');
   });

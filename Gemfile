@@ -1,18 +1,20 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.6'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
+
+gem 'sprockets'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -92,7 +94,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -101,10 +103,10 @@ end
 group :production do
   
   # This gem enables serving assets in production and setting your logger to standard out
-  gem 'rails_12factor', '~> 0.0.3'
+  gem 'rails_12factor'
   
   # Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications.
   # Puma is intended for use in both development and production environments. 
   # In order to get the best throughput, it is highly recommended that you use a Ruby implementation with real threads like Rubinius or JRuby.
-  gem 'puma', '~> 2.14.0'
+  gem 'puma'
 end

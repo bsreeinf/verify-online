@@ -35,11 +35,11 @@
                 
                 <% @all_colleges.each do |college| %>
                     <!-- Work Item (Lightbox) -->
-                    <li class="work-item mix college-box" data-college-id="<%=college.id%>">
+                    <li class="work-item mix college-box" data-college-id="<%=college.id%>" style="background-color: #3498DB;">
                         <a href="/apply?college_id=<%=college.id%>&amp;college_name=<%=college.name%>" class="work-ext-link mfp-image align-center">
                             <div class="work-img" style="min-height:130px;">
                                 <!-- <img alt="<%=college.name%>" /> -->
-                                <div class=""><%=college.name%></div>
+                                <div class="pt-30" style="color: white; font-weight: bold;"><%=college.name%></div>
                             </div>
                             <div class="work-intro">
                                 <h3 class="work-title"><%=college.address%></h3>
