@@ -1,25 +1,25 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.4'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'
-
-gem 'sprockets'
+gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+gem 'jquery-rails'
+
+gem 'jquery-turbolinks'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# bundle exec rake doc:rails generates the API under doc/api
+# bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
@@ -58,6 +58,8 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 # Font-Awesome SASS gem for use in Ruby projects
 gem 'font-awesome-sass', '~> 4.4.0'
 
+gem 'sprockets'
+
 # The official AWS SDK for Ruby. Provides both resource oriented interfaces and API clients for AWS services.
 gem 'aws-sdk'
 
@@ -69,6 +71,7 @@ gem 'local_time'
 
 # Pg is the Ruby interface to the {PostgreSQL RDBMS}
 gem 'pg'
+gem 'rack-cache'
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku'
@@ -101,7 +104,9 @@ group :development do
 end
 
 group :production do
-  
+  gem 'yui-compressor'
+  gem 'heroku-deflater'
+
   # This gem enables serving assets in production and setting your logger to standard out
   gem 'rails_12factor'
   

@@ -1,4 +1,4 @@
-$(document).on('ready', function() {
+$(document).on('page:change', function() {
   console.log('aaa');
   $('#college-search').bind('focus', function() {
     $('.search-field').trigger('keyup');
