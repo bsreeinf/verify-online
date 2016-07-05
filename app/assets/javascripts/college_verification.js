@@ -1,4 +1,4 @@
-$(document).on('change.rails', function() {
+$(document).on('turbolinks:load', function() {
 	$(".update_verification_button").on('click',function(){
 		currentDisplay = $(this).parent().parent().next("tr").css("display");
 		if(currentDisplay == "none")

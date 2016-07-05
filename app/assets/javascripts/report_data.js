@@ -1,4 +1,4 @@
-$(document).on('change.rails', function(event) {
+$(document).on('turbolinks:load', function(event) {
 	function readURL(input, target) {
 
 	    if (input.files && input.files[0]) {
