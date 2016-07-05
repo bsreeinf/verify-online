@@ -6,6 +6,9 @@ $(document).on('turbolinks:load', function(event) {
   var lookup;
    verifications_ids_to_send = {};
   verifications_ids_to_send.ids = [];
+
+  var tax_percent = $("#rails-data").data("tax_percent");
+  var default_verf_amount = $("#rails-data").data("default_verf_amount")
   
   var dataToSend = {};
   dataToSend["ids"] = [];
@@ -156,7 +159,7 @@ $(document).on('turbolinks:load', function(event) {
 
     for (var i = 0; i < table_data.length; i++) {
       verification_stub = table_data[i];
-      var tax = 100 * 1.145;
+      var tax = Math.round(default_verf_amount * ( 1 + tax_percent / 100));
       $('#verifications_tbody').append('<tr>' +
         '<td>' + (i + 1) + '</td>' + 
         '<td>' + verification_stub['college_name'] + '</td>' + 
