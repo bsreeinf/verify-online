@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function(event) {
    verifications_ids_to_send = {};
   verifications_ids_to_send.ids = [];
 
-  var tax_percent = $("#rails-data").data("tax_percent");
-  var default_verf_amount = $("#rails-data").data("default_verf_amount")
+  var tax_percent = parseFloat($("#rails-data").data("tax_percent"));
+  var default_verf_amount = parseFloat($("#rails-data").data("default_verf_amount"));
   
   var dataToSend = {};
   dataToSend["ids"] = [];
