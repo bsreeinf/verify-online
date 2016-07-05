@@ -129,5 +129,4 @@ VerificationStatus.create!(	description: "Fake")
 # end
 
 
-
 AdminUser.create!(email: 'admin@verifyonline.in', password: 'VerifyOnline@_123', password_confirmation: 'VerifyOnline@_123')

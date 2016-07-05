@@ -27,6 +27,6 @@ class LandingPageController < ApplicationController
   private
 
   def set_colleges
-  	@all_colleges = College.all
+  	@all_colleges = College.all.select(:id, :name, :email, :phone, :address, :verification_amount)
   end
 end
