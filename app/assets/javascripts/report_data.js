@@ -1,5 +1,4 @@
-
-$(document).on('page:change', function(event) {
+$(document).on('change.rails', function(event) {
 	function readURL(input, target) {
 
 	    if (input.files && input.files[0]) {

@@ -1,4 +1,4 @@
-$(document).on('page:change', function(event) {
+$(document).on('change.rails', function(event) {
   var MAX_FILE_SIZE = 512; //kB
   var table_data = new Array();
   var verification_amount = 0;

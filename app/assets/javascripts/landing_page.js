@@ -1,4 +1,5 @@
-$(document).on('page:change', function() {
+$(document).on('change.rails', function() {
+// $(document).delegate(rails.inputChangeSelector, 'change.rails', function(e) {
   console.log('aaa');
   $('#college-search').bind('focus', function() {
     $('.search-field').trigger('keyup');
