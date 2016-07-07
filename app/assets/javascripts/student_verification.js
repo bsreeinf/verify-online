@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(event) {
   var verification_amount = 0;
   var verification_amount_total = 0;
   var lookup;
-   verifications_ids_to_send = {};
+  var verifications_ids_to_send = {};
   verifications_ids_to_send.ids = [];
 
   var tax_percent = parseFloat($("#rails-data").data("tax-percent"));
@@ -14,7 +14,9 @@ $(document).on('turbolinks:load', function(event) {
   dataToSend["ids"] = [];
   dataToSend["verification_requests"] = []; 
 
-  // Helper methods
+  // Init
+  $(".hasDatepicker").datepicker();
+
 
   // Validates if file exists and filesize < MAX_FILE_SIZE
   $.fn.fileValidate = function(file){

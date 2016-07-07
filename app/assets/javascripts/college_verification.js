@@ -6,5 +6,6 @@ $(document).on('turbolinks:load', function() {
 		else
 			$(this).closest("tr").next("tr").hide();
 	});
-
+	
+	$(".hasDatepicker").datepicker();
 });

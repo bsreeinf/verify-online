@@ -36,6 +36,38 @@
 //= require turbolinks
 
 
+$(document).on('turbolinks:load', function() {
+	$('#verify-status').bind('submit', function(e) {
+	    e.preventDefault();
+	    var id = $('#everify')[0].value;
+	    if(id != ''){
+			$('#e_verification_loader').fadeIn(50);
+				$.ajax({
+					type: 'GET',
+					url: 'verification_status.json?id=' + id,
+					cache: false,
+				}).done( function(response) {
+				    response = response[0];
+				    console.log(response);
+				    if(typeof response === 'undefined' || response.length == 0){
+			    		$('#ev_success_content').hide();
+			    		$('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>INVALID</strong>");
+				    }else { 
+						$('#ev_success_content').show();
+						$('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>VALID</strong>");
+						$('#ev_name').text(response.name + "");
+						$('#ev_hallticket_no').text(response.hallticket_no + "");
+				    }
+				    $("#eVerifyModal").modal();
+				 }).always( function(response) {
+				    $('#e_verification_loader').fadeOut(50);
+			});
+	    
+	    }
+  
+  	});
+
+});
 
 
 

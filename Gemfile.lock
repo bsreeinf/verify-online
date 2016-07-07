@@ -333,6 +333,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   kaminari
   local_time
   mvaayoo

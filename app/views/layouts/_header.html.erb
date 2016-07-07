@@ -48,6 +48,25 @@
                 <%else%>
                     <li><%= link_to "Contact Us", "#{root_url}/#contact",method: :get %></li>
                 <% end %>
+                
+                <li>
+                    <a href="#" class="mn-has-sub"><i class="fa fa-search"></i> E-Verify Status</a>
+                    <ul class="mn-sub">
+                        <li>
+                            <div class="mn-wrap">
+                                <form id="verify-status" method="post" class="form">
+                                    <div class="search-wrap">
+                                        <button class="search-button animate" type="submit" title="Check">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <input type="text" id="everify" name="everify" class="form-control search-field" placeholder="Verification ID">
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
        
                 <% if logged_in? %>
                         
