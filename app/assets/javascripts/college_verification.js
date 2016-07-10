@@ -6,6 +6,9 @@ $(document).on('turbolinks:load', function() {
 		else
 			$(this).closest("tr").next("tr").hide();
 	});
-	
-	$(".hasDatepicker").datepicker();
+	console.log("Initializing datepickers");
+	console.log($("#fromdate"));
+	console.log($("#todate"));
+	$("#fromdate").datepicker();
+	$("#todate").datepicker();
 });

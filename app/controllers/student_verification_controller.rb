@@ -32,7 +32,7 @@ class StudentVerificationController < ApplicationController
 	    # respond_to do |format|
 	      if @verification_request.save
 	        # format.html { redirect_to @verification_request, notice: 'Student was successfully created.' }
-	        url = HTTParty.get("http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=#{ENV['MVAAYOO_USER']}:#{ENV['MVAAYOO_PASSWORD']}&senderID=TEST%20SMS&receipientno=#{@college_ver.user.phone}&msgtxt=New verification for #{@college_ver.name}. Name: #{@verification_request.name}. Hallticket: #{@verification_request.hallticket_no}&state=4")
+	        url = HTTParty.get("#{ENV['MVAAYOO_URL']}?user=#{ENV['MVAAYOO_USER']}:#{ENV['MVAAYOO_PASSWORD']}&senderID=TEST%20SMS&receipientno=#{@college_ver.user.phone}&msgtxt=New verification for #{@college_ver.name}. Name: #{@verification_request.name}. Hallticket: #{@verification_request.hallticket_no}&state=4")
 	        render json: @verification_request.to_json
 	        # Mvaayoo.send_message "New verification for #{@college_ver.name}. Name: #{@verification_request.name}. Hallticket: #{@verification_request.hallticket_no}", @college_ver.user.phone
 	        # format.json { render :show, status: :created, location: @verification_request }

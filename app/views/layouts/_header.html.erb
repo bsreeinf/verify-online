@@ -59,7 +59,7 @@
                                         <button class="search-button animate" type="submit" title="Check">
                                             <i class="fa fa-search"></i>
                                         </button>
-                                        <input type="text" id="everify" name="everify" class="form-control search-field" placeholder="Verification ID">
+                                        <input type="text" id="everify" name="everify" class="form-control search-field" autocomplete="false" placeholder="Verification ID">
                                     </div>
                                 </form>
                             </div>
@@ -103,3 +103,25 @@
 </nav>
 <!-- End Navigation panel --> 
 
+
+<div id="eVerifyModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="eVerifyModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p class="modal-title font-alt">Verification status</p>
+            </div>
+            <div class="modal-body black">
+                <br>
+                <p class="modal-title" id="ev_verify_status">Verification status</p><br>
+                <div id="ev_success_content">
+                    <p>Name: <span id="ev_name" style="font-weight: bold;"></span></p>
+                    <p>Hallticket / Reg No: <span id="ev_hallticket_no" style="font-weight: bold;"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)  
     if @user.save
+      # Send activation link as email (and SMS)
+      # url = HTTParty.get("#{ENV['MVAAYOO_URL']}?user=#{ENV['MVAAYOO_USER']}:#{ENV['MVAAYOO_PASSWORD']}&senderID=TEST%20SMS&receipientno=#{@user.phone}&msgtxt=New verification for #{@college_ver.name}. Name: #{@verification_request.name}. Hallticket: #{@verification_request.hallticket_no}&state=4")
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to login_url
