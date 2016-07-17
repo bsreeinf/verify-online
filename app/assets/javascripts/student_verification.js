@@ -15,20 +15,21 @@ $(document).on('turbolinks:load', function(event) {
   dataToSend["verification_requests"] = []; 
 
   // Init
-  $(".hasDatepicker").datepicker();
+  // $(".hasDatepicker").datepicker();
+  // console.log("datepicker initialized");
 
 
   // Validates if file exists and filesize < MAX_FILE_SIZE
   $.fn.fileValidate = function(file){
     if(file == undefined){
-      console.log("No file selected");
+      // console.log("No file selected");
       $('#error_explanation').css("display","inherit");
       $('#error_explanation').html("No file selected");
       return false;
     }
-    console.log("filesize : " + file.size);
+    // console.log("filesize : " + file.size);
     if(file.size > MAX_FILE_SIZE * 1024){
-      console.log("File size exceeds limit : " + (file.size/1024) + "KB");
+      // console.log("File size exceeds limit : " + (file.size/1024) + "KB");
       $("#error_explanation").css("display","inherit");
       $("#error_explanation").html("File size exceeds 512 KB");
       return false;
@@ -116,7 +117,7 @@ $(document).on('turbolinks:load', function(event) {
     
     // Validate file nil and filesize manually.
     if(!$.fn.fileValidate($('#verify_document')[0].files[0])){
-      console.log('File validation failed.');
+      // console.log('File validation failed.');
       return;
     }
 
@@ -183,7 +184,7 @@ $(document).on('turbolinks:load', function(event) {
 
 
     $('.ver-delete').on('click', function(){
-      console.log('del pressed');
+      // console.log('del pressed');
       indexToDelete = $(this).parent().index();
       table_data = jQuery.grep(table_data, function(value, i) {
         return i != indexToDelete;
@@ -206,8 +207,8 @@ $(document).on('turbolinks:load', function(event) {
     for (var i = 0, len = table_data.length; i < len; i++) {
         lookup[table_data[i].id] = table_data[i];
     }
-    console.log("Lookup generated");
-    console.log(lookup);
+    // console.log("Lookup generated");
+    // console.log(lookup);
 
     // Initiate file upload to AWS S3
     $().fileUploadToS3();
@@ -224,8 +225,8 @@ $(document).on('turbolinks:load', function(event) {
     verification_request["document_link"] = lookup[temp_id].document_link;
     data_to_send.verification_request = verification_request;
 
-    console.log("Data row prepared to be sent: ");
-    console.log(data_to_send);
+    // console.log("Data row prepared to be sent: ");
+    // console.log(data_to_send);
 
     $.ajax({
       url: "/add_verification",
@@ -236,11 +237,11 @@ $(document).on('turbolinks:load', function(event) {
         verifications_ids_to_send.ids.push(data["id"]);
 
         if(table_data.length == numFilesUploaded){
-          console.log("All data collected until now. Use this to create form and execute a submit --> ");
-          console.log(table_data);
+          // console.log("All data collected until now. Use this to create form and execute a submit --> ");
+          // console.log(table_data);
 
-          console.log("Verification IDs to be sent --> ");
-          console.log(verifications_ids_to_send);
+          // console.log("Verification IDs to be sent --> ");
+          // console.log(verifications_ids_to_send);
 
           ids_to_send = {};
           ids_to_send["verification_ids"] = verifications_ids_to_send.ids.toString();
@@ -271,8 +272,8 @@ $(document).on('turbolinks:load', function(event) {
   $.fn.fileUploadToS3 = function(){
     var numFilesUploaded = 0;
 
-    console.log("All data collected until now.");
-    console.log(table_data);
+    // console.log("All data collected until now.");
+    // console.log(table_data);
 
     for(var i = 0; i < table_data.length; i++) {
 
@@ -292,15 +293,15 @@ $(document).on('turbolinks:load', function(event) {
         dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
         replaceFileInput: false,
         progressall: function (e, data) {
-           console.log(parseInt(data.loaded / data.total * 100, 10));
+           // console.log(parseInt(data.loaded / data.total * 100, 10));
            // $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
         },
         start: function (e) {
-          console.log("started");
+          // console.log("started");
 
         },
         done: function(e, data) {
-          console.log("Uploading done");
+          // console.log("Uploading done");
 
           // extract key and generate URL from response
           var key   = $(data.jqXHR.responseXML).find("Key").text();
@@ -308,7 +309,7 @@ $(document).on('turbolinks:load', function(event) {
           var url_parts = key.split('/');
           var temp_id = url_parts[url_parts.length - 1].split("_")[0] + "";
 
-          console.log(data);
+          // console.log(data);
 
           // save new file URL from S3 in the stub
           lookup[temp_id].document_link = url;
@@ -317,7 +318,7 @@ $(document).on('turbolinks:load', function(event) {
           $().checkAndUpload(++numFilesUploaded, temp_id);
         },
         fail: function(e, data) {
-          console.log("failed");
+          // console.log("failed");
         }
       });
 

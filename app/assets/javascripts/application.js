@@ -49,13 +49,13 @@ $(document).on('turbolinks:load', function() {
 					cache: false,
 				}).done( function(response) {
 				    response = response[0];
-				    console.log(response);
+				    // console.log(response);
 				    if(typeof response === 'undefined' || response.length == 0){
 			    		$('#ev_success_content').hide();
-			    		$('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>INVALID</strong>");
+			    		$('#ev_verify_status').html("Verification ID <strong>" + ($('#everify')[0].value.toUpperCase()) + "</strong> is <strong>INVALID</strong>");
 				    }else { 
 						$('#ev_success_content').show();
-						$('#ev_verify_status').html("Verification ID <strong>" + $('#everify')[0].value + "</strong> is <strong>VALID</strong>");
+						$('#ev_verify_status').html("Verification ID <strong>" + ($('#everify')[0].value.toUpperCase()) + "</strong> is <strong>VALID</strong>");
 						$('#ev_name').text(response.name + "");
 						$('#ev_hallticket_no').text(response.hallticket_no + "");
 				    }

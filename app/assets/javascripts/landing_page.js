@@ -1,19 +1,22 @@
 $(document).on('turbolinks:load', function() {
-  console.log('aaa');
+  // console.log('aaa');
   $('#college-search').bind('focus', function() {
-    $('.search-field').trigger('keyup');
+    $(this).trigger('keyup');
   });
 
   $('#college-search').bind('keyup', function() {
-    var dataString, searchbox;
-    searchbox = $('.search-field').val();
-    dataString = $("#colleges").data("url");
-    console.log('keypress');
+    var dataObject, searchText;
+    searchText = $(this).val();
+    dataObject = $("#colleges").data("url");
+    // console.log('keypress');
     
-    if (searchbox !== '') {
-      var arr = jQuery.grep(dataString, function( n, i ) {
-        return n['name'].toLowerCase().indexOf(searchbox.toLowerCase()) == 0;
+    if (searchText !== '') {
+      var arr = jQuery.grep(dataObject, function( n, i ) {
+        // console.log(n['name'].toLowerCase().indexOf(searchText.toLowerCase()) == 0);
+        // console.log(n['name'].toLowerCase() + "  :  " + searchText.toLowerCase());
+        return n['name'].toLowerCase().indexOf(searchText.toLowerCase()) == 0;
       });
+      // console.log(arr);
 
       var i = 0;
       $('#search-result').empty();
@@ -24,7 +27,7 @@ $(document).on('turbolinks:load', function() {
             '</a></div>').show();
         i++;
         $('#search-result-' + i).on('click', function() {
-          console.log(i + ' ' + obj['name']);
+          // console.log(i + ' ' + obj['name']);
         });
         return;
         if (i === 0) {
@@ -54,10 +57,10 @@ $(document).on('turbolinks:load', function() {
     var dataString, searchbox;
     searchbox = $('.search-field-main').val();
     dataString = $("#colleges").data("url");
-    console.log('keypress main');
+    // console.log('keypress main');
     
     // if (searchbox !== '') {
-      console.log('search not empty')
+      // console.log('search not empty')
       var arr = jQuery.grep(dataString, function( n, i ) {
         return n['name'].toLowerCase().indexOf(searchbox.toLowerCase()) >=0 ;
       });
