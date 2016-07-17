@@ -30,7 +30,7 @@ module VerifyOnline
         :port           => '587',
         :authentication => :plain,
         :user_name      => ENV['MASTER_EMAIL'],
-        :password       => ENV['MASTER_EMAIL_PASSWORD'],        
+        :password       => ENV['MASTER_PWD'],        
         :enable_starttls_auto => true    
       }
 
