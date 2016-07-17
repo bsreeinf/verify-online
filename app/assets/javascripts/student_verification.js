@@ -201,7 +201,7 @@ $(document).on('turbolinks:load', function(event) {
     $(this).prop('disabled', true);
 
     $("#proceed_to_pay_loader").css("display","initial");
-
+    $(".page-loader").css("display","initial");
     lookup = {};
     for (var i = 0, len = table_data.length; i < len; i++) {
         lookup[table_data[i].id] = table_data[i];
@@ -252,6 +252,7 @@ $(document).on('turbolinks:load', function(event) {
             context: document.body
             }).done(function(data){
               $("#proceed_to_pay_loader").css("display","none");
+              $(".page-loader").css("display","none");
               // Redirect to status
               window.location.replace(data["url"]);
             }).always(function() {

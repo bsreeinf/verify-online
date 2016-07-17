@@ -1,4 +1,7 @@
 <%= content_tag "div", id: "rails-data", data: {tax_percent: ENV['TAX_PERCENT'], default_verf_amount: ENV['DEFAULT_VERF_AMOUNT'], user_id: current_user.id, college_id: @college_id, form: (@s3_direct_post.fields), url: @s3_direct_post.url, host: URI.parse(@s3_direct_post.url).host } do %><% end %>
+<div class="page-loader">
+    <div class="loader">Loading...</div>
+</div>
 
 <div class="page" id="top">            
     <!-- Home Section -->

@@ -80,7 +80,7 @@ gem 'wkhtmltopdf-binary'
 gem 'country_select'
 
 gem "ckeditor"
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.5' 
 gem 'paperclip-ghostscript'
 gem "cocaine"
 gem 'paperclip-ffmpeg'

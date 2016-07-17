@@ -12,6 +12,11 @@ permit_params :user_id, :college_id, :payment_id, :name, :hallticket_no, :docume
 #   permitted << :other if resource.something?
 #   permitted
 # end
+	controller do
+		def index
+			@verification_requests = VerificationRequest.all.where("payment_id IS NOT null AND verification_status_id <= ?", 2).order('created_at DESC')
+		end
+	end
 
 	csv do |verification_request|
 		column ("Sl. no.") {|verification_request| verification_request.id}
