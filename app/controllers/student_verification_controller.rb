@@ -121,8 +121,8 @@ class StudentVerificationController < ApplicationController
 	        end
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
-			    	:title => 'Verify Online Payment', 
-	                :description => "Hi #{@user.name},", 
+			    	:title => 'Verify Online Payment - ', 
+	                :description => "Hi #{@user.name}, \nComplete payment above to complete your verification process.", 
 	                :currency => 'INR',
             		:quantity => 1,
 	                :base_price => "#{amount}", 
@@ -138,7 +138,7 @@ class StudentVerificationController < ApplicationController
 			puts @result.inspect
 			VerificationRequest.where("id" => verification_ids).update_all(payment_slug: @result.parsed_response["link"]["slug"])
 			# redirect_to @result.parsed_response["link"]["url"]
-			data = JSON.parse("{\"url\":\"#{@result.parsed_response["link"]["url"]}\"}")
+			data = JSON.parse("{\"url\":\"#{@result.parsed_response["link"]["url"]}?embed=form\"}")
 			render json: data
 		end
 	end
