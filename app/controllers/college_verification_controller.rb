@@ -90,7 +90,7 @@ class CollegeVerificationController < ApplicationController
       @searched = true
     elsif params.has_key?(:fromdate) && params.has_key?(:todate)
       @payments = Payment.all.where(:id => @college_verifications).where(
-        "created_at BETWEEN ? AND ?", 
+        "created_at >= ? AND created_at <= ?",
         "%#{params[:fromdate]}%",
         "%#{params[:todate]}%"
         ).order('created_at DESC')

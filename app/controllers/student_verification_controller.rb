@@ -98,7 +98,7 @@ class StudentVerificationController < ApplicationController
 	      @searched = true
 	    elsif params.has_key?(:fromdate) && params.has_key?(:todate)
 	      @payments = Payment.all.where(:id => @college_verifications).where(
-	        "created_at BETWEEN ? AND ?", 
+	        "created_at >= ? AND created_at <= ?", 
 	        "%#{params[:fromdate]}%",
 	        "%#{params[:todate]}%"
 	        ).order('created_at DESC')
@@ -152,23 +152,12 @@ class StudentVerificationController < ApplicationController
 	end
 
 	def instamojo_webhook
-		# puts "---- Webhook params start ----"
-	    # puts params.inpect
-	    # puts "---- Webhook params end ----"
 	    params_data = instamojo_webhook_params
 	    params_data[:transaction_id] = params_data.delete :payment_id
 
 	    @payment = Payment.new(params_data)
 		@payment.save
 		VerificationRequest.where("payment_slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
-
-		# @result = HTTParty.post("https://www.instamojo.com/api/1.1/links/:#{params["offer_slug"]}", 
-		#     :headers => { 
-		#     	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
-		# 		'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
-		# 	} 
-		# )
-		# puts @result.inspect
 	end
 
 	private
