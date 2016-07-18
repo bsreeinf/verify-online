@@ -201,8 +201,10 @@ $(document).on('turbolinks:load', function(event) {
     // Disable $("#btnProceedToPay")
     $(this).prop('disabled', true);
 
-    $("#proceed_to_pay_loader").css("display","initial");
+    // Show Loaders
+    $(".page-loader div").show();
     $(".page-loader").show();
+
     lookup = {};
     for (var i = 0, len = table_data.length; i < len; i++) {
         lookup[table_data[i].id] = table_data[i];
@@ -252,10 +254,14 @@ $(document).on('turbolinks:load', function(event) {
             data: JSON.parse(JSON.stringify(ids_to_send)),
             context: document.body
             }).done(function(data){
-              $("#proceed_to_pay_loader").css("display","none");
+
+              // Hide Loaders
+              $(".page-loader div").hide();
               $(".page-loader").hide();
-              // Redirect to status
+              
+              // Redirect to the payment link received from server
               window.location.replace(data["url"]);
+
             }).always(function() {
               // Hide loader
             }
