@@ -121,10 +121,14 @@ class StudentVerificationController < ApplicationController
 	        end
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
-			    	:title => 'Verify Online Payment - ', 
-	                :description => "Hi #{@user.name}, \nComplete payment above to complete your verification process.", 
+			    	:title => "Payment for #{@user.name}", 
+	                :description => "Hi #{@user.name}, \nProceed with payment above to complete your verification process.\n\nPlease contact support@verifyonline.in for any queries.", 
 	                :currency => 'INR',
             		:quantity => 1,
+            		:buyer_name => "#{@user.name}",
+            		:email => "#{@user.email}",
+            		:phone => "#{@user.phone}",
+            		:allow_repeated_payments => false,
 	                :base_price => "#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
@@ -153,17 +157,18 @@ class StudentVerificationController < ApplicationController
 	    # puts "---- Webhook params end ----"
 	    params_data = instamojo_webhook_params
 	    params_data[:transaction_id] = params_data.delete :payment_id
+
 	    @payment = Payment.new(params_data)
 		@payment.save
 		VerificationRequest.where("payment_slug" => params["offer_slug"]).update_all(payment_id: @payment.id)
 
-		@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/:#{params["offer_slug"]}", 
-		    :headers => { 
-		    	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
-				'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
-			} 
-		)
-		puts @result.inspect
+		# @result = HTTParty.post("https://www.instamojo.com/api/1.1/links/:#{params["offer_slug"]}", 
+		#     :headers => { 
+		#     	'X-Api-Key' => "#{ENV['INSTAMOJO_API_KEY']}",
+		# 		'X-Auth-Token' => "#{ENV['INSTAMOJO_AUTH_TOKEN']}"
+		# 	} 
+		# )
+		# puts @result.inspect
 	end
 
 	private
