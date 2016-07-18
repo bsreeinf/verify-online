@@ -7,10 +7,19 @@ $(document).on('turbolinks:load', function() {
 			$(this).closest("tr").next("tr").hide();
 	});
 	console.log("Initializing datepickers");
-	console.log($("#fromdate"));
-	console.log($("#todate"));
+	// console.log($("#fromdate"));
+	// console.log($("#todate"));
 	$("#fromdate").datepicker();
 	$("#todate").datepicker();
 
-	$('#todate').max = new Date().toDateInputValue();
+	Date.prototype.toDateInputValue = (function() {
+	    var local = new Date(this);
+	    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+	    return local.toJSON().slice(0,10);
+	});
+
+	$('#fromdate').attr("min", '2016-07-01');
+	$('#todate').attr("min", '2016-07-01');
+	$('#fromdate').attr("max", new Date().toDateInputValue());
+	$('#todate').attr("max", new Date().toDateInputValue());
 });
