@@ -22,7 +22,7 @@ permit_params :user_id, :college_id, :payment_id, :name, :hallticket_no, :docume
 	controller do
 	  def scoped_collection
 	    # some stuffs
-	    super.where("payment_id IS NOT null AND verification_status_id <= ?", 2)
+	    super.where("payment_id IS NOT null")
 	  end 
 
 	  # other stuffs

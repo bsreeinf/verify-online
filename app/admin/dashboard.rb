@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Verification Requests" do
           ol do
-            VerificationRequest.where("payment_id IS NOT null AND verification_status_id <= ?", 2).limit(5).map do |request|
+            VerificationRequest.where("payment_id IS NOT null").limit(5).map do |request|
               li link_to(request.verification_token.upcase, admin_verification_request_path(request))
               # li request.name.capitalize
             end
