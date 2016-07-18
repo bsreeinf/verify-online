@@ -244,7 +244,6 @@ $(document).on('turbolinks:load', function(event) {
 
           // console.log("Verification IDs to be sent --> ");
           // console.log(verifications_ids_to_send);
-          $("#loader_msg").html("Uploading file(s)...");
 
           ids_to_send = {};
           ids_to_send["verification_ids"] = verifications_ids_to_send.ids.toString();
@@ -300,9 +299,11 @@ $(document).on('turbolinks:load', function(event) {
         progressall: function (e, data) {
            // console.log(parseInt(data.loaded / data.total * 100, 10));
            // $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
+           $("#loader_msg").html("Uploading file(s)...<br>" + (data.loaded / data.total * 100) + "%");
         },
         start: function (e) {
           // console.log("started");
+          $("#loader_msg").html("Uploading file(s)...<br>0%");
 
         },
         done: function(e, data) {
