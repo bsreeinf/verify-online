@@ -56,7 +56,7 @@ permit_params :user_id, :college_id, :payment_id, :name, :hallticket_no, :docume
 	index :title => "Verification Requests" do |verification_request|
 		selectable_column
 
-		column "Sl. no.", :id
+		column "ID", :id
 		column "Verification ID", :verification_token
 
 		column "Name", :name

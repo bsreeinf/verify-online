@@ -11,4 +11,6 @@ $(document).on('turbolinks:load', function() {
 	console.log($("#todate"));
 	$("#fromdate").datepicker();
 	$("#todate").datepicker();
+
+	$('#todate').max = new Date().toDateInputValue();
 });

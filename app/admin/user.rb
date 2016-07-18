@@ -15,7 +15,7 @@ permit_params :name, :email,:phone, :password, :password_confirmation, :address,
 	index :title => "Users" do |user|
 		selectable_column
 
-		column "Sl. no.", :id
+		column "ID", :id
 		column "Name", :name
 		column "Email", :email
 		column "Phone", :phone

@@ -92,7 +92,7 @@ class CollegeVerificationController < ApplicationController
       @payments = Payment.all.where(:id => @college_verifications).where(
         "created_at >= ? AND created_at <= ?",
         "%#{params[:fromdate]}%",
-        "%#{params[:todate]}%"
+        "%#{params[:todate]}% + 1"
         ).order('created_at DESC')
       .paginate(page: params[:page],:per_page => 10)
       @searched = true
