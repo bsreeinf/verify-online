@@ -121,7 +121,7 @@ class StudentVerificationController < ApplicationController
 	        end
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
-			    	:title => "Payment for #{@user.name}", 
+			    	:title => "Verify Online", 
 	                :description => "Hi #{@user.name}, \nProceed with payment above to complete your verification process.\n\nPlease contact support@verifyonline.in for any queries.", 
 	                :currency => 'INR',
             		:quantity => 1,
