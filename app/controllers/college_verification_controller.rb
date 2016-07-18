@@ -89,6 +89,8 @@ class CollegeVerificationController < ApplicationController
       .paginate(page: params[:page],:per_page => 10)
       @searched = true
     elsif params.has_key?(:fromdate) && params.has_key?(:todate)
+      @fromDate = params[:fromdate]
+      @toDate = params[:todate]
       @payments = Payment.all.where(:id => @college_verifications).where(
         "date(created_at) BETWEEN ? AND ?", 
         "%#{params[:fromdate]}%",

@@ -202,8 +202,8 @@ $(document).on('turbolinks:load', function(event) {
     $(this).prop('disabled', true);
 
     // Show Loaders
-    $(".page-loader div").show();
-    $(".page-loader").show();
+    $("#loader_msg").html("Sending verification request(s)<br>Please wait...");
+    $('#ptp_loader, #ptp_loader div').show();
 
     lookup = {};
     for (var i = 0, len = table_data.length; i < len; i++) {
@@ -244,6 +244,7 @@ $(document).on('turbolinks:load', function(event) {
 
           // console.log("Verification IDs to be sent --> ");
           // console.log(verifications_ids_to_send);
+          $("#loader_msg").html("Uploading file(s)...");
 
           ids_to_send = {};
           ids_to_send["verification_ids"] = verifications_ids_to_send.ids.toString();
@@ -255,9 +256,7 @@ $(document).on('turbolinks:load', function(event) {
             context: document.body
             }).done(function(data){
 
-              // Hide Loaders
-              $(".page-loader div").hide();
-              $(".page-loader").hide();
+              $("#loader_msg").html("Please wait while you're redirected to payment gateway<br>Do not press Back / Refresh buttons");
               
               // Redirect to the payment link received from server
               window.location.replace(data["url"]);

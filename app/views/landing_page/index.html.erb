@@ -2,14 +2,11 @@
 <%= content_tag "div", id: "colleges", data: {url: @all_colleges } do %><% end %>
 <!-- Page Wrap -->
 <div class="page" id="top">
-
     <!-- Page Loader -->        
     <div class="page-loader">
         <div class="loader">Loading...</div>
     </div>
     <!-- End Page Loader -->
-
-    
     <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
