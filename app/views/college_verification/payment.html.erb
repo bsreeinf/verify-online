@@ -44,12 +44,13 @@
                 <%= form_tag(:payment_details, :method => "get", :html => { :class => 'form contact-form', :id => 'payment_form'}) do %>
                     <div class="clearfix">                                                  
                         <div class="form-group row">
-                            <div class="col-md-2" style="font-size: 16px; color: #4C4A47;">Search between dates</div>
-                            <div class="col-md-2">
-                                <input type="date" name="fromdate" id="fromdate" class="hasDatepicker input-md round form-control" value=<%=@searched == true ? @fromDate: "" %> placeholder="From">
-                            </div>
-                            <div class="col-md-2">
-                                <input type="date" name="todate" id="todate" class="hasDatepicker input-md round form-control" value=<%=@searched == true ? @toDate: "" %> placeholder="To">
+                            <div class="col-md-2" style="font-size: 16px; color: #4C4A47; margin-top: 6px;">Search date range</div>
+                            <div class="col-md-4">
+                                <div class="input-group input-daterange">
+                                    <input name="fromdate" id="fromdate" type="text" class="form-control" value=<%=@searched==true ? @fromDate: ""%>>
+                                    <span class="input-group-addon">to</span>
+                                    <input name="todate" id="todate" type="text" class="form-control" value=<%=@searched==true ? @toDate: ""%>>
+                                </div>
                             </div>
                             <div class="col-md-2">
                                 <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>

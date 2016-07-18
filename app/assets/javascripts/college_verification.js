@@ -7,19 +7,27 @@ $(document).on('turbolinks:load', function() {
 			$(this).closest("tr").next("tr").hide();
 	});
 	console.log("Initializing datepickers");
-	// console.log($("#fromdate"));
-	// console.log($("#todate"));
-	$("#fromdate").datepicker();
-	$("#todate").datepicker();
 
-	Date.prototype.toDateInputValue = (function() {
-	    var local = new Date(this);
-	    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-	    return local.toJSON().slice(0,10);
+	var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+	var dtStart = new Date(2016, 6, 1, 0, 0, 0, 0);
+
+	$('#todate').datepicker({
+		minDate: dtStart,
+		maxDate: now,
+		dateFormat: 'yy-mm-dd',
+		onSelect: function(selectedDate, datepickerInst) {
+			$(datepickerInst).hide();
+		}
 	});
 
-	$('#fromdate').attr("min", '2016-07-01');
-	$('#todate').attr("min", '2016-07-01');
-	$('#fromdate').attr("max", new Date().toDateInputValue());
-	$('#todate').attr("max", new Date().toDateInputValue());
+	$("#fromdate").datepicker({
+		minDate: dtStart,
+		maxDate: now,
+		dateFormat: 'yy-mm-dd',
+		onSelect: function(selectedDate, datepickerInst) {
+			$(datepickerInst).hide();
+			// $('#todate').datepicker("show");
+		}
+	});
 });

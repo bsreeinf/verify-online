@@ -89,18 +89,16 @@ class CollegeVerificationController < ApplicationController
       .paginate(page: params[:page],:per_page => 10)
       @searched = true
     elsif params.has_key?(:fromdate) && params.has_key?(:todate)
-      @fromDate = Date.parse(params[:fromdate]) rescue false
-      @toDate = Date.parse(params[:todate]) rescue false
+      @fromDate = Date.parse(params[:fromdate]) rescue nil
+      @toDate = Date.parse(params[:todate]) rescue nil
       if @fromDate.present? && @toDate.present?
-        if @fromDate.to_date < @toDate.to_date
-          @payments = Payment.all.where(:id => @college_verifications).where(
-            "date(created_at) BETWEEN ? AND ?", 
-            "%#{params[:fromdate]}%",
-            "%#{params[:todate]}%"
-            ).order('created_at DESC')
-          .paginate(page: params[:page],:per_page => 10)
-          @searched = true
-        end
+        @payments = Payment.all.where(:id => @college_verifications).where(
+          "date(created_at) BETWEEN ? AND ?", 
+          "%#{params[:fromdate]}%",
+          "%#{params[:todate]}%"
+          ).order('created_at DESC')
+        .paginate(page: params[:page],:per_page => 10)
+        @searched = true
       end
     end 
   end
