@@ -117,7 +117,7 @@ class StudentVerificationController < ApplicationController
 			@ver_data = VerificationRequest.all.where("id = ?", verification_ids[0]).first
 			puts "Ver DATA"
 			puts @ver_data.inspect
-			puts @ver_data.to_yaml
+			# puts @ver_data.to_yaml
 
 			@user = User.where("id = ?", @ver_data.user_id).first
 			amount = 0
