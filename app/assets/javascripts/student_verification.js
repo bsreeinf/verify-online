@@ -248,14 +248,15 @@ $(document).on('turbolinks:load', function(event) {
           ids_to_send = {};
           ids_to_send["verification_ids"] = verifications_ids_to_send.ids.toString();
 
+          // $("#loader_msg").html("Processing your request. Please wait, this could take a while.");
+          $("#loader_msg").html("Please wait while you're redirected to payment gateway<br>Do not press Back / Refresh buttons");
+
           $.ajax({
             url: "/proceed_to_pay",
             type: 'POST',
             data: JSON.parse(JSON.stringify(ids_to_send)),
             context: document.body
             }).done(function(data){
-
-              $("#loader_msg").html("Please wait while you're redirected to payment gateway<br>Do not press Back / Refresh buttons");
               
               // Redirect to the payment link received from server
               window.location.replace(data["url"]);
@@ -299,7 +300,7 @@ $(document).on('turbolinks:load', function(event) {
         progressall: function (e, data) {
            // console.log(parseInt(data.loaded / data.total * 100, 10));
            // $(progressBar).css("width", $(progressBar).parent().width() * (data.loaded / data.total));
-           $("#loader_msg").html("Uploading file(s)...<br>" + (data.loaded / data.total * 100) + "%");
+           $("#loader_msg").html("Uploading file(s)...<br>" + Math.round(data.loaded / data.total * 100) + "%");
         },
         start: function (e) {
           // console.log("started");
