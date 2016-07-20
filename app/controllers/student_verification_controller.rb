@@ -125,16 +125,20 @@ class StudentVerificationController < ApplicationController
 	            ver = VerificationRequest.all.where("id = ?", e).first
 	            amount += ver.amount + (ENV['DEFAULT_VERF_AMOUNT'].to_f * (1 + ENV['TAX_PERCENT'].to_f / 100))
 	        end
+
+	        puts amount
+	        puts "Amount sent is ^"
+	        
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
 			    	:title => "Verify Online", 
 	                :description => "Hi #{@user.name}, \nProceed with payment above to complete your verification process.\n\nPlease contact support@verifyonline.in for any queries.", 
 	                :currency => 'INR',
             		:quantity => 1,
-            		:buyer_name => "#{@user.name}",
-            		:email => "#{@user.email}",
-            		:phone => "#{@user.phone}",
-            		:allow_repeated_payments => false,
+            		# :buyer_name => "#{@user.name}",
+            		# :email => "#{@user.email}",
+            		# :phone => "#{@user.phone}",
+            		# :allow_repeated_payments => false,
 	                :base_price => "#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
