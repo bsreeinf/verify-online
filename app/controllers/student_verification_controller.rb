@@ -125,10 +125,10 @@ class StudentVerificationController < ApplicationController
 	            ver = VerificationRequest.all.where("id = ?", e).first
 	            amount += ver.amount + (ENV['DEFAULT_VERF_AMOUNT'].to_f * (1 + ENV['TAX_PERCENT'].to_f / 100))
 	        end
-
+	        amount = amount.ceil
 	        puts amount
 	        puts "Amount sent is ^"
-	        
+
 			@result = HTTParty.post("https://www.instamojo.com/api/1.1/links/", 
 			    :body => { 
 			    	:title => "Verify Online", 
