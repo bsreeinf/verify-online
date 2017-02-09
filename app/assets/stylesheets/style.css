@@ -4089,7 +4089,10 @@ a.logo:hover{
 
 .footer{
     text-align: center;
-    font-size: 12px;   
+    font-size: 12px; 
+    position: absolute;
+    bottom: 0;  
+    left: 0;
 }
 .footer a{
     text-transform: uppercase; 
