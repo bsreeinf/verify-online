@@ -1,0 +1,39 @@
+  <style>
+  	.tab_style{
+  		background: #fff !important;
+  		color: #111 !important;
+  		border-color: transparent !important;
+  	}
+  </style>
+  <%tab_style="tab_style"%>
+  <!-- Page Loader -->        
+  <div id="ptp_loader" class="page-loader" style="display:none;">
+    <div class="loader">Loading...</div>
+    <div style="width:300px; height: 50px; position: absolute; top: 65%; left: 50%; margin: -25px 0 0 -150px; font-size: 15px;">
+    <p id="loader_msg" style="text-align: center;">AAA</p>
+    </div>
+  </div>
+  <!-- End Page Loader -->
+
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 " style='background-color: #040F16;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="padding: 45px 0px;">
+                    <!-- <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                       Verification
+                    </h1>                     -->
+                    <div class="local-scroll hidden-xs">
+                       <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='index'}" %>
+                        <span>&nbsp;</span>
+                        <%= link_to "Completed Verification", completed_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='status'}" %>
+                        <span>&nbsp;</span>
+                        <%= link_to "Payment Details", payment_details_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='history'}" %>
+                    </div>                    
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
+    <!-- End Home Section -->

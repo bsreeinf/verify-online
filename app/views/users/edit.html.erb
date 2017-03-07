@@ -1,12 +1,12 @@
 <% provide(:title, 'Profile') %>
 
- <section class="home-section bg-dark-alfa-50 " data-background=<%=  asset_url("full-width-images/landing.jpg")%> style='background-image:url(<%= asset_url("full-width-images/landing.jpg")%>)' id="home">
+ <section class="home-section bg-dark-alfa-50" style="background-color: #040F16" id="home">
        <div class="container">            
             <!-- Hero Content -->
             <div class="home-content">
-                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                <div class="home-text" style="padding:45px 0px;">
                     
-                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                    <h1 class="hs-line-8 no-transp font-alt">
                        Profile | <%=current_user.email%>
                     </h1>                    
                                       
@@ -16,7 +16,7 @@
        </div>
     </section>
 
-<section class="page-section login-section">
+<section class="section login-section" style="padding: 50px 0;">
     
     <div class="container relative">
         

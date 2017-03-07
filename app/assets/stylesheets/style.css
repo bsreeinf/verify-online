@@ -601,7 +601,7 @@ a.btn-mod{
 	box-sizing: border-box;
 	padding: 4px 13px;
   	color: #fff;
-  	background: #3498DB;
+  	background: #ff9c00;
 	border: 2px solid transparent;
 	font-size: 11px;
 	font-weight: 400;
@@ -1298,7 +1298,7 @@ a.btn-mod:focus{
 	font-size: 30px;
     font-weight: 400;
 	text-transform: uppercase;
-	letter-spacing: 0.5em;
+	letter-spacing: 0.2em;
     line-height: 1.8;
     opacity: .9;
 }
@@ -3440,7 +3440,7 @@ a.logo:hover{
 	color: #ccc;
 }
 .work-item:hover .work-descr{
-	color: #999;
+	/*color: #999;*/
 }
 .work-item .work-img:after{
 	content: " ";
@@ -3475,7 +3475,7 @@ a.logo:hover{
 .works-grid.hover-white .work-item:hover .work-intro,
 .works-grid.hover-white .work-item:hover .work-title,
 .works-grid.hover-white .work-item:hover .work-descr{
-	color: #000;
+	color: #fff;
 }
 .works-grid.hover-white .work-item:hover .work-img:after{	
 	background: rgba(250,250,250, .9);

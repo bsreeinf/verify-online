@@ -3,7 +3,8 @@ class LandingPageController < ApplicationController
 
 
   def index
-  
+    puts params.to_s
+    puts "aaaaaaaaa"
   end
   
   def search_page

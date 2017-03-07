@@ -1,28 +1,5 @@
 <div class="page" id="top">            
-    <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 " style='background-color: #3498DB;' id="home">
-       <div class="container">            
-            <!-- Hero Content -->
-            <div class="home-content">
-                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
-                    
-                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       Verification
-                    </h1>                    
-                    <div class="local-scroll hidden-xs">
-                       <%= link_to "Apply", apply_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Status", status_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Payment History", history_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                    </div>                    
-                </div>
-            </div>
-            <!-- End Hero Content -->            
-       </div>
-    </section>
-    <!-- End Home Section -->
-
+    <%= render 'student_verification/header'%> 
 
     <!-- Section -->
     <section class="small-section" id="multi-page">

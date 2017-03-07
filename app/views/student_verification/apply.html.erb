@@ -1,44 +1,11 @@
 <%= content_tag "div", id: "rails-data", data: {tax_percent: ENV['TAX_PERCENT'], default_verf_amount: ENV['DEFAULT_VERF_AMOUNT'], user_id: current_user.id, college_id: @college_id, form: (@s3_direct_post.fields), url: @s3_direct_post.url, host: URI.parse(@s3_direct_post.url).host } do %><% end %>
 
-<div class="page" id="top">            
-    <!-- Page Loader -->        
-  <div id="ptp_loader" class="page-loader" style="display:none;">
-    <div class="loader">Loading...</div>
-    <div style="width:300px; height: 50px; position: absolute; top: 65%; left: 50%; margin: -25px 0 0 -150px; font-size: 15px;">
-    <p id="loader_msg" style="text-align: center;">AAA</p>
-    </div>
-  </div>
-  <!-- End Page Loader -->
-
-    <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 " style='background-color: #3498DB;' id="home">
-       <div class="container">            
-            <!-- Hero Content -->
-            <div class="home-content">
-                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
-                    
-                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       Verification
-                    </h1>                    
-                    <div class="local-scroll hidden-xs">
-                       <%= link_to "Apply", apply_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Status", status_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Payment History", history_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                    </div>                    
-                </div>
-            </div>
-            <!-- End Hero Content -->            
-       </div>
-    </section>
-    <!-- End Home Section -->
-
-
+<div class="page" id="top">  
+  <%= render 'student_verification/header'%>          
     <!-- Section -->
-    <section class="page-section" style="padding-top: 80px;">
+    <section class="section">
 
-      <div id="instructions-box" class="jumbotron align-center row mb-40" style="margin: -140px 0 0 0;">
+      <div id="instructions-box" class="jumbotron align-center row" style="">
         <div style="max-width: 500px; margin: 0 auto;" class="align-center">
           <h3 class="alt-features-title font-alt">Instructions</h3>
           <div class="alt-features-descr align-left">1. Select the college you want to get your documents verified from.</div>

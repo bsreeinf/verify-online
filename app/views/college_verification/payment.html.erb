@@ -1,27 +1,5 @@
 <div class="page" id="top">            
-    <!-- Home Section -->
-    <section class="home-section bg-dark-alfa-50 " style='background-color: #3498DB;' id="home">
-       <div class="container">            
-            <!-- Hero Content -->
-            <div class="home-content">
-                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
-                    
-                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                       <%= current_user.college.name%>
-                    </h1>                    
-                    <div class="local-scroll hidden-xs">
-                       <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Completed Verification", completed_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round" %>
-                        <span>&nbsp;</span>
-                        <%= link_to "Payment Details", payment_details_path, :class => "btn btn-mod btn-border-w btn-medium btn-round", :style =>"background: #fff;color: #111;border-color: transparent;" %>
-                    </div>                    
-                </div>
-            </div>
-            <!-- End Hero Content -->            
-       </div>
-    </section>
-    <!-- End Home Section -->
+    <%= render 'college_verification/header'%> 
 
 
     <!-- Section -->
@@ -81,6 +59,7 @@
                                 <th>Transaction Date and Time</th>
                                 <th>Amount Paid</th>
                                 <th>Paid on</th>
+                                <th>Report</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -99,6 +78,9 @@
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td>Rs <%=@college.verification_amount%></td>                       
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%>
+                                <td>
+                                    <a href="/final_report.pdf?verification_id=<%=college_verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;</a>
+                                </td>
                               </tr>
                               
                             <% end %>
