@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20151223054617) do
     t.string   "course_duration"
     t.string   "remarks"
     t.string   "class_awarded"
+    t.string   "last_update_ip"
     t.string   "payment_slug"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
