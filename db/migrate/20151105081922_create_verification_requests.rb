@@ -18,6 +18,8 @@ class CreateVerificationRequests < ActiveRecord::Migration
       t.string :course_duration		
       t.string :remarks				
       t.string :class_awarded
+
+      t.string :last_update_ip
       		
       t.string :payment_slug
       

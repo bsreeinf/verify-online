@@ -11,7 +11,7 @@
 <table style="width: 1000px;">
 	<tr>
 		<td colspan="2" align="right">
-			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=@client_ip%><br>
+			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=@verification_stub.last_update_ip%><br>
 		</td>
 	</tr>
 	<tr class="report_letter_head" >

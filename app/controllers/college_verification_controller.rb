@@ -60,7 +60,7 @@ class CollegeVerificationController < ApplicationController
     @verification_stub = VerificationRequest.find_by(id: params[:verification_id])
     @college = current_user.college
     @user = User.find_by(id: @verification_stub.user_id)
-    @client_ip = request.remote_ip
+    # @client_ip = request.remote_ip
     respond_to do |format|
       format.pdf do
         pdf = WickedPdf.new.pdf_from_string(
@@ -105,6 +105,7 @@ class CollegeVerificationController < ApplicationController
 
   def update
     @verification_request = VerificationRequest.find(params[:id])
+    @verification_request.last_update_ip = request.remote_ip
     if @verification_request.update_attributes(update_params)
       flash[:success] = "Verification Status updated"
       redirect_to view_verifications_path
@@ -123,7 +124,7 @@ class CollegeVerificationController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def update_params
-      params.permit(:course, :type_of_studies,:course_duration, :class_awarded, :remarks, :verification_status_id)
+      params.permit(:course, :type_of_studies,:course_duration, :class_awarded, :remarks, :verification_status_id, :last_update_ip)
     end
 
 end

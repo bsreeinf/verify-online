@@ -59,7 +59,6 @@
                                 <th>Transaction Date and Time</th>
                                 <th>Amount Paid</th>
                                 <th>Paid on</th>
-                                <th>Report</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -77,10 +76,7 @@
                                 <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
                                 <td>Rs <%=@college.verification_amount%></td>                       
-                                <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%>
-                                <td>
-                                    <a href="/final_report.pdf?verification_id=<%=college_verification.id%>" target="blank"><i class="fa fa-download dark"></i>&nbsp;</a>
-                                </td>
+                                <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%></td>
                               </tr>
                               
                             <% end %>

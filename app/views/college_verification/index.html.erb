@@ -81,6 +81,7 @@
                                             <div class="form contact-form" id="contact_form">
                                             <%= form_tag update_path   , :method => :put do%>
                                                 <%= hidden_field_tag :id, college_verification.id %>
+                                                <%= hidden_field_tag :last_update_ip, request.remote_ip %>
                                                 <div class="clearfix">
                                                     <div class="row align-center "> 
                                                         <div class="col-sm-4 mb-40">  

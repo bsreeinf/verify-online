@@ -38,8 +38,8 @@
 	};
 
 	$.fn.placeholder_blur = function(caption) {
-	
-		if(this.val()=="") {
+		console.log("aass");
+		if(this.val()=="" && !this.is(":focus")) {
 			this.val(caption);
 			this.addClass($.fn.placeholder_options.placeholded_class);
 		}
