@@ -139,7 +139,7 @@ class StudentVerificationController < ApplicationController
             		# :email => "#{@user.email}",
             		# :phone => "#{@user.phone}",
             		# :allow_repeated_payments => false,
-	                :base_price => "#{amount}", 
+	                :base_price => 0, #{}"#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
 	                # :webhook_url => "http://requestb.in/16bls4y1"
