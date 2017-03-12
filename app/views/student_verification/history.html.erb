@@ -35,6 +35,11 @@
                             <div class="col-md-2">
                                 <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
                             </div> 
+                            <% if @payments.present? %>    
+                            <div class="col-md-4">
+                                <a href="/payment_report.pdf?fromdate=<%=@fromDate%>&todate=<%=@toDate%>" target="blank" style="cursor: pointer; font-size: 22px;"><i class="fa fa-download dark" style="padding: 5px 10px;"></i>Download Report</a>
+                            </div> 
+                            <%end%>
                         </div>
                     </div>
                 <% end %> 
