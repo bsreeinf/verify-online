@@ -24,14 +24,15 @@ Rails.application.routes.draw do
   get    'payment_confirmation'         => 'student_verification#payment_confirmation'
   post   'instamojo_webhook'            => 'student_verification#instamojo_webhook'
   post   'add_verification'             => 'student_verification#add_verification'
+  get    'final_report_user'            => 'student_verification#report'
+  get    'payment_report'               => 'student_verification#payment_report'
 
 
   get    'view_verifications'           => 'college_verification#index'
   get    'completed_verifications'      => 'college_verification#completed'
-  get    'final_report'                 => 'college_verification#report'
-  get    'final_report_user'            => 'student_verification#report'
   get    'payment_details'              => 'college_verification#payment'
   put    'update'                       => 'college_verification#update'
+  get    'final_report'                 => 'college_verification#report'
 
   # resources :student_verification, :collection => { :update_multiple => :post}
 

@@ -1,0 +1,61 @@
+<style>
+	*{
+		font-size: 20px !important;
+	}
+	.bordered-table, .bordered-table th, .bordered-table td{
+		border: 1px solid black !important;
+		border-collapse: collapse !important;
+		padding: 5px !important;
+	}
+</style>
+<table style="width: 1000px;">
+	<tr>
+		<td colspan="2" align="right">
+			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=request.ip%><br>
+		</td>
+	</tr>
+
+	<tr><td><br></td></tr>
+
+	<tr>
+		<td align="center" style="width:100%;" colspan="2"><%=("Payments made by <strong>#{current_user.name}</strong> from #{@fromDate} to #{@toDate}").html_safe%></td>
+	</tr>
+
+	<tr><td><br></td></tr>
+
+	<tr>
+		<td colspan="2">
+			<table class="bordered-table" width="100%" style="width:100%;">
+				<tr>
+					<th align="left">Sl. no.</th>
+                    <th align="left">Verification ID</th>
+                    <th align="left">Transaction ID</th>
+                    <th align="left">College/ University Name</th>
+                    <th align="left">Student Name</th>
+                    <th align="left">HT Number/ Reg. No.</th>
+                    <th align="left">Transaction Date and Time</th>
+                    <th align="left">Amount Paid</th>
+                    <th align="left">Paid on</th>
+				</tr>
+				<% @payments.each_with_index do |payment, i| %>
+                    <%
+                        @verification_stub = VerificationRequest.find_by(payment_id: payment.id).includes(:college)
+                    %>
+                  	<tr>
+	                    <td><%=i+1%></td>
+	                    <td style="text-transform: uppercase;"><%=@verification_stub.verification_token%></td>
+	                    <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
+	                    <td><%=@verification_stub.college.name%></td>
+	                    <td><%=@verification_stub.name%></td>
+	                    <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
+	                    <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
+	                    <td>Rs <%=(@verification_stub.college.verification_amount + 114.5).round%></td>
+	                    <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%></td>
+	                </tr>
+                  
+                <% end %>
+			</table>
+		</td>
+	</tr>
+	
+</table>

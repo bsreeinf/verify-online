@@ -2,7 +2,7 @@ class StudentVerificationController < ApplicationController
 	include StudentVerificationHelper
 	helper_method :sort_column, :sort_direction
 
-	before_action :logged_in_user, only: [:apply, :status, :history]
+	before_action :logged_in_user, only: [:apply, :status, :history, :report, :payment_report]
 	before_action :set_s3_direct_post, only: [:apply]
 	skip_before_filter :verify_authenticity_token, :except => [:add_verification, :instamojo_webhook]
 
@@ -58,6 +58,37 @@ class StudentVerificationController < ApplicationController
 	        ) 
 	        send_data(pdf, 
 	          :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
+	          :disposition => 'attachment'
+	        )
+	      end
+	    end
+	end
+
+	def payment_report
+		@disable_header_footer = true
+		@college_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user.id)
+	    @searched = false
+		if params.has_key?(:fromdate) && params.has_key?(:todate)
+	      @fromDate = Date.parse(params[:fromdate]) rescue nil
+	      @toDate = Date.parse(params[:todate]) rescue nil
+	      if @fromDate.present? && @toDate.present?
+		      @payments = Payment.all.where(:id => @college_verifications).where(
+		        "date(created_at) BETWEEN ? AND ?", 
+		        "%#{params[:fromdate]}%",
+		        "%#{params[:todate]}%"
+		        ).order('created_at DESC')
+		      .paginate(page: params[:page],:per_page => 10)
+		      @searched = true
+		  end 
+	    end
+	    respond_to do |format|
+	      format.pdf do
+	        pdf = WickedPdf.new.pdf_from_string(
+	          render_to_string(template: "report_data/payment_report.html.erb"),
+	          :footer => {right: "Powered by www.verifyonline.in"}
+	        ) 
+	        send_data(pdf, 
+	          :filename    => "payment_report.pdf", 
 	          :disposition => 'attachment'
 	        )
 
@@ -139,7 +170,7 @@ class StudentVerificationController < ApplicationController
             		# :email => "#{@user.email}",
             		# :phone => "#{@user.phone}",
             		# :allow_repeated_payments => false,
-	                :base_price => 0, #{}"#{amount}", 
+	                :base_price => "#{amount}", 
 	                :redirect_url => "#{request.base_url}/payment_confirmation",
 	                :webhook_url => "#{request.base_url}/instamojo_webhook"
 	                # :webhook_url => "http://requestb.in/16bls4y1"
