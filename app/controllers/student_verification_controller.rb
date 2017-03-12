@@ -66,18 +66,17 @@ class StudentVerificationController < ApplicationController
 
 	def payment_report
 		@disable_header_footer = true
-		@college_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user.id)
+		@student_verifications =  VerificationRequest.select("payment_id").where("user_id = ?", current_user.id)
 	    @searched = false
 		if params.has_key?(:fromdate) && params.has_key?(:todate)
 	      @fromDate = Date.parse(params[:fromdate]) rescue nil
 	      @toDate = Date.parse(params[:todate]) rescue nil
 	      if @fromDate.present? && @toDate.present?
-		      @payments = Payment.all.where(:id => @college_verifications).where(
+		      @payments = Payment.all.where(:id => @student_verifications).where(
 		        "date(created_at) BETWEEN ? AND ?", 
 		        "%#{params[:fromdate]}%",
 		        "%#{params[:todate]}%"
-		        ).order('created_at DESC')
-		      .paginate(page: params[:page],:per_page => 10)
+		        ).order('created_at ASC')
 		      @searched = true
 		  end 
 	    end

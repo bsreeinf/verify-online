@@ -78,6 +78,39 @@ class CollegeVerificationController < ApplicationController
     end
   end
 
+  def payment_report
+    @disable_header_footer = true
+    @college_verifications =  VerificationRequest.select("payment_id").where("college_id = ?", current_user.college.id)
+      @searched = false
+    if params.has_key?(:fromdate) && params.has_key?(:todate)
+        @fromDate = Date.parse(params[:fromdate]) rescue nil
+        @toDate = Date.parse(params[:todate]) rescue nil
+        if @fromDate.present? && @toDate.present?
+          @payments = Payment.all.where(:id => @college_verifications).where(
+            "date(created_at) BETWEEN ? AND ?", 
+            "%#{params[:fromdate]}%",
+            "%#{params[:todate]}%"
+            ).order('created_at ASC')
+          @searched = true
+      end 
+      end
+      respond_to do |format|
+        format.pdf do
+          pdf = WickedPdf.new.pdf_from_string(
+            render_to_string(template: "report_data/college_payment_report.html.erb"),
+            :footer => {right: "Powered by www.verifyonline.in"}
+          ) 
+          send_data(pdf, 
+            :filename    => "payment_report.pdf", 
+            :disposition => 'attachment'
+          )
+
+          # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+          #         template: "college_verification/report.html.erb"
+        end
+      end
+  end
+
   def payment
     @college_verifications =  VerificationRequest.select("payment_id").where("college_id = ?", @college_id)
     @searched = false

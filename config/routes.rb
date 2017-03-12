@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get    'payment_details'              => 'college_verification#payment'
   put    'update'                       => 'college_verification#update'
   get    'final_report'                 => 'college_verification#report'
+  get    'college_payment_report'       => 'student_verification#payment_report'
 
   # resources :student_verification, :collection => { :update_multiple => :post}
 

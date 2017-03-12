@@ -33,6 +33,11 @@
                             <div class="col-md-2">
                                 <%= submit_tag "Search", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
                             </div> 
+                            <% if @payments.present? %>    
+                            <div class="col-md-4">
+                                <a href="/college_payment_report.pdf?fromdate=<%=@fromDate%>&todate=<%=@toDate%>" target="blank" style="cursor: pointer; font-size: 22px;"><i class="fa fa-download dark" style="padding: 5px 10px;"></i>Download Report</a>
+                            </div> 
+                            <%end%>
                         </div>
                     </div>
                 <% end %> 
@@ -53,7 +58,6 @@
                                 <th>Sl. no.</th>
                                 <th>Verification ID</th>
                                 <th>Transaction ID</th>
-                                <th>College/ University Name</th>
                                 <th>Student Name</th>
                                 <th>HT Number/ Reg. No.</th>
                                 <th>Transaction Date and Time</th>
@@ -71,7 +75,6 @@
                                 <td><%=i+1%></td>
                                 <td style="text-transform: uppercase;"><%=@verification_stub.verification_token%></td>
                                 <td style="text-transform: uppercase;"><%=payment.transaction_id%></td>
-                                <td><%=@college.name%></td>
                                 <td><%=@verification_stub.name%></td>
                                 <td style="text-transform: uppercase;"><%=@verification_stub.hallticket_no%></td>
                                 <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y %l:%M%p')%></td>
