@@ -39,7 +39,7 @@
 				</tr>
 				<% @payments.each_with_index do |payment, i| %>
                     <%
-                        @verification_stub = VerificationRequest.find_by(payment_id: payment.id).includes(:college)
+                        @verification_stub = VerificationRequest.includes(:college).find_by(payment_id: payment.id)
                     %>
                   	<tr>
 	                    <td><%=i+1%></td>
