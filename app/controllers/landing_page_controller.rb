@@ -3,8 +3,6 @@ class LandingPageController < ApplicationController
 
 
   def index
-    puts params.to_s
-    puts "aaaaaaaaa"
   end
   
   def search_page
@@ -21,6 +19,7 @@ class LandingPageController < ApplicationController
 
   def contact_create
     ContactMailer.contact_created(params[:name],params[:email],params[:message]).deliver_now
+    ContactMailer.contact_created_update(params[:name],params[:email],params[:message]).deliver_now
     redirect_to root_path, notice: 'Thanks for contacting us. We will get back to you shortly.' 
   end
 

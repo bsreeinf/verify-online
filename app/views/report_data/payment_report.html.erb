@@ -15,6 +15,10 @@
 		</td>
 	</tr>
 
+	<tr class="report_letter_head" >
+        <td style="width:100%; max-width: 1000px; height: auto;" colspan="2"><img src="https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/report_header.png"/></td>
+	</tr>
+
 	<tr><td><br></td></tr>
 
 	<tr>
@@ -37,7 +41,8 @@
                     <th align="left">Amount Paid</th>
                     <!-- <th align="left">Paid on</th> -->
 				</tr>
-				<% @payments.each_with_index do |payment, i| %>
+				<% if !@payments.nil? 
+					@payments.each_with_index do |payment, i| %>
                     <%
                         @verification_stub = VerificationRequest.includes(:college).find_by(payment_id: payment.id)
                     %>
@@ -53,7 +58,8 @@
 	                    <!-- <td><%=local_time(payment.created_at + 330.minutes, '%d/%m/%Y')%></td> -->
 	                </tr>
                   
-                <% end %>
+                <% end 
+                end%>
 			</table>
 		</td>
 	</tr>
