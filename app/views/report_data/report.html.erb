@@ -16,8 +16,8 @@
 	</tr>
 	<tr class="report_letter_head" >
 		<% @src_head = ""
-		if !@report_datum.nil?
-            if !@report_datum.header_file_name.nil?
+		if !@college.report_datum.nil?
+            if !@college.report_datum.header_file_name.nil?
                 @src_head = @college.report_datum.header.url
             else
 				@src_head = "https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png"
@@ -160,8 +160,8 @@
 	</tr>
 	<tr class="report_letter_head">
 		<% @src_sign = ""
-		if !@report_datum.nil?
-            if !@report_datum.header_file_name.nil?
+		if !@college.report_datum.nil?
+            if !@college.report_datum.header_file_name.nil?
                 @src_sign = @college.report_datum.signature.url
             else
 				@src_sign = "https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png"
