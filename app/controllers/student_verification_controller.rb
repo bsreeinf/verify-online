@@ -84,7 +84,7 @@ class StudentVerificationController < ApplicationController
 	      format.pdf do
 	        pdf = WickedPdf.new.pdf_from_string(
 	          render_to_string(template: "report_data/payment_report.html.erb"),
-	          :footer => {right: "Powered by www.verifyonline.in"}
+	          :footer => {right: "Powered by www.verifyonline.in", left: 'Page [page] of [topage]' }
 	        ) 
 	        send_data(pdf, 
 	          :filename    => "payment_report.pdf", 

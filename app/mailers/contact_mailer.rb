@@ -4,7 +4,7 @@ class ContactMailer < ActionMailer::Base
 	    @name = name
 		@email = email
 		@message = message
-	    address = Mail::Address.new "support@veryfyonline.in"
+	    address = Mail::Address.new "support@verifyonline.in"
 	    address.display_name = "VerifyOnline.in Support"
 	    mail from: address.format, to: email, subject: "Thank you for cantacting Verify Online"
 	end
@@ -13,7 +13,7 @@ class ContactMailer < ActionMailer::Base
 	    @name = name
 		@email = email
 		@message = message
-	    address = Mail::Address.new "support@veryfyonline.in"
+	    address = Mail::Address.new "support@verifyonline.in"
 	    address.display_name = "VerifyOnline.in Support"
 	    mail from: address.format, to: address.format, subject: "New contact request from #{@name}"
 	end

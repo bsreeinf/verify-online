@@ -27,9 +27,9 @@
                     <div class="local-scroll hidden-xs">
                        <%= link_to "Pending Verification", view_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='index'}" %>
                         <span>&nbsp;</span>
-                        <%= link_to "Completed Verification", completed_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='status'}" %>
+                        <%= link_to "Completed Verification", completed_verifications_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='completed'}" %>
                         <span>&nbsp;</span>
-                        <%= link_to "Payment Details", payment_details_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='history'}" %>
+                        <%= link_to "Payment Details", payment_details_path, :class => "btn btn-mod btn-border-w btn-medium btn-round #{tab_style unless params[:action]!='payment'}" %>
                     </div>                    
                 </div>
             </div>

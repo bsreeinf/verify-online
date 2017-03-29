@@ -18,11 +18,12 @@
 		<% @src_head = ""
 		if !@report_datum.nil?
             if !@report_datum.header_file_name.nil?
-                @src_head = @college.report_datum.header.url(:medium)
+                @src_head = @college.report_datum.header.url
             else
 				@src_head = "https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/header_default.png"
             end
-        end%>
+        end
+        puts "Header link : #{@src_sign}"%>
         <td style="width:100%; max-width: 1000px; height: auto;" colspan="2"><img src="<%=@src_head%>"/></td>
 		
 	</tr>
@@ -161,11 +162,12 @@
 		<% @src_sign = ""
 		if !@report_datum.nil?
             if !@report_datum.header_file_name.nil?
-                @src_sign = @college.report_datum.signature.url(:medium)
+                @src_sign = @college.report_datum.signature.url
             else
 				@src_sign = "https://s3-ap-southeast-1.amazonaws.com/verifyonline-documents/signature_default.png"
             end
-        end%>
+        end
+        puts "Signature link : #{@src_sign}"%>
 		<td><img src="<%=@src_sign%>"/></td>
 	</tr>
 	<tr>

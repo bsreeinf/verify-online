@@ -601,7 +601,7 @@ a.btn-mod{
 	box-sizing: border-box;
 	padding: 4px 13px;
   	color: #fff;
-  	background: #ff9c00;
+  	background-color: #ff9c00;
 	border: 2px solid transparent;
 	font-size: 11px;
 	font-weight: 400;
@@ -628,8 +628,8 @@ a.btn-mod{
 a.btn-mod:hover,
 a.btn-mod:focus{
 	font-weight: 400;
-	color: rgba(255,255,255, .85);
-  	background: rgba(0,0,0, .7);
+	/*color: rgba(255,255,255, .85);*/
+  	/*background: rgba(0,0,0, .7);*/
 	text-decoration: none;
     outline: none;
     border-color: transparent;    
